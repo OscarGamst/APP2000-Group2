@@ -1,6 +1,10 @@
 import React from 'react';
 import BildeFidgetToy from './components/BildeFidgetToy';
 
+import { Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import About from './pages/About';
+
 function App() {
   return (
     <div>
