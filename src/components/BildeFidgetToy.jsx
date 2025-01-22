@@ -42,17 +42,24 @@ const BildeFidgetToy = () => {
                 }
                 
                 .spinneknapp {
-                    padding: 15px 30px;
-                    fontSize: 20px;
-                    margin: 20px;
-                    display: flex;
-                    
+                    padding: 10px 20px;
+                    background-color:rgb(224, 185, 9);
+                    color: black;
+                    border: ;
+                    cursor: pointer;
+                    font-size: 32px;
+                    border-radius: 10px;
+                }
+                
+                .spinneknapp:hover{
+                    background-color: #45a049;
                 }
 
             `}</style>
 
             <img src={bilde} className="spinny-bilde" alt="bilde" />
             {/*får faen ikke fløtta knappen tilbake under bildet*/}
+            <br/>
             <button onClick={handleClick} className="spinneknapp">
                 Spinn!
             </button>
