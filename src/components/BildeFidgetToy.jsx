@@ -45,6 +45,7 @@ const BildeFidgetToy = () => {
                     padding: 15px 30px;
                     fontSize: 20px;
                     margin: 20px;
+                    display: flex;
                     
                 }
 
