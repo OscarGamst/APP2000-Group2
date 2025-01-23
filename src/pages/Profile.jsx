@@ -1,5 +1,4 @@
 import React from "react";
-import TestBar from "../components/TestComponent";
 
 const Profile = () => {
   return (

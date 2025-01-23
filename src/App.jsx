@@ -7,12 +7,10 @@ import MainLayout from './layouts/MainLayout';
 function App() {
   return(
     <BrowserRouter>
-      <MainLayout>
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
-      </MainLayout>
   </BrowserRouter>
   );
 }
