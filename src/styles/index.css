@@ -1,0 +1,35 @@
+/* Reset styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif; 
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6; 
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  ul {
+    list-style: none;
+  }
+  /* End of reset */
+
+/* Testing of navbar */
+
+.testBar {
+    position: sticky; /* sticks to top when scrolling */
+    top: 0; /* Makes sure it's always top */
+    background-color: aqua;
+    z-index: 1000; /* above other content */
+    text-align: center; /* allign content to center inside testbar */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* shadow effect */
+    padding: 10px 0; /* spacing */
+}
