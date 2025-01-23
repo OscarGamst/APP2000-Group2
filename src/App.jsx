@@ -1,17 +1,24 @@
-import React from 'react';
+// src/App.js
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Homepage from "./pages/HomePage";
+import MainLayout from "./layouts/MainLayout";
+import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
-import MainLayout from './layouts/MainLayout';
+import Progress from "./pages/Progress";
+import Friends from "./pages/Friends";
 
 function App() {
-  return(
+  return (
     <BrowserRouter>
+      <MainLayout>
         <Routes>
-          <Route path="/" element={<Homepage />} />
+          <Route path="/" element={<Dashboard />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/progress" element={<Progress />} />
+          <Route path="/friends" element={<Friends />} />
         </Routes>
-  </BrowserRouter>
+      </MainLayout>
+    </BrowserRouter>
   );
 }
 

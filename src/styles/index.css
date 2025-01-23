@@ -1,35 +1,132 @@
 /* Reset styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: Arial, sans-serif; 
-    background-color: #f4f4f9;
-    color: #333;
-    line-height: 1.6; 
-  }
-  
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-  
-  ul {
-    list-style: none;
-  }
-  /* End of reset */
-
-/* Testing of navbar */
-
-.testBar {
-    position: sticky; /* sticks to top when scrolling */
-    top: 0; /* Makes sure it's always top */
-    background-color: aqua;
-    z-index: 1000; /* above other content */
-    text-align: center; /* allign content to center inside testbar */
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* shadow effect */
-    padding: 10px 0; /* spacing */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+body {
+  font-family: Arial, sans-serif; 
+  background-color: #f4f4f9;
+  color: #333;
+  line-height: 1.6; 
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+/* End of reset */
+
+/* ----- Navbar ------ */
+.navbar {
+  position: sticky; /* stays at the top when scrolling */
+  top: 0; /* sticks to the top */
+  background-color: #ffffff; /* Background color */
+  z-index: 1000; /* stays above other content */
+  text-align: center; /* Center-aligns content inside the navbar */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* shadow */
+  padding: 10px 0; /*  spacing */
+}
+
+.navbar-links {
+  display: inline-flex; /* lines up the text */
+  gap: 40px; /* space between links */
+}
+
+.navbar-links li {
+  font-size: 18px; /* Font-size */
+}
+
+.navbar-links a {
+  color: #333333; /* Text color */
+  font-weight: bold; /* Makes the text bold */
+  transition: color 0.3s ease; /* Adds a hover  */
+}
+
+.navbar-links a:hover {
+  color: #007BFF; /* Changes color on hover */
+}
+/* End of Navbar*/
+
+/* Footer */
+.footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+}
+
+.footer p {
+  margin: 0;
+}
+
+.back-to-top {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.back-to-top:hover {
+  background-color: #0056b3;
+}
+
+
+/* End of Footer */
+
+/* Activity Feed */
+.activity-feed {
+  max-width: 600px;
+  margin: 0 auto; /* Feed will stay in the middle */
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.activity-feed h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.activity-feed ul {
+  list-style: none;
+  padding: 0;
+}
+
+.activity-feed li {
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Workout Activity */
+.workout {
+  margin-top: 30px;
+  background-color: #e0f7fa;
+  border-left: 5px solid #00796b;
+}
+
+/* Run activity */
+.run {
+  margin-top: 30px;
+  background-color: #e8f5e9;
+  border-left: 5px solid #388e3c
+}
+
+/* End of activity feed */
+
