@@ -1,22 +1,14 @@
 import React from 'react';
-import BildeFidgetToy from './components/BildeFidgetToy';
-
-/*import { Routes, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import About from './pages/About';*/
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Homepage from "./pages/HomePage";
 
 function App() {
-  return (
-    <div>
-      <h1>HEI PÅ DEG</h1>
-      <BildeFidgetToy/>
-      {`
+  return(
+    <BrowserRouter>
       <Routes>
-        <Route path="/HomePage" element={<HomePage/>} />
-        <Route path="/About" element={<About/>} />
+        <Route path="/" element={<Homepage />} />
       </Routes>
-      `}
-    </div>
+  </BrowserRouter>
   );
 }
 

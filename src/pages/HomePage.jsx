@@ -1,12 +1,12 @@
-import React from 'react';
-import BildeFidgetToy from "../components/BildeFidgetToy";
+import React from "react";
+
 const HomePage = () => {
-    return (
-        <div>
-            <h1>DETTA ER HomePage.jsx</h1>
-            <BildeFidgetToy/>
-        </div>
-    );
+  return (
+    <div className="homepage">
+      <h1>Homepage!</h1>
+      
+    </div>
+  );
 };
 
 export default HomePage;
