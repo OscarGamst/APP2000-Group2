@@ -5,7 +5,7 @@ import MainLayout from "./layouts/MainLayout";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import Progress from "./pages/Progress";
-import Friends from "./pages/Friends";
+import Activity from "./pages/Activity";
 
 function App() {
   return (
@@ -13,9 +13,9 @@ function App() {
       <MainLayout>
         <Routes>
           <Route path="/" element={<Dashboard />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/progress" element={<Progress />} />
-          <Route path="/friends" element={<Friends />} />
+          <Route path="/Profile" element={<Profile />} />
+          <Route path="/Progress" element={<Progress />} />
+          <Route path="/Activity" element={<Activity />} />
         </Routes>
       </MainLayout>
     </BrowserRouter>
