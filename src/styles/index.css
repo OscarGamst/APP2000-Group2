@@ -57,13 +57,18 @@ ul {
 .footer {
   background-color: #333;
   color: #fff;
-  text-align: center;
   padding: 20px;
-  position: relative;
 }
 
-.footer p {
-  margin: 0;
+#footerLeft {
+  float: left;
+  margin: auto -999px auto auto;
+  padding: 0;
+  text-align: start;
+}
+
+#footerMid {
+  text-align:center;
 }
 
 .back-to-top {
@@ -76,6 +81,7 @@ ul {
   font-size: 16px;
   margin-top: 10px;
   transition: background-color 0.3s ease;
+
 }
 
 .back-to-top:hover {
