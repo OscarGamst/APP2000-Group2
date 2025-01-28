@@ -22,6 +22,8 @@ ul {
 }
 /* End of reset */
 
+/* ---------- Layout Components ---------- */
+
 /* ----- Navbar ------ */
 .navbar {
   position: sticky; /* stays at the top when scrolling */
@@ -51,9 +53,9 @@ ul {
 .navbar-links a:hover {
   color: #007BFF; /* Changes color on hover */
 }
-/* End of Navbar*/
+/* ----- End of Navbar ----- */
 
-/* Footer */
+/* ----- Footer ----- */
 .footer {
   background-color: #333;
   color: #fff;
@@ -89,14 +91,14 @@ ul {
 }
 
 
-/* End of Footer */
+/* ----- End of Footer ----- */
 
-/* ------ Components ------*/
+/* ------ General Components ------*/
 
-/* Activity Feed */
+/* ----- Activity Feed ----- */
 .activity-feed {
-  max-width: 600px;
-  margin: auto 2rem; /* Feed will stay in the middle */
+  max-width: 70rem;
+  margin: auto 10rem; /* Feed will stay on the side */
   padding: 20px;
   background-color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -122,19 +124,19 @@ ul {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-/* Workout Activity */
+/* ---- Workout Activity ---- */
 .workout {
   margin-top: 30px;
   background-color: #e0f7fa;
   border-left: 5px solid #00796b;
 }
 
-/* Run activity */
+/* ---- Run activity ---- */
 .run {
   margin-top: 30px;
   background-color: #e8f5e9;
   border-left: 5px solid #388e3c
 }
 
-/* End of activity feed */
+/* ----- End of activity feed ---- */
 
