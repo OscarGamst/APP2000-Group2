@@ -26,32 +26,74 @@ ul {
 
 /* ----- Navbar ------ */
 .navbar {
-  position: sticky; /* stays at the top when scrolling */
-  top: 0; /* sticks to the top */
-  background-color: #ffffff; /* Background color */
-  z-index: 1000; /* stays above other content */
-  text-align: center; /* Center-aligns content inside the navbar */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* shadow */
-  padding: 10px 0; /*  spacing */
+  position: sticky;
+  top: 0;
+  background-color: #ffffff;
+  z-index: 1000;
+  display: flex; /* Bruk flexbox for å justere innhold */
+  align-items: center; /* Vertikal midtstille */
+  justify-content: space-between; /* Plasser elementer på hver sin side */
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-links {
-  display: inline-flex; /* lines up the text */
-  gap: 40px; /* space between links */
+  display: flex;
+  gap: 40px;
 }
 
 .navbar-links li {
-  font-size: 18px; /* Font-size */
+  font-size: 18px;
 }
 
 .navbar-links a {
-  color: #333333; /* Text color */
-  font-weight: bold; /* Makes the text bold */
-  transition: color 0.3s ease; /* Adds a hover  */
+  color: #333333;
+  font-weight: bold;
+  transition: color 0.3s ease;
 }
 
 .navbar-links a:hover {
-  color: #007BFF; /* Changes color on hover */
+  color: #007BFF;
+}
+
+.navbarbilde {
+  display: flex;
+  gap: 20px;
+}
+
+.navbarbilde img {
+  width: 30px;
+  height: 30px;
+}
+
+.searchbox {
+  display: flex; /* Flexbox for riktig layout */
+  align-items: center; /* Vertikal midtstille */
+  gap: 10px; /* Avstand mellom input og knapp */
+  flex: 1; /* Fyll tilgjengelig plass */
+  justify-content: center; /* Horisontal midtstille */
+}
+
+.searchbox input {
+  width: 300px; /* Size of the searchbar box*/
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  font-size: 16px;
+}
+
+.searchbutton {
+  padding: 8px 16px;
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.searchbutton:hover {
+  background-color: #003d80;
 }
 /* ----- End of Navbar ----- */
 
