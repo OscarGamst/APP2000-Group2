@@ -1,13 +1,13 @@
 import React from "react";
 import ProfileCard from "../components/ProfileCard";
 
-function Activity() {
+function Home() {
     return (
     <div>
-        <h1>Activity</h1>
+        <h1>Home</h1>
         <ProfileCard/>
     </div>
     );
 }
 
-export default Activity;
+export default Home;

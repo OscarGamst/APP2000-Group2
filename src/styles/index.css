@@ -182,3 +182,94 @@ ul {
 
 /* ----- End of activity feed ---- */
 
+/* ---- Profile Card ---- */
+/* index.css */
+.profileCard {
+    position: relative;
+    width: 300px;
+    margin: 20px auto;
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    border-radius: 20px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profileCard:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2), 0 8px 10px rgba(0, 0, 0, 0.15);
+}
+
+.gradient {
+    height: 120px;
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+}
+
+.profileCard ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.profileCard li {
+    margin: 10px 0;
+}
+
+.profileCard img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-top: -50px;
+    border: 4px solid #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.profileCard .profileTitle {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+.profileTitle a:hover {
+  color: #2575fc;
+}
+.profileCard .profileDesc {
+    font-size: 0.9rem;
+    color: #777;
+    margin: 5px 0 15px;
+}
+
+.profileFollow {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 20px;
+    background: #f9f9f9;
+    border-top: 1px solid #ddd;
+}
+
+.profileFollow li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profileFollow label {
+    font-size: 0.8rem;
+    color: #555;
+    margin-bottom: 3px;
+}
+
+.profileFollow a {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #6a11cb;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.profileFollow a:hover {
+    color: #2575fc;
+}
+
+/* ---- End of Profile Card ---- */
