@@ -1,4 +1,4 @@
-/* Reset styles */
+/* ---- Reset styles ---- */
 * {
   margin: 0;
   padding: 0;
@@ -9,7 +9,8 @@ body {
   font-family: Arial, sans-serif; 
   background-color: #f4f4f9;
   color: #333;
-  line-height: 1.6; 
+  line-height: 1.6;
+  font-size: 16px; 
 }
 
 a {
@@ -20,11 +21,13 @@ a {
 ul {
   list-style: none;
 }
-/* End of reset */
+
+
+/* ---- End of reset ---- */
 
 /* ---------- Layout Components ---------- */
 
-/* ----- Navbar ------ */
+/* ---- Navbar ---- */
 .navbar {
   position: sticky;
   top: 0;
@@ -95,9 +98,9 @@ ul {
 .searchbutton:hover {
   background-color: #003d80;
 }
-/* ----- End of Navbar ----- */
+/* ---- End of Navbar ---- */
 
-/* ----- Footer ----- */
+/* ---- Footer ---- */
 .footer {
   background-color: #333;
   color: #fff;
@@ -116,35 +119,35 @@ ul {
 }
 
 .back-to-top {
-  background-color: #007bff;
+  background-color: #0a71de;
   color: white;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 1rem;
   margin-top: 10px;
   transition: background-color 0.3s ease;
 
 }
 
 .back-to-top:hover {
-  background-color: #0056b3;
+  background-color: #1b84f4;
 }
-
 
 /* ----- End of Footer ----- */
 
+
 /* ------ General Components ------*/
 
-/* ----- Activity Feed ----- */
+/* ---- Activity Feed ---- */
 .activity-feed {
-  max-width: 70rem;
-  margin: auto 10rem; /* Feed will stay on the side */
-  padding: 20px;
+  max-width: 55%;
+  margin: 4rem 4rem 4rem 4rem; /* Feed will stay on the side */
+  padding: 1.3rem;
   background-color: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
 }
 
 .activity-feed h2 {
@@ -168,16 +171,16 @@ ul {
 
 /* ---- Workout Activity ---- */
 .workout {
-  margin-top: 30px;
+  margin-top: 1.5rem;
   background-color: #e0f7fa;
-  border-left: 5px solid #00796b;
+  border-left: 0.3rem solid #00796b;
 }
 
 /* ---- Run activity ---- */
 .run {
-  margin-top: 30px;
+  margin-top: 1.5rem;
   background-color: #e8f5e9;
-  border-left: 5px solid #388e3c
+  border-left: 0.3rem solid #388e3c
 }
 
 /* ----- End of activity feed ---- */

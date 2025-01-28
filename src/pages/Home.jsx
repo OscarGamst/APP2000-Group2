@@ -1,13 +1,13 @@
+// src/pages/Dashboard.js
 import React from "react";
-import ProfileCard from "../components/ProfileCard";
+import ActivityFeed from "../components/ActivityFeed";
 
-function Home() {
-    return (
-    <div>
-        <h1>Home</h1>
-        <ProfileCard/>
+const Home = () => {
+  return (
+    <div className="home">
+      <ActivityFeed />
     </div>
-    );
-}
+  );
+};
 
 export default Home;
