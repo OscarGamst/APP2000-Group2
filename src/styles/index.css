@@ -25,6 +25,20 @@ ul {
 
 /* ---- End of reset ---- */
 
+/* Flex */
+
+.home-wrapper {
+  display: flex;
+}
+
+.home-main {
+  flex: 2;
+}
+
+.home-sidebar {
+  flex: 1;
+}
+
 /* ---------- Layout Components ---------- */
 
 /* ---- Navbar ---- */
@@ -38,7 +52,6 @@ ul {
   justify-content: space-between; /* Plasser elementer på hver sin side */
   padding: 10px 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  
 }
 
 .navbar-links {
@@ -57,7 +70,7 @@ ul {
 }
 
 .navbar-links a:hover {
-  color: pink;
+  color: #007BFF;
 }
 
 .navbarbilde {
@@ -70,21 +83,19 @@ ul {
   height: 30px;
 }
 
-
 .searchbox {
-  display: inline-flex;
-  align-items: center;
-  margin-left: auto; /* Skyver søkeboksen til høyre */
-  margin-right: 2rem; /* Legger til avstand mellom søkeboksen og bildene */
+  display: flex; /* Flexbox for riktig layout */
+  align-items: center; /* Vertikal midtstille */
+  gap: 10px; /* Avstand mellom input og knapp */
+  flex: 1; /* Fyll tilgjengelig plass */
+  justify-content: center; /* Horisontal midtstille */
 }
-
-
 
 .searchbox input {
   width: 300px; /* Øk bredden for bedre plass */
+  width: 300px; /* Size of the searchbar box*/
   padding: 8px 12px;
   border: 1px solid #ccc;
-  border-right: none; /* Fjern dobbel kantlinje mellom input og knapp */
   border-radius: 4px 0 0 4px;
   font-size: 16px;
 }
@@ -93,9 +104,8 @@ ul {
   padding: 8px 16px;
   background-color: #0056b3;
   color: white;
-  border: 1px solid #ccc; /* Samme border som input */
-  border-left: none; /* Fjern dobbel kantlinje */
-  border-radius: 0px 4px 4px 0;
+  border: none;
+  border-radius: 0 4px 4px 0;
   cursor: pointer;
   font-size: 16px;
 }
@@ -105,13 +115,8 @@ ul {
 }
 /* ---- End of Navbar ---- */
 
-
-/* End of Navbar*/
-
-/* Footer */
+/* ---- Footer ---- */
 .footer {
-  position: sticky;
-  
   background-color: #333;
   color: #fff;
   padding: 20px;
@@ -132,12 +137,12 @@ ul {
   background-color: #0a71de;
   color: white;
   border: none;
-  padding: /*10px 20px*/0.8rem 1.6rem;
+  padding: 10px 20px;
   cursor: pointer;
   border-radius: 5px;
   font-size: 1rem;
   margin-top: 1.4rem;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.4s ease;
 
 }
 
@@ -152,8 +157,8 @@ ul {
 
 /* ---- Activity Feed ---- */
 .activity-feed {
-  flex-direction: column;
-  /* margin: 4rem 4rem 4rem 4rem; /* Feed will stay on the side */
+  max-width: 100%;
+  margin: 1rem; /* Feed will stay on the side */
   padding: 1.3rem;
   background-color: #fff;
   box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.1);
@@ -299,37 +304,36 @@ ul {
 /*Activity siden slutt*/
 
 /* ---- Profile Card ---- */
+/* index.css */
 .profileCard {
     position: relative;
-    width: 19rem;
+    width: 19rem auto;
     margin: 2rem auto;
     background: linear-gradient(145deg, #ffffff, #f0f0f0);
-    border-radius: 5%;
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
     overflow: hidden;
     text-align: center;
-    
     
 }
 
 .gradient {
-    height: /*120px*/7.5rem;
+    height: 120px;
     background: linear-gradient(90deg, #6a11cb, #2575fc);
 }
 
 .profileCard ul {
-    list-style: none;
     padding: 0;
     margin: 0;
 }
 
 .profileCard li {
-    margin: 0.5rem 0;
+    margin: 10px 0;
 }
 
 .profileCard img { /* tenker vi lar denna stå i px for nå*/
-    width: 100px;
-    height: 100px;
+    width: 125px;
+    height: 125px;
     border-radius: 50%;
     margin-top: -50px;
     border: 4px solid #fff;
@@ -345,40 +349,40 @@ ul {
   color: #2575fc;
 }
 .profileCard .profileDesc {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: #777;
-    margin: 0.3rem 0 0.9rem/*5px 0 15px*/;
+    margin: 0.3rem 2rem 0.3rem 2rem/*5px 0 15px*/;
 }
 
-.profileFollow {
+.profileStats {
     display: flex;
     justify-content: space-around;
-    padding: /*10px 20px*/0.6rem 1.2rem;
+    padding: 10px 20px;
     background: #f9f9f9;
-    border-top: 1px solid #ddd;
+    border-top: 0.1rem solid #ddd;
 }
 
-.profileFollow li {
-    display: flex;
+.profileStats li {
+    display: inline-flex;
     flex-direction: column;
     align-items: center;
+    margin: 1rem 2.5rem 1rem 2.5rem;
 }
 
-.profileFollow label {
-    font-size: 0.8rem;
+.profileStats label {
+    font-size: 0.9rem;
     color: #555;
-    margin-bottom: 0.25rem;
+    margin-bottom: 3px;
 }
 
-.profileFollow a {
-    font-size: 1rem;
+.profileStats a {
+    font-size: 1.1rem;
     font-weight: bold;
     color: #6a11cb;
-    text-decoration: none;
     transition: color 0.2s ease;
 }
 
-.profileFollow a:hover {
+.profileStats a:hover {
     color: #2575fc;
 }
 
