@@ -11,7 +11,7 @@ const ProfileCard = () => {
                 <li className="profileDown"></li>
                 <li><img src={default_pfp} alt=""/></li>
                 <li className="profileTitle">
-                    <button>username</button>
+                <a href="" >Username</a>
                 </li>
                 <li className="profileDesc">
                     asdfasdf
@@ -19,11 +19,11 @@ const ProfileCard = () => {
                 <div className="profileFollow">
                 <li>
                     <label for="following">Following: </label>
-                    <button>69</button>
+                    <a href="" >69</a>
                 </li>
                 <li>
                     <label for="followers">Followers: </label>
-                    <button>3</button>
+                    <a href="" >3</a>
                 </li>
                 </div>
             </ul>
