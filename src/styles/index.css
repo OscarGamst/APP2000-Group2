@@ -142,8 +142,8 @@ ul {
 
 /* ---- Activity Feed ---- */
 .activity-feed {
-  max-width: 55%;
-  margin: 4rem 4rem 4rem 4rem; /* Feed will stay on the side */
+  flex-direction: column;
+  /* margin: 4rem 4rem 4rem 4rem; /* Feed will stay on the side */
   padding: 1.3rem;
   background-color: #fff;
   box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.1);

@@ -1,0 +1,51 @@
+
+.testflex {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    height: 100vh;
+    font-size: 16px;
+}
+
+.nav {
+    display: flex;
+    background: rgb(91, 217, 255);
+}
+
+.navbar {
+    gap: 2rem;
+    padding: 0;
+    margin-bottom: 1rem;
+}
+
+.navlinks li {
+    display: inline;
+    margin: 2rem;
+    font-size: 1.5rem;
+}
+
+.container-content {
+    display: flex;
+    flex: 1;
+}
+
+.main {
+    flex-wrap: wrap; /* Allow wrapping */
+    flex-direction: column;
+    flex:2;
+    justify-content: center; /* Center items */
+    gap: 10px; /* Add spacing between items */
+    padding: 1.5rem;
+}
+
+.item {
+    flex: 1 2rem;
+    background-color: lightgreen;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+
+.sidebar {
+    flex: 1;
+    padding: 1.5rem;
+}
