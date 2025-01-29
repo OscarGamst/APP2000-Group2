@@ -81,7 +81,7 @@ ul {
 
 
 .searchbox input {
-  width: 200px; /* Øk bredden for bedre plass */
+  width: 300px; /* Øk bredden for bedre plass */
   padding: 8px 12px;
   border: 1px solid #ccc;
   border-right: none; /* Fjern dobbel kantlinje mellom input og knapp */
