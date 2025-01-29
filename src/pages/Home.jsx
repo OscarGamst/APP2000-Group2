@@ -8,13 +8,14 @@ const Home = () => {
   return (
     <div className="home">
       <div className="home-wrapper">
+      <div className="flex-empty"></div>
         <div className="home-main">
         <ActivityFeed />
         </div>        
         <div className="home-sidebar">
           <ProfileCard />
-          </div>
-        
+        </div>
+        <div className="flex-empty"></div>
       </div>
     </div>
   );
