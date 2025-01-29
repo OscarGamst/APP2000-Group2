@@ -3,6 +3,7 @@ import React from "react";
 import ActivityFeed from "../components/ActivityFeed";
 import SideBar from "../components/SideBar";
 import ProfileCard from "../components/ProfileCard";
+import ProgressHomepg from "../components/ProgressHomepg";
 
 const Home = () => {
   return (
@@ -10,7 +11,8 @@ const Home = () => {
       <div className="home-wrapper">
       <div className="flex-empty"></div>
         <div className="home-main">
-        <ActivityFeed />
+          <ProgressHomepg />
+          <ActivityFeed />
         </div>        
         <div className="home-sidebar">
           <ProfileCard />

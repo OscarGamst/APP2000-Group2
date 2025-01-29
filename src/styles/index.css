@@ -443,13 +443,24 @@ ul {
   align-self:center;
   justify-content:space-evenly;
   height: 8rem;
-  width: 33rem;
-  text-align:center;
+  width: 10rem;
+  align-items:base-line;
 
 }
 .progressBoxRow {
   display:flex;
   flex-direction:row;
+  align-items:base-line;
+  justify-content:center;
+  text-align:center;
+}
+.progressIcons {
+  width:5rem;
+  height:5rem;
+  text-align:center;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
 }
 
 /* ---- End Progress Home Page ---- */
