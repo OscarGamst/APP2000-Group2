@@ -11,20 +11,26 @@ const ProfileCard = () => {
                 <li className="profileDown"></li>
                 <li><img src={default_pfp} alt=""/></li>
                 <li className="profileTitle">
-                <a href="" >Username</a>
+                <a href="/Profile" >Username</a>
                 </li>
                 <li className="profileDesc">
-                    asdfasdf
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore et ipsum ...
                 </li>
-                <div className="profileFollow">
+                <div className="profileStats">
+                <ul>
                 <li>
-                    <label for="following">Following: </label>
+                    <label for="pfcfollowing">Following: </label>
                     <a href="" >69</a>
                 </li>
                 <li>
-                    <label for="followers">Followers: </label>
+                    <label for="pfcfollowers">Followers: </label>
                     <a href="" >3</a>
                 </li>
+                <li>
+                    <label for="pfcposts">Posts: </label>
+                    <a href="">999</a>
+                </li>
+                </ul>
                 </div>
             </ul>
         </div>

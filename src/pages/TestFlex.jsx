@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/flex.css";
 import ActivityFeed from "../components/ActivityFeed";
-
+import ProfileCard from "../components/ProfileCard";
 
 const TestFlex = () => {
     return (
@@ -21,6 +21,7 @@ const TestFlex = () => {
                 </div>
                 <div className="sidebar">
                     <div className="item">Sidebar item</div>
+                    <ProfileCard/>
                 </div>
             </div>
         </div>
