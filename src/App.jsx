@@ -7,7 +7,6 @@ import Profile from "./pages/Profile";
 import Progress from "./pages/Progress";
 import Activity from "./pages/Activity";
 import TestPageNoNav from "./pages/TestPageNoNav";
-import TestFlex from "./pages/TestFlex";
 
 function App() {
   return (
@@ -20,7 +19,6 @@ function App() {
           <Route path="/Activity" element={<Activity />} />
         </Route>
         <Route path="/TestPageNoNav" element={<TestPageNoNav />} />
-        <Route path="/TestFlex" element={<TestFlex />} />
       </Routes>
     </BrowserRouter>
   );
