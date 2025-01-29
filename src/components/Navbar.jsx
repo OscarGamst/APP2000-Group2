@@ -2,8 +2,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/index.css";
-import pp from "../components/PP.png";
-import bell from "../components/bell.png";
+import pp from "../pictures/default_pfp.png";
+import bell from "../pictures/NavbarBell.png";
 
 const Navbar = () => {
   const handleSearch = () => {

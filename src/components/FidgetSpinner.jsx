@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import bilde from './spinner.png';
+import bilde from '../pictures/spinner.png';
 
 //bare noe gøy for å få et bilde til å spinne, litt som en fidget spinner eller noe sånt idk
 //man trykker på knappen og så spinner den litteranne.

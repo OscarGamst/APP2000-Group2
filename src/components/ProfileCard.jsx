@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/index.css";
-import default_pfp from "../components/default_pfp.png";
+import default_pfp from "../pictures/default_pfp.png";
 
 const ProfileCard = () => {
 
