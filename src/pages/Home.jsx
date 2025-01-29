@@ -4,6 +4,7 @@ import ActivityFeed from "../components/ActivityFeed";
 import SideBar from "../components/SideBar";
 import ProfileCard from "../components/ProfileCard";
 import ProgressHomepg from "../components/ProgressHomepg";
+import FidgetSpinner from "../components/FidgetSpinner";
 
 const Home = () => {
   return (

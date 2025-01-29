@@ -436,6 +436,49 @@ ul {
 
 /* ---- End of Profile Card ---- */
 
+/* --- FIDGETSPINNER LOL --- */
+/*bare pølsevev ta her
+.fidgetSpinner {
+
+  height: 16rem;
+  width: 16rem;
+  border-radius: 50%;
+  pointer-events: none;
+  background-color: #0ddbae;
+  text-align: center;
+  
+}
+
+.fidgetSpinner img {
+  height: 16rem;
+  width: 16rem;
+  animation: bilde-spin 0.2s linear;
+}
+
+@keyframes bilde-spin {
+  from {
+      transform: rotate(0deg);
+  }
+  to {
+      transform: rotate(360deg);
+  }
+}
+.fidgetSpinner button {
+  background-color: #0ddbae;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.fidgetSpinner button:hover {
+  background-color: #0056b3;
+}
+/* --- END OF FIDGETSPINNER :( --- */
+
 /* ---- Progress Home Page ---- */
 .progressBoxColumn {
   display:flex;
