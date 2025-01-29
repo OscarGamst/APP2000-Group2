@@ -29,6 +29,7 @@ ul {
 
 .home-wrapper {
   display: flex;
+  gap: 1.5rem;
 }
 
 .home-main {
@@ -37,6 +38,7 @@ ul {
 
 .home-sidebar {
   flex: 1;
+  
 }
 
 /* ---------- Layout Components ---------- */
@@ -305,22 +307,23 @@ ul {
 /*Activity siden slutt*/
 
 /* ---- Profile Card ---- */
-/* index.css */
+
 .profileCard {
     position: relative;
     width: 19rem auto;
-    margin: 2rem auto;
+    margin: 1rem;
     background: linear-gradient(145deg, #ffffff, #f0f0f0);
-    border-radius: 20px;
+    border-radius: 10%;
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
     overflow: hidden;
     text-align: center;
     
+
 }
 
 .gradient {
     height: 120px;
-    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    background: linear-gradient(90deg, #00796b, #388e3c);
 }
 
 .profileCard ul {
@@ -379,12 +382,12 @@ ul {
 .profileStats a {
     font-size: 1.1rem;
     font-weight: bold;
-    color: #6a11cb;
+    color: #388e3c;
     transition: color 0.2s ease;
 }
 
 .profileStats a:hover {
-    color: #2575fc;
+    color: #00796b;
 }
 
 /* ---- End of Profile Card ---- */
