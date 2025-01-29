@@ -25,6 +25,20 @@ ul {
 
 /* ---- End of reset ---- */
 
+/* Flex */
+
+.home-wrapper {
+  display: flex;
+}
+
+.home-main {
+  flex: 2;
+}
+
+.home-sidebar {
+  flex: 1;
+}
+
 /* ---------- Layout Components ---------- */
 
 /* ---- Navbar ---- */
@@ -38,7 +52,6 @@ ul {
   justify-content: space-between; /* Plasser elementer på hver sin side */
   padding: 10px 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  
 }
 
 .navbar-links {
@@ -57,7 +70,7 @@ ul {
 }
 
 .navbar-links a:hover {
-  color: pink;
+  color: #007BFF;
 }
 
 .navbarbilde {
@@ -70,21 +83,18 @@ ul {
   height: 30px;
 }
 
-
 .searchbox {
-  display: inline-flex;
-  align-items: center;
-  margin-left: auto; /* Skyver søkeboksen til høyre */
-  margin-right: 2rem; /* Legger til avstand mellom søkeboksen og bildene */
+  display: flex; /* Flexbox for riktig layout */
+  align-items: center; /* Vertikal midtstille */
+  gap: 10px; /* Avstand mellom input og knapp */
+  flex: 1; /* Fyll tilgjengelig plass */
+  justify-content: center; /* Horisontal midtstille */
 }
 
-
-
 .searchbox input {
-  width: 200px; /* Øk bredden for bedre plass */
+  width: 300px; /* Size of the searchbar box*/
   padding: 8px 12px;
   border: 1px solid #ccc;
-  border-right: none; /* Fjern dobbel kantlinje mellom input og knapp */
   border-radius: 4px 0 0 4px;
   font-size: 16px;
 }
@@ -93,9 +103,8 @@ ul {
   padding: 8px 16px;
   background-color: #0056b3;
   color: white;
-  border: 1px solid #ccc; /* Samme border som input */
-  border-left: none; /* Fjern dobbel kantlinje */
-  border-radius: 0px 4px 4px 0;
+  border: none;
+  border-radius: 0 4px 4px 0;
   cursor: pointer;
   font-size: 16px;
 }
@@ -105,13 +114,8 @@ ul {
 }
 /* ---- End of Navbar ---- */
 
-
-/* End of Navbar*/
-
-/* Footer */
+/* ---- Footer ---- */
 .footer {
-  position: sticky;
-  
   background-color: #333;
   color: #fff;
   padding: 20px;
@@ -132,11 +136,11 @@ ul {
   background-color: #0a71de;
   color: white;
   border: none;
-  padding: /*10px 20px*/0.8rem 1.6rem;
+  padding: 10px 20px;
   cursor: pointer;
   border-radius: 5px;
   font-size: 1rem;
-  margin-top: 1.4rem;
+  margin-top: 10px;
   transition: background-color 0.3s ease;
 
 }
@@ -152,8 +156,8 @@ ul {
 
 /* ---- Activity Feed ---- */
 .activity-feed {
-  flex-direction: column;
-  /* margin: 4rem 4rem 4rem 4rem; /* Feed will stay on the side */
+  max-width: 100%;
+  margin: 1rem; /* Feed will stay on the side */
   padding: 1.3rem;
   background-color: #fff;
   box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.1);
@@ -195,125 +199,28 @@ ul {
 
 /* ----- End of activity feed ---- */
 
-/*Activity siden*/
-
-
-.activity-page {
-  padding: 20px;
-}
-
-.activity-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.filter-button {
-  background-color: #0056b3;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.filter-button:hover {
-  background-color: #003d80;
-}
-
-.activity-layout {
-  display: grid;
-  grid-template-columns: 2fr 1fr; /* 2:1 forhold */
-  gap: 20px;
-}
-
-.left-column {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.progress-section,
-.activities-section {
-  background-color: #f9f9f9;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.progress-chart {
-  margin-top: 10px;
-  background-color: #eaeaea;
-  height: 150px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-}
-
-.activities-section {
-  margin-top: 20px;
-}
-
-.activity-item {
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 10px;
-}
-
-.activity-item h4 {
-  margin-bottom: 5px;
-}
-
-.right-column {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.goals-section,
-.add-activity-section {
-  background-color: #f9f9f9;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.add-goal-button,
-.add-activity-button {
-  background-color: #0056b3;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.add-goal-button:hover,
-.add-activity-button:hover {
-  background-color: #003d80;
-}
-
-/*Activity siden slutt*/
-
 /* ---- Profile Card ---- */
+/* index.css */
 .profileCard {
     position: relative;
-    width: 19rem;
-    margin: 2rem auto;
+    width: 300px;
+    margin: 20px auto;
     background: linear-gradient(145deg, #ffffff, #f0f0f0);
-    border-radius: 5%;
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
     overflow: hidden;
     text-align: center;
-    
-    
+    font-family: 'Roboto', sans-serif;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profileCard:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2), 0 8px 10px rgba(0, 0, 0, 0.15);
 }
 
 .gradient {
-    height: /*120px*/7.5rem;
+    height: 120px;
     background: linear-gradient(90deg, #6a11cb, #2575fc);
 }
 
@@ -324,10 +231,10 @@ ul {
 }
 
 .profileCard li {
-    margin: 0.5rem 0;
+    margin: 10px 0;
 }
 
-.profileCard img { /* tenker vi lar denna stå i px for nå*/
+.profileCard img {
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -347,13 +254,13 @@ ul {
 .profileCard .profileDesc {
     font-size: 0.9rem;
     color: #777;
-    margin: 0.3rem 0 0.9rem/*5px 0 15px*/;
+    margin: 5px 0 15px;
 }
 
 .profileFollow {
     display: flex;
     justify-content: space-around;
-    padding: /*10px 20px*/0.6rem 1.2rem;
+    padding: 10px 20px;
     background: #f9f9f9;
     border-top: 1px solid #ddd;
 }
@@ -367,7 +274,7 @@ ul {
 .profileFollow label {
     font-size: 0.8rem;
     color: #555;
-    margin-bottom: 0.25rem;
+    margin-bottom: 3px;
 }
 
 .profileFollow a {

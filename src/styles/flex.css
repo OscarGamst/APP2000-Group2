@@ -1,7 +1,7 @@
-
+/*
 .testflex {
     display: flex;
-    flex-direction: column; /* Stack items vertically */
+    flex-direction: column; 
     height: 100vh;
     font-size: 16px;
 }
@@ -29,11 +29,11 @@
 }
 
 .main {
-    flex-wrap: wrap; /* Allow wrapping */
+    flex-wrap: wrap; 
     flex-direction: column;
     flex:2;
-    justify-content: center; /* Center items */
-    gap: 10px; /* Add spacing between items */
+    justify-content: center; 
+    gap: 10px; 
     padding: 1.5rem;
 }
 
@@ -49,3 +49,4 @@
     flex: 1;
     padding: 1.5rem;
 }
+*/
