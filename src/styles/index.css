@@ -86,9 +86,10 @@ ul {
 .searchbox {
   display: flex; /* Flexbox for riktig layout */
   align-items: center; /* Vertikal midtstille */
-  gap: 10px; /* Avstand mellom input og knapp */
+  gap: 2px; /* Avstand mellom input og knapp */
   flex: 1; /* Fyll tilgjengelig plass */
-  justify-content: center; /* Horisontal midtstille */
+  justify-content: right; /* Horisontal midtstille */
+  margin-right: 20px; /* Legger til avstand mellom søkeboksen og bildene */
 }
 
 .searchbox input {
