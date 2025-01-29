@@ -2,13 +2,12 @@
 import React from "react";
 import ActivityFeed from "../components/ActivityFeed";
 
-const Dashboard = () => {
+const Home = () => {
   return (
-    <div className="dashboard">
-      <h1>Dashboard!</h1>
+    <div className="home">
       <ActivityFeed />
     </div>
   );
 };
 
-export default Dashboard;
+export default Home;

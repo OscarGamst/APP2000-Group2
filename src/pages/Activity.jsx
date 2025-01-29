@@ -1,7 +1,11 @@
 
 // src/pages/Activity.jsx
 import React from "react";
+<<<<<<< HEAD
 import "../styles/index.css";
+=======
+import ProfileCard from "../components/ProfileCard";
+>>>>>>> 27eb2b60514b7f57a2f144fd68e291333c602480
 
 const Activity = () => {
   return (
