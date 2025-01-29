@@ -388,3 +388,21 @@ ul {
 }
 
 /* ---- End of Profile Card ---- */
+
+/* ---- Progress Home Page ---- */
+.progressBoxColumn {
+  display:flex;
+  flex-direction:column;
+  align-self:center;
+  justify-content:space-evenly;
+  height: 8rem;
+  width: 33rem;
+  text-align:center;
+
+}
+.progressBoxRow {
+  display:flex;
+  flex-direction:row;
+}
+
+/* ---- End Progress Home Page ---- */
