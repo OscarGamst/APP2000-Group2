@@ -1,10 +1,9 @@
 import React from "react";
 import "../styles/index.css";
 
-
 // Function to format the duration
 const formatDuration = (durationInSeconds) => {
-  const hours = Math.floor(durationInSeconds / 3600); // 1 hour = 3600 seconds
+  const hours = Math.floor(durationInSeconds / 3600);
   const minutes = Math.floor((durationInSeconds % 3600) / 60);
   const seconds = durationInSeconds % 60;
 
@@ -23,17 +22,24 @@ const formatDuration = (durationInSeconds) => {
   return formattedDuration;
 };
 
-const RunActivity = ({ run }) => {
-  const formattedDuration = formatDuration(run.time * 60); // Time in minutes
+const ActivityItem = ({ activity }) => {
+  const formattedDuration = formatDuration(activity.duration ? activity.duration * 60 : activity.time * 60);
 
   return (
-    <div className="activity-item run">
-      <h4>{run.title}</h4>
-      <p>{run.description}</p>
+    <div className={`activity-item ${activity.type}`}>
+      <h4>{activity.title}</h4>
+      <p>{activity.description}</p>
       <p><strong>Duration:</strong> {formattedDuration}</p>
-      <p><strong>Distance:</strong> {run.distance} km</p>
+      {activity.distance !== undefined && <p><strong>Distance:</strong> {activity.distance} km</p>}
+      <div className="activity-social">
+        <ul>
+            <li><button>Like</button></li>
+            <li><button>Comment</button></li>
+        </ul>
+      </div>
     </div>
   );
 };
 
-export default RunActivity;
+export default ActivityItem;
+

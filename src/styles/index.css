@@ -86,9 +86,10 @@ ul {
 .searchbox {
   display: flex; /* Flexbox for riktig layout */
   align-items: center; /* Vertikal midtstille */
-  gap: 10px; /* Avstand mellom input og knapp */
+  gap: 2px; /* Avstand mellom input og knapp */
   flex: 1; /* Fyll tilgjengelig plass */
-  justify-content: center; /* Horisontal midtstille */
+  justify-content: right; /* Horisontal midtstille */
+  margin-right: 20px; /* Legger til avstand mellom søkeboksen og bildene */
 }
 
 .searchbox input {
@@ -154,11 +155,10 @@ ul {
 
 
 /* ------ General Components ------*/
-
-/* ---- Activity Feed ---- */
+/* Activity feed */
 .activity-feed {
   max-width: 100%;
-  margin: 1rem; /* Feed will stay on the side */
+  margin: 1rem; /* Keeps feed positioned */
   padding: 1.3rem;
   background-color: #fff;
   box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.1);
@@ -167,7 +167,7 @@ ul {
 
 .activity-feed h2 {
   font-size: 1.5rem;
-  margin-bottom: 10px;
+  margin-bottom: 0.8rem;
   text-align: center;
 }
 
@@ -176,26 +176,67 @@ ul {
   padding: 0;
 }
 
-.activity-feed li {
-  margin: 10px 0;
-  padding: 10px;
-  background-color: #f9f9f9;
-  border-radius: 4px;
+.activity-item {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border-radius: 0.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-/* ---- Workout Activity ---- */
+/* ---- Activity Type Styles ---- */
 .workout {
-  margin-top: 1.5rem;
-  background-color: #e0f7fa;
-  border-left: 0.3rem solid #00796b;
+
 }
 
-/* ---- Run activity ---- */
 .run {
-  margin-top: 1.5rem;
-  background-color: #e8f5e9;
-  border-left: 0.3rem solid #388e3c
+
+}
+
+/* ---- Social buttons ---- */
+.activity-social {
+  margin-top: 1rem;
+}
+
+.activity-social ul {
+  display: flex;
+  gap: 0.5rem; /* Adds spacing between buttons */
+  padding: 0;
+}
+
+.activity-social li {
+  list-style: none;
+}
+
+.activity-social button {
+  background-color: #0ddbae;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.activity-social button:hover {
+  background-color: #0056b3;
+}
+
+/* ---- Common Activity Styling ---- */
+.activity-item h4 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.activity-item p {
+  margin: 0.2rem 0;
+  font-size: 1rem;
+  color: #666;
+}
+
+.activity-item strong {
+  color: #000;
 }
 
 /* ----- End of activity feed ---- */
