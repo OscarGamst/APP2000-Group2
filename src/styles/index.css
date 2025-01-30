@@ -27,6 +27,7 @@ ul {
 
 /* Flex */
 
+/* HomePage */
 .home-wrapper {
   display: flex;
   gap: 1.5rem;
@@ -43,6 +44,21 @@ ul {
 
 .flex-empty {
   flex: 0.3;
+}
+
+/* ActivityPage */
+
+.activity-page-wrapper {
+  display: flex;
+  gap: 1rem;
+}
+
+.activity-page-main {
+  flex: 1;
+}
+
+.activity-page-sidebar {
+  flex: 1;
 }
 
 /* ---------- Layout Components ---------- */
@@ -250,9 +266,7 @@ ul {
 /*Activity siden*/
 
 
-.activity-page {
-  padding: 20px;
-}
+
 
 .activity-header {
   display: flex;
