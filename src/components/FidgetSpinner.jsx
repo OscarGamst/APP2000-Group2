@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "../styles/index.css";
 import bilde from '../pictures/spinner.png';
 
 //bare noe gøy for å få et bilde til å spinne, litt som en fidget spinner eller noe sånt idk
@@ -28,7 +29,7 @@ const FidgetSpinner = () => {
                 .spinny-bilde {
                     height: 40vmin;
                     pointer-events: none;
-                    animation: ${spinner ? 'bilde-spin 0.1s linear' : 'none'};
+                    animation: ${spinner ? 'bilde-spin 0.2s linear' : 'none'};
                     
                 }
                 
@@ -40,30 +41,16 @@ const FidgetSpinner = () => {
                         transform: rotate(360deg);
                     }
                 }
-                
-                .spinneknapp {
-                    padding: 10px 20px;
-                    background-color:rgb(224, 185, 9);
-                    color: black;
-                    border: ;
-                    cursor: pointer;
-                    font-size: 32px;
-                    border-radius: 10px;
-                }
-                
-                .spinneknapp:hover{
-                    background-color: #45a049;
-                }
 
             `}</style>
-
-            <img src={bilde} className="spinny-bilde" alt="bilde" />
-            {/*får faen ikke fløtta knappen tilbake under bildet*/}
-            <br/>
-            <button onClick={handleClick} className="spinneknapp">
-                Spinn!
-            </button>
-            
+            <div className="fidgetSpinner">
+                <img src={bilde} className="spinny-bilde" alt="bilde" />
+                {/*får faen ikke fløtta knappen tilbake under bildet*/}
+                <br/>
+                <button onClick={handleClick}>
+                    Spinn!
+                </button>
+            </div>
         </div>
     );
 }

@@ -27,6 +27,7 @@ ul {
 
 /* Flex */
 
+/* HomePage */
 .home-wrapper {
   display: flex;
   gap: 1.5rem;
@@ -43,6 +44,21 @@ ul {
 
 .flex-empty {
   flex: 0.3;
+}
+
+/* ActivityPage */
+
+.activity-page-wrapper {
+  display: flex;
+  gap: 1rem;
+}
+
+.activity-page-main {
+  flex: 1;
+}
+
+.activity-page-sidebar {
+  flex: 1;
 }
 
 /* ---------- Layout Components ---------- */
@@ -250,9 +266,7 @@ ul {
 /*Activity siden*/
 
 
-.activity-page {
-  padding: 20px;
-}
+
 
 .activity-header {
   display: flex;
@@ -404,7 +418,7 @@ ul {
 
 .profileStats {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     padding: 0;
     background: #f9f9f9;
     border-top: 0.1rem solid #ddd;
@@ -435,6 +449,49 @@ ul {
 }
 
 /* ---- End of Profile Card ---- */
+
+/* --- FIDGETSPINNER LOL --- */
+/*bare pølsevev ta her
+.fidgetSpinner {
+
+  height: 16rem;
+  width: 16rem;
+  border-radius: 50%;
+  pointer-events: none;
+  background-color: #0ddbae;
+  text-align: center;
+  
+}
+
+.fidgetSpinner img {
+  height: 16rem;
+  width: 16rem;
+  animation: bilde-spin 0.2s linear;
+}
+
+@keyframes bilde-spin {
+  from {
+      transform: rotate(0deg);
+  }
+  to {
+      transform: rotate(360deg);
+  }
+}
+.fidgetSpinner button {
+  background-color: #0ddbae;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.fidgetSpinner button:hover {
+  background-color: #0056b3;
+}
+/* --- END OF FIDGETSPINNER :( --- */
 
 /* ---- Progress Home Page ---- */
 .progressBoxColumn {
