@@ -36,7 +36,10 @@
     ]
   },
   "devDependencies": {
-    "web-vitals": "^4.2.4",
-    "@babel/plugin-proposal-private-property-in-object": "^7.20.0"
+    "@babel/plugin-proposal-private-property-in-object": "^7.20.0",
+    "@babel/plugin-transform-class-properties": "^7.25.9",
+    "@babel/plugin-transform-optional-chaining": "^7.25.9",
+    "@babel/plugin-transform-private-property-in-object": "^7.25.9",
+    "web-vitals": "^4.2.4"
   }
 }
