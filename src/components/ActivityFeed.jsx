@@ -16,11 +16,10 @@ const ActivityFeed = () => {
       <button id="filter-activity" onClick={toggleFilter}> {/*Triggers the filter function */}
         {showFriends ? "Friends Activities" : "My Activities"} {/*button changes names based on state */}
       </button>
-      {activities
-        .filter((activity) => (showFriends ? activity.username === false : activity.username === true))
+      {activities.filter((activity) => (showFriends ? activity.username === false : activity.username === true))//continues on next line
         .map((activity) => (
           <ActivityItem key={activity.id} activity={activity} />
-        ))}
+          ))}
     </div>
   );
 };

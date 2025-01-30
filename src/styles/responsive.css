@@ -1,0 +1,7 @@
+@media (max-width: 1064px) {
+    .home-wrapper,
+    .activity-page-wrapper {
+      flex-direction: column;
+      gap: 1rem;
+    }
+}

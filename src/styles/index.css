@@ -206,12 +206,13 @@ ul {
 }
 
 /* ---- Activity Type Styles ---- */
-.workout {
-
+/* we can add unique things like images (shoe for running or a bar for workout etc)*/
+.activity-workout {
+  background-color:#f5fdf4; 
 }
 
-.run {
-
+.activity-run {
+  background-color:#fdf4f4 ;
 }
 
 /* ---- Social buttons ---- */
@@ -241,7 +242,7 @@ ul {
 }
 
 .activity-social button:hover {
-  background-color: #0056b3;
+  background-color: #0ff5c3;
 }
 
 #like-count {
