@@ -351,7 +351,7 @@ ul {
 /*Activity siden slutt*/
 
 /* ---- Profile Card ---- */
-
+/*
 .profileCard {
     position: relative;
     width: 19rem auto;
@@ -379,7 +379,7 @@ ul {
     margin: 10px 0;
 }
 
-.profileCard img { /* tenker vi lar denna stå i px for nå*/
+.profileCard img
     width: 125px;
     height: 125px;
     border-radius: 50%;
@@ -399,7 +399,7 @@ ul {
 .profileCard .profileDesc {
     font-size: 1rem;
     color: #777;
-    margin: 0.3rem 2rem 0.3rem 2rem/*5px 0 15px*/;
+    margin: 0.3rem 2rem 0.3rem 2rem/*5px 0 15px*//*;
 }
 
 .profileStats {
@@ -433,7 +433,7 @@ ul {
 .profileStats a:hover {
     color: #00796b;
 }
-
+*/
 /* ---- End of Profile Card ---- */
 
 /* --- FIDGETSPINNER LOL --- */
