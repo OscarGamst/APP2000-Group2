@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import "../styles/index.css";
-import FormRegisterActivity from "./FormRegisterActivity.jsx";
+import "../../styles/index.css";
+import FormRegisterActivity from './FormRegisterActivity';
 
 const RegisterActivity = () => {
     /*

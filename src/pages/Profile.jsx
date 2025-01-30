@@ -1,5 +1,5 @@
 import React from "react";
-import RegisterActivity from "../components/RegisterActivityComponent/RegisterActivity.jsx"
+import RegisterActivity from "../components/RegisterActivityComponent/RegisterActivity";
 
 function Profile() {
     return (
