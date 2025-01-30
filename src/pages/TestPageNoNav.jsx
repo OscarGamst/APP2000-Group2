@@ -1,12 +1,11 @@
 import React from "react";
-import ActivityFeed from "../components/ActivityFeed";
-import ProfileCard from "../components/ProfileCard";
-
+import "../styles/index.css";
+import RegisterActivity from "../components/RegisterActivityComponent/RegisterActivity.jsx";
 
 const TestPageNoNav = () => {
     return (
       <div className="testpage">
-        <ProfileCard />
+        <RegisterActivity />
       </div>
     );
   };

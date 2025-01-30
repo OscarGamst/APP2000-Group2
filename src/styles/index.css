@@ -464,3 +464,10 @@ ul {
 }
 
 /* ---- End Progress Home Page ---- */
+
+/* ---- Register Activity Button ---- */
+.formBox {
+  display:flex;
+  flex-direction:column;
+  
+}
