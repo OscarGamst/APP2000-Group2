@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import "../src/styles/index.css";
-import WorkoutFormRegisterActivity from "../WorkoutFormRegisterActivity.jsx";
-import RunFormRegisterActivity from "../RunFormRegisterActivity.jsx";
+import "../../styles/index.css";
+import WorkoutFormRegisterActivity from "./WorkoutFormRegisterActivity.jsx";
+import RunFormRegisterActivity from "./RunFormRegisterActivity.jsx";
 
 const FormRegisterActivity = ({returnToDefault}) => {
     //Variables
