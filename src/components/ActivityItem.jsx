@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/index.css";
+import "../styles/responsive.css";
 import { FormatDuration } from "./FormatDuration"; //this will format the duration
 
 const getActivityClass = (type) => { // checks the type of activity

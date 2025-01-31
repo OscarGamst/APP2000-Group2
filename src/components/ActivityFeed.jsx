@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ActivityItem from "./ActivityItem";
 import "../styles/index.css";
+import "../styles/responsive.css";
 import activities from "./ActivityData";
 
 const ActivityFeed = () => { 

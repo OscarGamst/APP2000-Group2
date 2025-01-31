@@ -8,6 +8,7 @@ import Progress from "./pages/Progress";
 import Activity from "./pages/Activity";
 import TestPageNoNav from "./pages/TestPageNoNav";
 import Albert from "./pages/Albert";
+import "./styles/responsive.css";
 
 function App() {
   return (
