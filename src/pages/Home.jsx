@@ -17,7 +17,7 @@ const Home = () => {
         <div className="home-sidebar">
           <ProfileCard />
         </div>
-        <div className="flex-empty"></div>
+        
       </div>
     </div>
   );

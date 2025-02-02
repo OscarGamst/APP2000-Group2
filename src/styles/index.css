@@ -54,13 +54,16 @@ ul {
 }
 
 .activity-page-main {
-  flex: 1;
+  flex: 2;
 }
 
 .activity-page-sidebar {
   flex: 1;
 }
 
+.activity-page-empty {
+  flex: 0.2;
+}
 /* ---------- Layout Components ---------- */
 
 /* ---- Navbar ---- */
@@ -72,17 +75,23 @@ ul {
   display: flex; /* Bruk flexbox for å justere innhold */
   align-items: center; /* Vertikal midtstille */
   justify-content: space-between; /* Plasser elementer på hver sin side */
-  padding: 10px 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 1rem 2rem;
+  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
+}
+
+.navbar-title {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #000;
 }
 
 .navbar-links {
   display: flex;
-  gap: 40px;
+  gap: 2.5rem;
 }
 
 .navbar-links li {
-  font-size: 18px;
+  font-size: 1.125rem;
 }
 
 .navbar-links a {
@@ -108,34 +117,34 @@ ul {
 .searchbox {
   display: flex; /* Flexbox for riktig layout */
   align-items: center; /* Vertikal midtstille */
-  gap: 2px; /* Avstand mellom input og knapp */
+  gap: 0.125rem; /* Avstand mellom input og knapp */
   flex: 1; /* Fyll tilgjengelig plass */
   justify-content: right; /* Horisontal midtstille */
-  margin-right: 20px; /* Legger til avstand mellom søkeboksen og bildene */
+  margin-right: 2rem; /* Legger til avstand mellom søkeboksen og bildene */
 }
 
 .searchbox input {
-  width: 300px; /* Øk bredden for bedre plass */
-  width: 300px; /* Size of the searchbar box*/
-  padding: 8px 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px 0 0 4px;
-  font-size: 16px;
+  width: 30%; /* Øk bredden for bedre plass */
+  padding: 0.5rem 0.75rem;
+  border: 0.0625rem solid #ccc;
+  border-radius: 0.25rem 0 0 0.25rem;
+  font-size: 1rem;
 }
 
 .searchbutton {
-  padding: 8px 16px;
-  background-color: #0056b3;
+  padding: 0.5rem 1rem;
+  background-color: #070707;
   color: white;
   border: none;
-  border-radius: 0 4px 4px 0;
+  border-radius: 0 0.25rem 0.25rem 0;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .searchbutton:hover {
   background-color: #003d80;
 }
+
 /* ---- End of Navbar ---- */
 
 /* ---- Footer ---- */
@@ -263,104 +272,249 @@ ul {
 
 /* ----- End of activity feed ---- */
 
-/*Activity siden*/
+/* ----- Activity siden ------ */
 
+/*start of progressbar*/
+.progress-chart {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(90deg, #00796b, #388e3c);
+  box-shadow: 0 2px 4px rgba(100, 162, 66, 0.1);
+  border-radius: 0.5rem;
+}
 
-
-
-.activity-header {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: 600;
 }
 
 .filter-button {
-  background-color: #0056b3;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer;
+  padding: 0.5rem 1rem;
+  background: black;
+  color: #ebf1ed;
+  border-radius: 0.5rem;
+  transition: background 0.2s;
 }
 
 .filter-button:hover {
-  background-color: #003d80;
+  background: #0d44b0;
 }
 
-.activity-layout {
-  display: grid;
-  grid-template-columns: 2fr 1fr; /* 2:1 forhold */
-  gap: 20px;
+.progress-bar-container {
+  position: relative;
+  width: 100%;  
+  height: 0.5rem;
+  background: #e5e7eb;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
 }
 
-.left-column {
+.progress-bar {
+  height: 100%;
+  background: black ;
+  border-radius: 0.5rem;
+  transition: width 0.5s ease-in-out;
+}
+
+.progress-value {
+  position: absolute;
+  top: -1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.875rem;
+  color: #f2f4f9;
+}
+
+.chart-container {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 10rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background: #f9fafb;
 }
 
-.progress-section,
-.activities-section {
-  background-color: #f9f9f9;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.chart-bar {
+  width: 15%;
+  background: linear-gradient(90deg, #00796b, #388e3c);
+  border-radius: 0.25rem;
+  transition: height 0.5s ease-in-out;
+}
+/*progressbar done*/
+
+/*Satrt of goals*/
+/* Container styling */
+.goals-container {
+  width: 90%;
+  max-width: 40 rem;
+  padding: 2rem;
+  border: 0.1rem solid #ccc;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
 }
 
-.progress-chart {
-  margin-top: 10px;
-  background-color: #eaeaea;
-  height: 150px;
+/* Header styling */
+.goals-header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  border-radius: 4px;
+  margin-bottom: 2rem;
 }
 
-.activities-section {
-  margin-top: 20px;
+.goals-header h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
-.activity-item {
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 10px;
+/* Button styling */
+.add-goal-button {
+  background-color: #333;
+  color: #fff;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
 }
 
-.activity-item h4 {
-  margin-bottom: 5px;
+.add-goal-button:hover {
+  background-color: #0d44b0;
 }
 
-.right-column {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+/* Content styling */
+.goals-content {
+  font-size: 1rem;
+  color: #333;
 }
 
-.goals-section,
-.add-activity-section {
-  background-color: #f9f9f9;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.goal-category {
+  margin-bottom: 1.5rem;
 }
 
-.add-goal-button,
-.add-activity-button {
-  background-color: #0056b3;
+.goal-category h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.goal-category ul {
+  list-style: disc;
+  padding-left: 2rem;
+}
+
+.goal-category li {
+  margin-bottom: 0.5rem;
+}
+
+/*goals done*/
+
+/*Satart of activity list*/
+
+.activity-list-container {
+  width: 100%; /* Strekker seg til hele bredden som progress-chart */
+  margin: 0 auto;
+  padding: 1.5rem;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  background-color: white; /* Match bakgrunnsfarge til progress-chart */
+}
+
+.activity-list-header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.divider {
+  border: none;
+  border-top: 0.1rem solid #ddd;
+  margin: 1rem 0;
+}
+
+.activity-item h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.activity-item p {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+.show-more-button {
+  display: block;
+  margin: 1rem auto 0;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  background-color: #09090a;
   color: white;
   border: none;
-  padding: 10px 15px;
-  border-radius: 4px;
+  border-radius: 0.5rem;
   cursor: pointer;
-  margin-top: 10px;
 }
 
-.add-goal-button:hover,
-.add-activity-button:hover {
-  background-color: #003d80;
+.show-more-button:hover {
+  background-color: #0056b3;
 }
+
+/*activity list slutt*/
+
+/* ADD ACTIVITY GREIA*/
+
+.add-container {
+  width: 90%;
+  max-width: 40rem;
+  padding: 2rem;
+  background-color: #fff;
+  border: 0.1rem solid #ccc;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row; /* Endret fra column til row */
+  align-items: center; /* Justerer vertikalt */
+  gap: 1rem; /* Avstand mellom tekst og knapp */
+}
+
+.add-heading {
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.add-button {
+  padding: 0.8rem 1.5rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #333;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+} 
+
+.add-button:hover {
+  background-color: #0056b3;
+}
+
+
+
+/* ADD ACTIVITY GREIA SLUTT*/
+
+
 
 /*Activity siden slutt*/
 

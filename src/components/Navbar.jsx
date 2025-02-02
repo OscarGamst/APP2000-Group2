@@ -14,7 +14,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <ul className="navbar-links">
-        <li><Link to="/">HERCULES</Link></li>
+        <li><span className="navbar-title">HERCULES</span></li>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/Activity">Activity</Link></li>
       </ul>
