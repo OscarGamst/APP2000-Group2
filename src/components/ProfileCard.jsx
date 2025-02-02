@@ -8,7 +8,7 @@ const ProfileCard = () => {
         <div className="profileCard">
             <div className="gradient"></div>
             <ul>
-                <li className="profileDown"></li>
+                
                 <li><img src={default_pfp} alt=""/></li>
                 <li className="profileTitle">
                 <a href="/Profile" >Username</a>

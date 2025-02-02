@@ -1,5 +1,6 @@
 const activities = [
   {
+    username: true, // for now it's true/false, but needs usernames later
     type: "workout",
     id: 1,
     title: "Morning Workout",
@@ -7,6 +8,7 @@ const activities = [
     duration: 30, 
   },
   {
+    username: true,
     type: "run",
     id: 2,
     title: "Morning Run",
@@ -15,6 +17,7 @@ const activities = [
     duration: 25, 
   },
   {
+    username: true,
     type: "workout",
     id: 3,
     title: "Evening Yoga",
@@ -22,6 +25,7 @@ const activities = [
     duration: 90,
   },
   {
+    username: false,
     type: "run",
     id: 4,
     title: "Intervals",
@@ -30,6 +34,7 @@ const activities = [
     duration: 123, 
   },
   {
+    username: false,
     type: "run",
     id: 5,
     title: "Evening Jog",
@@ -38,6 +43,7 @@ const activities = [
     duration: 55, 
   },
   {
+    username: true,
     type: "workout",
     id: 6,
     title: "Workout",

@@ -8,16 +8,16 @@ import ProgressHomepg from "../components/ProgressHomepg";
 const Home = () => {
   return (
     <div className="home">
-      <div className="home-wrapper">
-      <div className="flex-empty"></div>
-        <div className="home-main">
-          <ProgressHomepg />
-          <ActivityFeed />
-        </div>        
-        <div className="home-sidebar">
-          <ProfileCard />
-        </div>
-        
+      <div className="home-wrapper"> {/* Flex wrapper */}
+        <div className="flex-empty"></div> {/* Adds space to the side */}
+          <div className="home-main"> {/* main content of HomePage */}
+            <ProgressHomepg />
+            <ActivityFeed />
+          </div>        
+          <div className="home-sidebar"> {/* Side content */}
+            <ProfileCard />
+          </div>
+          <div className="flex-empty"></div> {/* Adds space to the side */}
       </div>
     </div>
   );

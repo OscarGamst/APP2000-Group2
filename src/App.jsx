@@ -7,6 +7,8 @@ import Profile from "./pages/Profile";
 import Progress from "./pages/Progress";
 import Activity from "./pages/Activity";
 import TestPageNoNav from "./pages/TestPageNoNav";
+import Albert from "./pages/Albert";
+import "./styles/responsive.css";
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
           <Route path="/Profile" element={<Profile />} />
           <Route path="/Progress" element={<Progress />} />
           <Route path="/Activity" element={<Activity />} />
+          <Route path="/Albert" element={<Albert />} />
         </Route>
         <Route path="/TestPageNoNav" element={<TestPageNoNav />} />
       </Routes>
