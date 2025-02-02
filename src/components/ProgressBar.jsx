@@ -16,7 +16,6 @@ const ProgressBar = () => {
     <div className="progress-chart">
       <div className="header">
         <h2 className="title">Progress Last 30 days</h2>
-        <button className="filter-button">Filter</button>
       </div>
       <div className="progress-bar-container">
         <div className="progress-bar" style={{ width: "50%" }}></div>

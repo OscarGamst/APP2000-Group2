@@ -301,13 +301,6 @@ ul {
   font-weight: 600;
 }
 
-.filter-button {
-  padding: 0.5rem 1rem;
-  background: black;
-  color: #ebf1ed;
-  border-radius: 0.5rem;
-  transition: background 0.2s;
-}
 
 .filter-button:hover {
   background: #0d44b0;
