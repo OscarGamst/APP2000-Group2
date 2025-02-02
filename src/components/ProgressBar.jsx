@@ -1,14 +1,14 @@
 import React from "react";
-import ActivityItem from "./ActivityItem"; // Import the merged component
+import ActivityItem from "./ActivityItem";
 import "../styles/index.css";
 import activities from "./ActivityData"; 
 
 
 const ProgressBar = () => {
-  // Extracting durations for the chart
+ 
   const durations = activities.map((activity) => activity.duration);
 
-  // Normalize durations to percentages (max height 100%)
+
   const maxDuration = Math.max(...durations);
   const chartData = durations.map((duration) => (duration / maxDuration) * 100);
 

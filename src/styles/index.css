@@ -72,9 +72,9 @@ ul {
   top: 0;
   background-color: #ffffff;
   z-index: 1000;
-  display: flex; /* Bruk flexbox for å justere innhold */
-  align-items: center; /* Vertikal midtstille */
-  justify-content: space-between; /* Plasser elementer på hver sin side */
+  display: flex; 
+  align-items: center;
+  justify-content: space-between; 
   padding: 1rem 2rem;
   box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
 }
@@ -115,16 +115,16 @@ ul {
 }
 
 .searchbox {
-  display: flex; /* Flexbox for riktig layout */
-  align-items: center; /* Vertikal midtstille */
-  gap: 0.125rem; /* Avstand mellom input og knapp */
-  flex: 1; /* Fyll tilgjengelig plass */
-  justify-content: right; /* Horisontal midtstille */
-  margin-right: 2rem; /* Legger til avstand mellom søkeboksen og bildene */
+  display: flex; 
+  align-items: center; 
+  gap: 0.125rem; 
+  flex: 1; 
+  justify-content: right; 
+  margin-right: 2rem; 
 }
 
 .searchbox input {
-  width: 30%; /* Øk bredden for bedre plass */
+  width: 30%; 
   padding: 0.5rem 0.75rem;
   border: 0.0625rem solid #ccc;
   border-radius: 0.25rem 0 0 0.25rem;
@@ -426,13 +426,13 @@ ul {
 /*Satart of activity list*/
 
 .activity-list-container {
-  width: 100%; /* Strekker seg til hele bredden som progress-chart */
+  width: 100%; 
   margin: 0 auto;
   padding: 1.5rem;
   border: 0.1rem solid #ccc;
   border-radius: 0.5rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-  background-color: white; /* Match bakgrunnsfarge til progress-chart */
+  background-color: white; 
 }
 
 .activity-list-header {
@@ -488,9 +488,9 @@ ul {
   border-radius: 1rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-direction: row; /* Endret fra column til row */
-  align-items: center; /* Justerer vertikalt */
-  gap: 1rem; /* Avstand mellom tekst og knapp */
+  flex-direction: row; 
+  align-items: center; 
+  gap: 1rem; 
 }
 
 .add-heading {
