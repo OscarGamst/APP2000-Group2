@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/index.css";
 import default_pfp from "../pictures/default_pfp.png";
 
-const ProfileBig = () => {
+const ProfileBigEdit = () => {
     return (
         <div className="profileBig" >
             <div className="gradient"></div> {/*du finnern ved css for profileCard*/}
@@ -37,7 +37,7 @@ const ProfileBig = () => {
                     <li className="profileGrid">
                         <div className="profileGridEmpty"></div>
                         <label>Birthday: </label>
-                        <input type="text"/>
+                        <input type="date"/>
                         <div className="profileGridEmpty"></div>
                     </li>
                     <li className="profileGrid">
@@ -52,7 +52,7 @@ const ProfileBig = () => {
                 </div>
 
                 <li>
-                    <button>edit</button>
+                    <button>Submit</button>
                 </li>
 
             </ul>
@@ -60,4 +60,4 @@ const ProfileBig = () => {
     );
 };
 
-export default ProfileBig;
+export default ProfileBigEdit;
