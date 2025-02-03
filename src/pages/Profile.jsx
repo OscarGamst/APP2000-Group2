@@ -1,11 +1,16 @@
 import React from "react";
-import RegisterActivity from "../components/RegisterActivityComponent/RegisterActivity";
+import ProfileBigEdit from "../components/ProfileBigEdit";
 
 function Profile() {
     return (
-    <div>
-        <h1>Profile</h1>
-        <RegisterActivity />
+    <div className="profile">
+        <div className="profile-wrapper">
+            <div className="profile-empty"></div>
+            <div className="profile-main">
+                <ProfileBigEdit/>
+            </div>
+            <div className="profile-empty"></div>
+        </div>
     </div>
     );
 }
