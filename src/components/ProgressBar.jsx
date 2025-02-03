@@ -3,12 +3,15 @@ import ActivityItem from "./ActivityItem";
 import "../styles/index.css";
 import activities from "./ActivityData"; 
 
-
 const ProgressBar = () => {
- 
+  // Feilhåndtering: Sjekk om activities finnes og ikke er tomt
+  if (!activities || activities.length === 0) {
+    return <div className="error-message">No activity data available.</div>;
+  }
   const durations = activities.map((activity) => activity.duration);
-
-
+  const totalDuration = durations.reduce((acc, duration) => acc + duration, 0);
+  const goal = 1000;
+  const progressPercentage = Math.min((totalDuration / goal) * 100, 100);
   const maxDuration = Math.max(...durations);
   const chartData = durations.map((duration) => (duration / maxDuration) * 100);
 
@@ -18,8 +21,10 @@ const ProgressBar = () => {
         <h2 className="title">Progress Last 30 days</h2>
       </div>
       <div className="progress-bar-container">
-        <div className="progress-bar" style={{ width: "50%" }}></div>
-        <span className="progress-value">249</span>
+        {}
+        <div className="progress-bar" style={{ width: `${progressPercentage}%` }}></div>
+        {}
+        <span className="progress-value">{totalDuration} / {goal}</span>
       </div>
       <div className="chart-container">
         {chartData.map((value, index) => (
