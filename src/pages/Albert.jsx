@@ -1,5 +1,5 @@
 import React from "react";
-import BertComponent from "../components/BertComponent";
+import BertComponent from "../components/ProfileBig";
 import ProfileCard from "../components/ProfileCard";
 import ActivityFeed from "../components/ActivityFeed";
 
