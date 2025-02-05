@@ -20,7 +20,7 @@ const activities = [
     distance: 5,
     duration: 25,
     //Optional
-    profilePic: "Oscar.png",
+    profilePic: "oscar.png",
     description: "Ran in the park.",
     calories: 0,
     heathrate: 0,
