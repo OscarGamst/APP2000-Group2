@@ -1,4 +1,4 @@
-/* import React, { useState } from 'react';
+ import React, { useState } from 'react';
 
 //med utgangspunkt i kode fra forelesninger, og hjjelp fra internett :)
 //ville jeg lage en loginn-funksjon som bare tar et brukernavn og et passord fra bruker
@@ -6,7 +6,7 @@
 //lagret i tekstfil i dette tilfellet, men tenker database i fremtiden da.
 
 
-const LoggInn = () => {
+const LoggInComponent = () => {
   const [LoginData, setLoginData] = useState({
     username: '',
     password: ''
@@ -45,7 +45,7 @@ const LoggInn = () => {
         liste.push({ username, password });
         /*console.log('Brukernavn:',username);
         console.log('password',password);*/
-      /*}
+      }
       
       const brukerFunnet = liste.find(user => user.username === LoginData.username && user.password === LoginData.password);
       
@@ -61,33 +61,30 @@ const LoggInn = () => {
 
  
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-8 space-y-6">
-      <div>
-        <label htmlFor="username" className="block text-sm font-medium text-gray-700">Brukernavn: </label>
+    <form onSubmit={handleSubmit} className="logInBtn">
+      <div  className="logInUsername">
+        <label htmlFor="username">Brukernavn: </label>
         <input
           type="text"
           id="username"
           name="username"
           value={LoginData.username}
           onChange={handleChange}
-          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-        />
+          />
       </div>
 
-      <div>
-        <label htmlFor="password" className="block text-sm font-medium text-gray-700">Passord: </label>
+      <div className="logInPassword">
+        <label htmlFor="password" >Passord: </label>
         <input
           type="password"
           id="password"
           name="password"
           value={LoginData.password}
           onChange={handleChange}
-          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-
         />
       </div>
 
-      <button type="Log in" className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+      <button type="Log in" className="logInBtn">
         Logg inn
       </button>
       <p>{message}</p>
@@ -96,4 +93,4 @@ const LoggInn = () => {
   );
 };
 
-export default LoggInn; */
+export default LoggInComponent; 
