@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/index.css";
 import BertComponent from "../components/ProfileBigEdit";
 import ProfileCard from "../components/ProfileCard";
 import ActivityFeed from "../components/ActivityFeed";

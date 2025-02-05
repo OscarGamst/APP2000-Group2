@@ -1,17 +1,16 @@
 import React from "react";
+import "../styles/index.css";
 import LogInComponent from "../components/LogInComponent";
 
 function LogIn() {
     return (
-    <div className="profile">
-        <div className="profile-wrapper">
-            <div className="profile-empty"></div>
-            <div className="profile-main">
+        <div className="login-page-wrapper">
+            <div className="login-page-empty"></div><div className="login-page-empty"></div>
+            <div className="login-page-main">
                 <LogInComponent/>
             </div>
-            <div className="profile-empty"></div>
+            <div className="login-page-empty"></div><div className="login-page-empty"></div>
         </div>
-    </div>
     );
 }
 

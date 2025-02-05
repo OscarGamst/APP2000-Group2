@@ -79,6 +79,20 @@ ul {
   flex: 0.5;
 }
 
+/*LogIn*/
+.login-page-wrapper {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.login-page-main {
+  flex: 1.5;
+}
+
+.login-page-empty {
+  flex: 0.7;
+}
+
 /* ---------- Layout Components ---------- */
 
 /* ---- Navbar ---- */
@@ -629,7 +643,7 @@ ul {
     height: 125px;
     border-radius: 50%;
     margin-top: -50px;
-    border: 4px solid #fff;
+    border: 0.3rem solid #fff;
     box-shadow: 0 0.7rem 1rem rgba(0, 0, 0, 0.1);
 }
 
@@ -874,3 +888,73 @@ ul {
 }
 
 /* ---- End of ProfileBig ---- */
+
+/* ---- LOG IN ---- */
+
+.logInForm {
+  position: relative;
+  width: 19rem auto;
+  margin: 1rem;
+  background: linear-gradient(145deg, #ffffff, #f0f0f0);
+  border-radius: 1rem;
+  box-shadow: 0 0.7rem 1rem rgba(0, 0, 0, 0.1), 0 0.4rem 0.6rem rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  text-align: center;
+  
+}
+
+.logInForm h2{
+  font-size: 2rem;
+  margin: 1rem;
+}
+
+.logInForm label {
+  font-size: 0.9rem;
+  color: #555;
+  
+}
+
+.logInForm input{
+  text-align: center;
+}
+
+.logInInner {
+  border-top: 0.1rem solid #ddd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logInUsername, .logInPassword {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #388e3c;
+  margin: 1rem 0 0.5rem 0;
+  
+}
+
+.logInUsername {
+  
+}
+
+.logInPassword {
+
+}
+
+.logInBtn {
+  margin: 2rem auto 1rem auto;
+  padding: 0.5rem 1rem;
+  background-color: #070707;
+  color: white;
+  border: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  font-size: 1.4rem;
+  transition: background-color 0.3s;
+}
+
+.logInBtn:hover {
+  background-color: #003d80;
+}
+
+/* ---- END OF LOG IN ---- */

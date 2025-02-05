@@ -6,7 +6,7 @@
 //lagret i tekstfil i dette tilfellet, men tenker database i fremtiden da.
 
 
-const LoggInComponent = () => {
+const LogInComponent = () => {
   const [LoginData, setLoginData] = useState({
     username: '',
     password: ''
@@ -61,7 +61,9 @@ const LoggInComponent = () => {
 
  
   return (
-    <form onSubmit={handleSubmit} className="logInBtn">
+    <form onSubmit={handleSubmit} className="logInForm">
+      <h2>Log in</h2>
+      <div className="logInInner">
       <div  className="logInUsername">
         <label htmlFor="username">Brukernavn: </label>
         <input
@@ -87,10 +89,10 @@ const LoggInComponent = () => {
       <button type="Log in" className="logInBtn">
         Logg inn
       </button>
-      <p>{message}</p>
+      <p>{message}</p></div>
     </form>
     
   );
 };
 
-export default LoggInComponent; 
+export default LogInComponent; 
