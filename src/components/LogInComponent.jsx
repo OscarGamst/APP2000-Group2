@@ -72,6 +72,7 @@ const LogInComponent = () => {
           placeholder="Enter Username"
           value={LoginData.username}
           onChange={handleChange}
+          required
           />
 
 
@@ -83,6 +84,7 @@ const LogInComponent = () => {
           placeholder="Enter Password"
           value={LoginData.password}
           onChange={handleChange}
+          required
         />
 
 
