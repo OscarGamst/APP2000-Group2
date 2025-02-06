@@ -63,33 +63,32 @@ const LogInComponent = () => {
   return (
     <form onSubmit={handleSubmit} className="logInForm">
       <h2>Log in</h2>
-      <div className="logInInner">
-      <div  className="logInUsername">
-        <label htmlFor="username">Brukernavn: </label>
+      <div className="logInContainer">
+
+        <label For="username">Brukernavn: </label>
         <input
           type="text"
-          id="username"
           name="username"
+          placeholder="Enter Username"
           value={LoginData.username}
           onChange={handleChange}
           />
-      </div>
 
-      <div className="logInPassword">
-        <label htmlFor="password" >Passord: </label>
+
+
+        <label For="password" >Passord: </label>
         <input
           type="password"
-          id="password"
           name="password"
+          placeholder="Enter Password"
           value={LoginData.password}
           onChange={handleChange}
         />
-      </div>
 
-      <button type="Log in" className="logInBtn">
-        Logg inn
-      </button>
-      <p>{message}</p></div>
+
+      <button type="submit" className="logInBtn">Log in</button>
+      <p>{message}</p>
+      </div>
     </form>
     
   );

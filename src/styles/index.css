@@ -892,8 +892,6 @@ ul {
 /* ---- LOG IN ---- */
 
 .logInForm {
-  position: relative;
-  width: 19rem auto;
   margin: 1rem;
   background: linear-gradient(145deg, #ffffff, #f0f0f0);
   border-radius: 1rem;
@@ -908,37 +906,30 @@ ul {
   margin: 1rem;
 }
 
-.logInForm label {
-  font-size: 0.9rem;
-  color: #555;
-  
-}
-
 .logInForm input{
   text-align: center;
 }
 
-.logInInner {
+.logInContainer {
   border-top: 0.1rem solid #ddd;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 1rem;
 }
 
-.logInUsername, .logInPassword {
-  font-size: 1.1rem;
+.logInContainer label {
   font-weight: bold;
-  color: #388e3c;
-  margin: 1rem 0 0.5rem 0;
-  
+  align-self: flex-start;
 }
 
-.logInUsername {
-  
-}
-
-.logInPassword {
-
+.logInContainer input[type=text], input[type=password]{
+  width: 85%;
+  padding: 0.7rem 1.2rem;
+  margin: 0.5rem 0 1.5rem 0;
+  display: inline-block;
+  border: 0.1rem solid #ccc;
+  box-sizing: border-box;
 }
 
 .logInBtn {
@@ -955,6 +946,10 @@ ul {
 
 .logInBtn:hover {
   background-color: #003d80;
+}
+
+#logInRemember {
+  align-self: flex-start;
 }
 
 /* ---- END OF LOG IN ---- */
