@@ -19,15 +19,15 @@ const ProfileCard = () => {
                 <div className="profileStats">
                 <ul>
                 <li>
-                    <label for="pfcfollowing">Following: </label>
+                    <label htmlFor="pfcfollowing">Following: </label>
                     <a href="" >69</a>
                 </li>
                 <li>
-                    <label for="pfcfollowers">Followers: </label>
+                    <label htmlFor="pfcfollowers">Followers: </label>
                     <a href="" >3</a>
                 </li>
                 <li>
-                    <label for="pfcposts">Posts: </label>
+                    <label htmlFor="pfcposts">Posts: </label>
                     <a href="">999</a>
                 </li>
                 </ul>
