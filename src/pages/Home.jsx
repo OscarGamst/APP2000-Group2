@@ -4,6 +4,7 @@ import ActivityFeed from "../components/ActivityFeed";
 import SideBar from "../components/SideBar";
 import ProfileCard from "../components/ProfileCard";
 import ProgressHomepg from "../components/ProgressHomepg";
+import TestForm from "../components/TestForm"
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
         <div className="flex-empty"></div> {/* Adds space to the side */}
           <div className="home-main"> {/* main content of HomePage */}
             <ProgressHomepg />
+            <TestForm /> 
             <ActivityFeed />
           </div>        
           <div className="home-sidebar"> {/* Side content */}
