@@ -27,13 +27,14 @@ A React web application developed by a team of four students as part of the APP2
 
 
 ### 3️⃣ Install Dependencies
-- npm install  
+- npm install
+- npm install axios
 ##
 
 
 
 ### 4️⃣ Run locally
-- npm start  
+- npm start
 ##
 
 
