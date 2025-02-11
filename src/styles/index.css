@@ -921,15 +921,21 @@ ul {
 .logInContainer label {
   font-weight: bold;
   align-self: flex-start;
+  margin-left: 1rem;
 }
 
 .logInContainer input[type=text], input[type=password]{
-  width: 85%;
+  width: 90%;
   padding: 0.7rem 1.2rem;
   margin: 0.5rem 0 1.5rem 0;
   display: inline-block;
   border: 0.1rem solid #ccc;
   box-sizing: border-box;
+}
+
+.login-page-bottom-flex {
+  flex-direction: row;
+  flex: 15;
 }
 
 .logInBtn {
