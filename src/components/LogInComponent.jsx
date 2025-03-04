@@ -65,7 +65,7 @@ const LogInComponent = () => {
       <h2>Log in</h2>
       <div className="logInContainer">
 
-        <label For="username">Brukernavn: </label>
+        <label htmlFor="username">Brukernavn: </label>
         <input
           type="text"
           name="username"
@@ -77,7 +77,7 @@ const LogInComponent = () => {
 
 
 
-        <label For="password" >Passord: </label>
+        <label htmlFor="password" >Passord: </label>
         <input
           type="password"
           name="password"
