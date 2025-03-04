@@ -1,5 +1,5 @@
  import React, { useState } from 'react';
-
+ import { useNavigate } from 'react-router-dom'; //det her ska brukes for å "redirecte" til andre sider
 //med utgangspunkt i kode fra forelesninger, og hjjelp fra internett :)
 //ville jeg lage en loginn-funksjon som bare tar et brukernavn og et passord fra bruker
 //og sammenlikner med brukernavn og passord som er lagret et annet sted.
@@ -13,23 +13,24 @@ const LogInComponent = () => {
   });
 
   const [message, setMessage] = useState(''); 
+  const navigate = useNavigate();
 
-  const handleChange = (e) => {
+  const handleChange = (e) => { //håndterer når vi skriver i inputsa
     const { name, value } = e.target;
     setLoginData(prevState => ({
       ...prevState,
       [name]: value
     }));
-    //console.log("Log in data:", LoginData);
+    console.log("Log in data:", LoginData);
   };
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => { //når vi trykker på knappen
     e.preventDefault();
 
     console.log('Bruker:', LoginData);
 
-    fetch('http://localhost:3000/brukere.txt')
+    fetch("http://localhost:3000/brukere.txt")
     .then(response => response.text())
     .then(fileText => {
       //const lines = fileText.trim('\n','\r');
@@ -50,9 +51,10 @@ const LogInComponent = () => {
       const brukerFunnet = liste.find(user => user.username === LoginData.username && user.password === LoginData.password);
       
       if (brukerFunnet) {
-        setMessage('Logget inn');
+        setMessage("Logget inn");
+        setTimeout(() => {navigate("/")},1500); //går til main etter ett og et halvt sek, så brukern ser at loginn funka og greier :D
       } else {
-        setMessage('Feil passord eller brukernavn! >:(')
+        setMessage("Feil passord eller brukernavn! >:(")
       }
       return liste;
     });
@@ -65,7 +67,7 @@ const LogInComponent = () => {
       <h2>Log in</h2>
       <div className="logInContainer">
 
-        <label htmlFor="username">Brukernavn: </label>
+        <label htmlFor="username">Username: </label>
         <input
           type="text"
           name="username"
@@ -77,7 +79,7 @@ const LogInComponent = () => {
 
 
 
-        <label htmlFor="password" >Passord: </label>
+        <label htmlFor="password" >Password: </label>
         <input
           type="password"
           name="password"

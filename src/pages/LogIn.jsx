@@ -11,7 +11,10 @@ function LogIn() {
             </div>
             <div className="login-page-empty"></div><div className="login-page-empty"></div>
         </div>
-        <br/><br/><br/><br/></>
+        <br/><br/><br/><br/>
+        <br/><br/><br/><br/>
+        <br/><br/><br/><br/>
+        </>
     );
 }
 
