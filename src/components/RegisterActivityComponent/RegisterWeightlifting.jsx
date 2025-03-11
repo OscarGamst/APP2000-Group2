@@ -173,6 +173,10 @@ const Page2 = ({back},{setVisibilityItems}) => {
     
     return (
         <div>
+            <div key={registerWorkout.exercises.id}>
+                <p>type: {registerWorkout.exercises.name}</p>
+                <p>sets: {registerWorkout.exercises.sets}, reps: {registerWorkout.exercises.reps}, kilos: {registerWorkout.exercises.kilos}</p>
+            </div>
             {visibilityAdd ? <button onClick={disableButton}>Add</button>:null}
             {!visibilityAdd?<AddWorkout enableButton={enableButton}/>:null}
             {visibilityAdd ? <button onClick={back}>Back</button>:null}
