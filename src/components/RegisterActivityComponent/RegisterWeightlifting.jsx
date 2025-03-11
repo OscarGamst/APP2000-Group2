@@ -38,8 +38,8 @@ class Workout {
         this.updateLastIndex();
         return this.exercises[this.lastIndex-1];
     }
-    getExercise(index) {
-        return this.exercises[index];
+    getExercises() {
+        return this.exercises;
     }
     resetObject() {
         this.exercises=[];
@@ -173,6 +173,7 @@ const Page2 = ({back},{setVisibilityItems}) => {
     
     return (
         <div>
+            {registerWorkout.getExercises}
             {visibilityAdd ? <button onClick={disableButton}>Add</button>:null}
             {!visibilityAdd?<AddWorkout enableButton={enableButton}/>:null}
             {visibilityAdd ? <button onClick={back}>Back</button>:null}
@@ -194,7 +195,6 @@ const AddWorkout = (enableButton) => {
         exerciseObject.setReps(Number(event.target.elements.reps.value));
 
         enableButton.enableButton();
-        console.log(registerWorkout.getExercise(0));
 
     }
     return (
