@@ -32,6 +32,10 @@ const RegisterActivity = () => {
       setVisibilityItems(false);
 
     }
+	const returnToDefault = () => {
+		setVisibilityItems(true);
+		setVisibilityWeightlifting(false);
+	}
 
     //Main code for component
     return (
@@ -44,7 +48,7 @@ const RegisterActivity = () => {
 					<button>Combined</button>
 				</div>
 			) : null}
-			{visibilityWeightlifting ? <RegisterWeightlifting setVisibilityItems={setVisibilityItems}/> :null}
+			{visibilityWeightlifting ? <RegisterWeightlifting returnToDefault={returnToDefault}/> :null}
 			
 		</div>
     );

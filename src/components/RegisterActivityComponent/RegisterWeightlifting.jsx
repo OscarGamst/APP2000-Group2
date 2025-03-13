@@ -58,21 +58,6 @@ class Exercise {
     getName() {
         return this.name;
     }
-
-    /*
-    setReps(reps) {
-        this.reps=reps;
-    }
-    setName(name) {
-        this.name=name;
-    }
-    setSets(sets) {
-        this.set=sets;
-    }
-    setKilos(kilos) {
-        this.kilos=kilos;
-    }
-    */
 }
 
 /*
@@ -85,7 +70,7 @@ Fetch function used to update the list on page 2 when a new exercise is added to
 */
 
 
-const RegisterWeightlifting = ({setVisibilityItems}) => {
+const RegisterWeightlifting = ({returnToDefault}) => {
     /*
     To make the component easier to program, we decided to only use one boolean variable (poge) to determine
     which page is shown. True means that page one is shown, while false shows that page two is shown.
@@ -112,12 +97,12 @@ const RegisterWeightlifting = ({setVisibilityItems}) => {
     return (
         <div>
             <h3>Register Weightlifting</h3>
-            {page ? <Page1 next={next}/>:<Page2 back={back} setVisibilityItems={setVisibilityItems}></Page2>}     
+            {page ? <Page1 next={next}/>:<Page2 back={back} returnToDefault={returnToDefault}/>}  
         </div>
     );
 }
 
-const Page1 = (next) => {
+const Page1 = ({next}) => {
 
     /*
     This function is for handling the submittion of the form. All input is converted to numbers or strings
@@ -131,7 +116,7 @@ const Page1 = (next) => {
             registerWorkout.setDescription(String(event.target.elements.description.value));
             console.log(registerWorkout);
             console.log(next);
-            next.next();
+            next();
 
     }
 
@@ -159,11 +144,13 @@ const Page1 = (next) => {
                 </div>
                 <button type="submit">Next</button>
             </form>
-        </div>
+            <button>Cancel</button>
+        </div> 
+           
     );
 }
 
-const Page2 = ({back},{setVisibilityItems}) => {
+const Page2 = ({back, returnToDefault}) => {
 
     const [visibilityAdd, setVisibilityAdd]=useState(true);
 
@@ -177,22 +164,35 @@ const Page2 = ({back},{setVisibilityItems}) => {
     
     const submitObject = () => {
         registerWorkout.resetObject();
-        setVisibilityItems(true);
+        returnToDefault();
 
     }
+
+    /*
+    const editWorkoutExercise = ({exercise}) => {
+        disableButton();
+    }
+    <button onClick={editWorkoutExercise(exercise)}>Edit</button>
+    */
     
     let exerciseList=registerWorkout.exercises.map(exercise => 
-        <p>
-            {exercise.name}, {exercise.reps} reps with {exercise.kilos} kg for {exercise.sets} sets
-        </p>
+        <div>
+            <p>
+                {exercise.name}, {exercise.reps} reps with {exercise.kilos} kg for {exercise.sets} sets
+            </p>
+        </div>
         );
+
+    
 
     
     useEffect(()=> {
         exerciseList=registerWorkout.exercises.map(exercise => 
-            <p>
-                {exercise.name}, {exercise.reps} reps with {exercise.kilos} kg for {exercise.sets} sets
-            </p>
+            <div>
+                <p>
+                    {exercise.name}, {exercise.reps} reps with {exercise.kilos} kg for {exercise.sets} sets
+                </p>
+            </div>
         )}, [registerWorkout.lastIndex]);
 
     return (
@@ -202,13 +202,14 @@ const Page2 = ({back},{setVisibilityItems}) => {
             </div>
             {visibilityAdd? <button onClick={disableButton}>Add</button>:null}
             {!visibilityAdd? <AddWorkout enableButton={enableButton}/>:null}
+            {visibilityAdd? <button>Cancel</button>:null}
             {visibilityAdd? <button onClick={back}>Back</button>:null}
             {visibilityAdd? <button onClick={submitObject}>Save</button>:null}
         </div>
     );
 }
 
-const AddWorkout = (enableButton) => {
+const AddWorkout = ({enableButton}) => {
     console.log(enableButton);
     
     const handleSubmit = (event) => {
@@ -231,7 +232,7 @@ const AddWorkout = (enableButton) => {
         registerWorkout.createNewExercise(arg_name,arg_sets,arg_kilo,arg_reps);
         console.log(registerWorkout.getExercise());
 
-        enableButton.enableButton();
+        enableButton();
 
 
 
