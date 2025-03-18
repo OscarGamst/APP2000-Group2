@@ -1,18 +1,17 @@
 # APP2000 Group 2 - React Web Application
 
-## 🌐 Live Application
+##  Live Application
 Hosted on Microsoft Azure: [Click here to visit](https://lemon-dune-0e05acc1e.4.azurestaticapps.net/)
 ##
 
 
 
-## 📌 Project Overview
+##  Project Overview
 A React web application developed by a team of four students as part of the APP2000 course.
 ##
 
 
 
-## 🚀 Getting Started
 ### 1️⃣ Clone the Repository
 - git clone https://github.com/OscarGamst/APP2000-Group2.git  
 - cd APP2000-Group2  
@@ -20,13 +19,7 @@ A React web application developed by a team of four students as part of the APP2
 
 
 
-### 2️⃣ Change directory
-- cd APP2000-Group2   
-##
-
-
-
-### 3️⃣ Install Dependencies
+### 2️⃣ Install Dependencies
 - npm install
 - npm install axios
 ##
