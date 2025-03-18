@@ -26,7 +26,7 @@ A React web application developed by a team of four students as part of the APP2
 
 
 
-### 4️⃣ Run locally
+### 3️⃣ Run locally
 - npm start
 ##
 
