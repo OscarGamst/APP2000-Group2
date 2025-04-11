@@ -12,11 +12,11 @@ const Footer = () => {
                 <li><ul id="footerLeft">
                     <li><h3>Contact</h3></li>
                     <li>
-                        <label HTMLFor="phone">Tlf: </label>
+                        <label htmlFor="phone">Tlf: </label>
                         <a href="tlf:+4712345678">+47 12345678</a>
                     </li>
                     <li>
-                        <label HTMLFor="email">E-mail: </label>
+                        <label htmlFor="email">E-mail: </label>
                         <a href="mailto:gruppe2@app2000.no" >gruppe2@app2000.no</a>
                     </li>
                 </ul></li>

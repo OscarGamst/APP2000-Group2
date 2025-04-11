@@ -1,0 +1,22 @@
+import React, { useState } from "react";
+
+const EditField = ({label, type="text", initialValue }) => {
+    const [isEditing, setIsEditing] = useState(false);
+    const [value, setValue] = useState(initialValue);
+
+    const handleBlur = () => { setIsEditing(false); };
+
+    const handleKeyDown = (e) => { if (e.key === "Enter" || e.key === "Escape") { setIsEditing(false)} };
+
+    return (
+        <li className="profileGrid" onClick={()=>setIsEditing(true)}>
+            <label>{label}</label>
+            {isEditing ? (
+                <input type={type} value={value} onChange={(e)=>setValue(e.target.value)}
+                    onBlur={handleBlur} onKeyDown={handleKeyDown} autoFocus/>
+            ) : ( <div className="editingField" style={{flex:1.5, textAlign:'left' }}>{value}</div>)}
+            <div></div>
+        </li>
+    )
+}
+export default EditField;

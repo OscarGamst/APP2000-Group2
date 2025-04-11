@@ -1,5 +1,5 @@
 import React from "react";
-import ProfileBigEdit from "../components/ProfileBigEdit";
+import ProfileBig from "../components/ProfileCardComponent/ProfileBig";
 
 function Profile() {
     return (
@@ -7,7 +7,7 @@ function Profile() {
         <div className="profile-wrapper">
             <div className="profile-empty"></div>
             <div className="profile-main">
-                <ProfileBigEdit/>
+                <ProfileBig/>
             </div>
             <div className="profile-empty"></div>
         </div>
