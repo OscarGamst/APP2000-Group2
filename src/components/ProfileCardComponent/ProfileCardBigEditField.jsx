@@ -14,7 +14,7 @@ const EditField = ({label, type="text", value, onChange }) => {
             {isEditing ? (
                 <input type={type} value={value} onChange={(e)=>onChange(e.target.value)}
                     onBlur={handleBlur} onKeyDown={handleKeyDown} autoFocus/>
-            ) : ( <div className="editingField" style={{flex:1.5, textAlign:'left' }}>{value}</div>)}
+            ) : ( <div className="editingField" >{value}</div>)}
             <div></div>
         </li>
     )

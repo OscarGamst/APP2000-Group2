@@ -856,6 +856,7 @@ ul {
 
 .editingField {
   flex:1.5;
+  text-align: left;
   font-size: 1.4rem;
   padding: 0.7rem 1rem;
   border: 0.1rem solid transparent;
