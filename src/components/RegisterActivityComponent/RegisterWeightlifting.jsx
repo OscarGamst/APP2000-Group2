@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "../../styles/index.css";
 
 /*
-The component is divided into three parts.
+The component is divided into three main parts.
 
 Part 1: Form to get general information about activity, such as duration and description.
 Part 2: Button to allow users to add individual sets and an overview of the sets added
@@ -30,16 +30,15 @@ class Workout {
     setDuration(duration) {
         this.duration=duration;
     }
-    updateLastIndex() {
+    getLastIndex() {
+        return(this.lastIndex);
+    }
+    createNewExercise(name,sets,kilos,reps) {
+        this.exercises[this.lastIndex]=new Exercise(name,sets,kilos,reps);
         this.lastIndex+=1;
     }
-    createNewExercise() {
-        this.exercises[this.lastIndex]=new Exercise;
-        this.updateLastIndex();
-        return this.exercises[this.lastIndex-1];
-    }
-    getExercises() {
-        return this.exercises;
+    getExercise() {
+        return this.exercises[0].getName();
     }
     resetObject() {
         this.exercises=[];
@@ -50,23 +49,14 @@ class Workout {
 }
 
 class Exercise {
-    constructor() {
-        this.reps=0;
-        this.name="";
-        this.set=0;
-        this.kilos=0;
-    }
-    setReps(reps) {
+    constructor(name,sets,kilos,reps) {
+        this.name=name;
+        this.sets=sets;
+        this.kilos=kilos;
         this.reps=reps;
     }
-    setName(name) {
-        this.name=name;
-    }
-    setSets(sets) {
-        this.set=sets;
-    }
-    setKilos(kilos) {
-        this.kilos=kilos;
+    getName() {
+        return this.name;
     }
 }
 
@@ -75,7 +65,12 @@ Global variable that creates the object we use for temporarily storing informati
  */
 const registerWorkout=new Workout();
 
-const RegisterWeightlifting = ({setVisibilityItems}) => {
+/*
+Fetch function used to update the list on page 2 when a new exercise is added to the exercise list in the workout object
+*/
+
+
+const RegisterWeightlifting = ({returnToDefault}) => {
     /*
     To make the component easier to program, we decided to only use one boolean variable (poge) to determine
     which page is shown. True means that page one is shown, while false shows that page two is shown.
@@ -102,12 +97,12 @@ const RegisterWeightlifting = ({setVisibilityItems}) => {
     return (
         <div>
             <h3>Register Weightlifting</h3>
-            {page ? <Page1 next={next}/>:<Page2 back={back} setVisibilityItems={setVisibilityItems}></Page2>}     
+            {page ? <Page1 next={next}/>:<Page2 back={back} returnToDefault={returnToDefault}/>}  
         </div>
     );
 }
 
-const Page1 = (next) => {
+const Page1 = ({next}) => {
 
     /*
     This function is for handling the submittion of the form. All input is converted to numbers or strings
@@ -121,7 +116,7 @@ const Page1 = (next) => {
             registerWorkout.setDescription(String(event.target.elements.description.value));
             console.log(registerWorkout);
             console.log(next);
-            next.next();
+            next();
 
     }
 
@@ -149,11 +144,13 @@ const Page1 = (next) => {
                 </div>
                 <button type="submit">Next</button>
             </form>
-        </div>
+            <button>Cancel</button>
+        </div> 
+           
     );
 }
 
-const Page2 = ({back},{setVisibilityItems}) => {
+const Page2 = ({back, returnToDefault}) => {
 
     const [visibilityAdd, setVisibilityAdd]=useState(true);
 
@@ -167,37 +164,77 @@ const Page2 = ({back},{setVisibilityItems}) => {
     
     const submitObject = () => {
         registerWorkout.resetObject();
-        setVisibilityItems(true);
+        returnToDefault();
 
     }
+
+    /*
+    const editWorkoutExercise = ({exercise}) => {
+        disableButton();
+    }
+    <button onClick={editWorkoutExercise(exercise)}>Edit</button>
+    */
     
+    let exerciseList=registerWorkout.exercises.map(exercise => 
+        <div>
+            <p>
+                {exercise.name}, {exercise.reps} reps with {exercise.kilos} kg for {exercise.sets} sets
+            </p>
+        </div>
+        );
+
+    
+
+    
+    useEffect(()=> {
+        exerciseList=registerWorkout.exercises.map(exercise => 
+            <div>
+                <p>
+                    {exercise.name}, {exercise.reps} reps with {exercise.kilos} kg for {exercise.sets} sets
+                </p>
+            </div>
+        )}, [registerWorkout.lastIndex]);
+
     return (
         <div>
-            <div key={registerWorkout.exercises.id}>
-                <p>type: {registerWorkout.exercises.name}</p>
-                <p>sets: {registerWorkout.exercises.sets}, reps: {registerWorkout.exercises.reps}, kilos: {registerWorkout.exercises.kilos}</p>
+            <div>
+                {exerciseList}
             </div>
-            {visibilityAdd ? <button onClick={disableButton}>Add</button>:null}
-            {!visibilityAdd?<AddWorkout enableButton={enableButton}/>:null}
-            {visibilityAdd ? <button onClick={back}>Back</button>:null}
-            {visibilityAdd ? <button onClick={submitObject}>Save</button>:null}
+            {visibilityAdd? <button onClick={disableButton}>Add</button>:null}
+            {!visibilityAdd? <AddWorkout enableButton={enableButton}/>:null}
+            {visibilityAdd? <button>Cancel</button>:null}
+            {visibilityAdd? <button onClick={back}>Back</button>:null}
+            {visibilityAdd? <button onClick={submitObject}>Save</button>:null}
         </div>
     );
 }
 
-const AddWorkout = (enableButton) => {
+const AddWorkout = ({enableButton}) => {
     console.log(enableButton);
     
     const handleSubmit = (event) => {
         event.preventDefault();
+
+        const arg_name=(event.target.elements.exerciseName.value);
+        const arg_sets=(Number(event.target.elements.sets.value));
+        const arg_kilo=(Number(event.target.elements.kg.value));
+        const arg_reps=(Number(event.target.elements.reps.value));
+
+        /*
         const exerciseObject=registerWorkout.createNewExercise();
 
         exerciseObject.setName(Number(event.target.elements.exerciseName.value));
         exerciseObject.setSets(Number(event.target.elements.sets.value));
         exerciseObject.setKilos(Number(event.target.elements.kg.value));
         exerciseObject.setReps(Number(event.target.elements.reps.value));
+        */
 
-        enableButton.enableButton();
+        registerWorkout.createNewExercise(arg_name,arg_sets,arg_kilo,arg_reps);
+        console.log(registerWorkout.getExercise());
+
+        enableButton();
+
+
 
     }
     return (
