@@ -16,12 +16,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "firstname")
-    private String firstname;
+    @Column(name = "first_name")
+    private String first_name;
 
-    @Column(name = "lastname")
-
-    private String lastname;
+    @Column(name = "last_name")
+    private String last_name;
 
     @Column(name = "email")
     private String email;

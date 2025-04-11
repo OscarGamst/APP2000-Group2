@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-const EditField = ({label, type="text", initialValue }) => {
+const EditField = ({label, type="text", value, onChange }) => {
     const [isEditing, setIsEditing] = useState(false);
-    const [value, setValue] = useState(initialValue);
+
 
     const handleBlur = () => { setIsEditing(false); };
 
@@ -12,7 +12,7 @@ const EditField = ({label, type="text", initialValue }) => {
         <li className="profileGrid" onClick={()=>setIsEditing(true)}>
             <label>{label}</label>
             {isEditing ? (
-                <input type={type} value={value} onChange={(e)=>setValue(e.target.value)}
+                <input type={type} value={value} onChange={(e)=>onChange(e.target.value)}
                     onBlur={handleBlur} onKeyDown={handleKeyDown} autoFocus/>
             ) : ( <div className="editingField" style={{flex:1.5, textAlign:'left' }}>{value}</div>)}
             <div></div>
