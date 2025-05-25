@@ -31,6 +31,8 @@ public class Activity {
     @Column(name = "timestamp")
     private long timestamp;
 
+    //Får man ikke alle disse constructorene fra lombok? - Malin
+
     public long getId() {
         return id;
     }

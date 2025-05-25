@@ -54,6 +54,9 @@ public class ActivityController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedActivity);
     }
 
+    @PostMapping
+    public ResponseEntity<Activity> addWorkout(@RequestBody Activity activity) {}
+
 
     //  ------------------ PUT ------------------
     //  ---------INSERT ALL PUTTERS HERE---------
