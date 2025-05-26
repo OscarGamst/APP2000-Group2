@@ -1,10 +1,11 @@
 package org.example.workoutapp.model;
 
 import jakarta.persistence.*;
-
+import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Data
 @Table(name = "Activity")
 public class Activity {
 
@@ -41,7 +42,7 @@ public class Activity {
     //private int calories;
 
     //Sjekk om vi kan få rettet opp i lombok greiene
-
+    /*
     public long getId() {
         return id;
     }
@@ -89,4 +90,6 @@ public class Activity {
     //public void setCalories(int calories) {
     //    this.calories = calories;
     //}
+
+     */
 }

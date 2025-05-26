@@ -191,7 +191,7 @@ const Page2 = ({back, returnToDefault}) => {
 
     const submitObject = async () => {
         try {
-            const reponseFromBackend=await fetch(`http://localhost:8080/api/workout/weightlifting/`, {
+            const reponseFromBackend=await fetch(`http://localhost:8080/api/activity/workout`, {
                 method: "PUT",
                 headers: {
                     "content-type": "application/json"
