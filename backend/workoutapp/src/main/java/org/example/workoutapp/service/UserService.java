@@ -9,4 +9,6 @@ public interface UserService {
     User getUserByEmail(String email);
 
     User updateUser(User user);
+
+    User register(User user);
 }

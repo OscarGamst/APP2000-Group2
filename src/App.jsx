@@ -8,8 +8,8 @@ import Progress from "./pages/Progress";
 import Activity from "./pages/Activity";
 import TestPageNoNav from "./pages/TestPageNoNav";
 import Albert from "./pages/Albert";
-import LogIn from "./pages/LogIn";
 import "./styles/responsive.css";
+import AuthPage from "./pages/AuthPage";
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
           <Route path="/Progress" element={<Progress />} />
           <Route path="/Activity" element={<Activity />} />
           <Route path="/Albert" element={<Albert />} />
-          <Route path="/LogIn" element={<LogIn />} />
+          <Route path="/Auth" element={<AuthPage />} />
         </Route>
         <Route path="/TestPageNoNav" element={<TestPageNoNav />} />
       </Routes>

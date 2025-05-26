@@ -24,4 +24,11 @@ public class UserServiceImpl implements UserService {
     //UPDATE
     @Override
     public User updateUser(User user) { return userRepository.save(user); }
+
+    //POST
+    //register
+    public User register(User user) {
+        return userRepository.save(user);
+    }
+
 }

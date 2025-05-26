@@ -1,5 +1,6 @@
 package org.example.workoutapp.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,22 +14,20 @@ import java.time.LocalDate;
 @Builder
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-
-    @Column(name = "first_name")
-    private String first_name;
-
-    @Column(name = "last_name")
-    private String last_name;
+    @Column(name = "username")
+    private String username;
 
     @Column(name = "email")
     private String email;
 
+    @Column(name = "user_password")
+    private String user_password;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "birthday")
     private LocalDate birthday;
 
     @Column(name = "visibility")
-    private Boolean visibility;
+    private boolean visibility;
 }
 
