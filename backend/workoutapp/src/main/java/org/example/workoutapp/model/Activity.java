@@ -2,36 +2,45 @@ package org.example.workoutapp.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
-@Table(name = "Activities")
+@Table(name = "Activity")
 public class Activity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "username")
-    private String username;
-
-    @Column(name = "type")
+    @Column(nullable=false,name = "type")
     private String type;
 
-    @Column(name = "title")
+    @Column(nullable=false, name = "title")
     private String title;
 
     @Column(name = "description")
     private String description;
 
-    @Column(name = "duration")
+    @Column(nullable=false,name = "duration")
     private int duration;
 
-    @Column(name = "calories")
-    private int calories;
+    @Column(nullable=false,name = "type")
+    private String activityType;
 
-    @Column(name = "timestamp")
-    private long timestamp;
+    @Column(nullable=false,name= "accessibility")
+    private Boolean accessibility;
 
-    //Får man ikke alle disse constructorene fra lombok? - Malin
+    @Column(nullable=false, name = "published")
+    private LocalDateTime published; //This may be wrong
+
+    @ManyToOne
+    @JoinColumn(name="username")
+    private User username;
+
+    //@Column(name = "calories")
+    //private int calories;
+
+    //Sjekk om vi kan få rettet opp i lombok greiene
 
     public long getId() {
         return id;
@@ -39,14 +48,6 @@ public class Activity {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getType() {
@@ -81,19 +82,11 @@ public class Activity {
         this.duration = duration;
     }
 
-    public int getCalories() {
-        return calories;
-    }
+    //public int getCalories() {
+    //    return calories;
+    //}
 
-    public void setCalories(int calories) {
-        this.calories = calories;
-    }
-
-    public long getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(long timestamp) {
-        this.timestamp = timestamp;
-    }
+    //public void setCalories(int calories) {
+    //    this.calories = calories;
+    //}
 }

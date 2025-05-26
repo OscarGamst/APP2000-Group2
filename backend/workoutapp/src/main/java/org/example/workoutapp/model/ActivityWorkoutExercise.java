@@ -26,5 +26,5 @@ public class ActivityWorkoutExercise {
 
     @ManyToOne
     @JoinColumn(name="activity_id")
-    private Activity activity;
+    private Activity activity_id;
 }

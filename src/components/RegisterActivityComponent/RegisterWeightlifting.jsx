@@ -23,13 +23,21 @@ class Workout {
         this.lastIndex=0;
         this.description="";
         this.duration=0;
+        this.type="weightlifting"; //This is just to make searches easier in the backend
+        this.title="";
     }
+
     setDescription(description) {
         this.description=description;
     }
     setDuration(duration) {
         this.duration=duration;
     }
+
+    setTitle(title) {
+        this.title=title;
+    }
+
     getLastIndex() {
         return(this.lastIndex);
     }
@@ -40,6 +48,11 @@ class Workout {
     getExercise() {
         return this.exercises[0].getName();
     }
+
+    getTitle() {
+        return this.type;
+    }
+
     resetObject() {
         this.exercises=[];
         this.lastIndex=0;
@@ -114,8 +127,7 @@ const Page1 = ({next}) => {
             event.preventDefault();
             registerWorkout.setDuration(Number(event.target.elements.duration.value));
             registerWorkout.setDescription(String(event.target.elements.description.value));
-            console.log(registerWorkout);
-            console.log(next);
+            registerWorkout.setTitle(String(event.target.elements.title.value));
             next();
 
     }
@@ -130,6 +142,15 @@ const Page1 = ({next}) => {
                         id="duration"
                         name="duration"
                         min="0"
+                        required
+                    />
+                </div>
+                <div>
+                    <label>Title : </label>
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
                         required
                     />
                 </div>

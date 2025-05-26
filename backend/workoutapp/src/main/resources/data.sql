@@ -18,7 +18,7 @@ DROP TABLE IF EXISTS users CASCADE;
 
 CREATE TABLE users (
    user_id INT PRIMARY KEY NOT NULL,
-   username VARCHAR (100) NOT NULL,
+   username VARCHAR (50) NOT NULL,
    first_name VARCHAR(255) NOT NULL,
    last_name VARCHAR(50) NOT NULL,
    email_address VARCHAR(100) NOT NULL,
@@ -36,12 +36,11 @@ CREATE TABLE activity (
   activity_id INT PRIMARY KEY,
   description VARCHAR(255),
   duration INT,
+  type VARCHAR(13),
   accessibility VARCHAR(5),
-  published DATE,
-  publisher INT,
-  combined VARCHAR(5),
-  timestamp TIMESTAMP,
-  CONSTRAINT fk_activity FOREIGN KEY(publisher) REFERENCES users(user_id) ON DELETE CASCADE
+  published TIMESTAMP,
+  publisher VARCHAR(50),
+  CONSTRAINT fk_activity FOREIGN KEY(publisher) REFERENCES users(username) ON DELETE CASCADE
 );
 
 -- Run table w. information about the run
@@ -50,7 +49,6 @@ DROP TABLE IF EXISTS run CASCADE;
 CREATE TABLE run (
     distance DECIMAL,
     time INT,
-    timestamp TIMESTAMP,
     activity_id INT,
     PRIMARY KEY(distance,activity_id),
     CONSTRAINT fk_run FOREIGN KEY(activity_id) REFERENCES activity(activity_id) ON DELETE CASCADE
@@ -80,7 +78,7 @@ CREATE TABLE activity_comments (
     comment_content VARCHAR(200),
     PRIMARY KEY(activity_id,comment_owner,timestamp),
     CONSTRAINT fk_comment_activity FOREIGN KEY(activity_id) REFERENCES activity(activity_id) ON DELETE CASCADE,
-    CONSTRAINT fk_comment_owner FOREIGN KEY(comment_owner) REFERENCES users(user_id) ON DELETE CASCADE
+    CONSTRAINT fk_comment_owner FOREIGN KEY(comment_owner) REFERENCES users(username) ON DELETE CASCADE
 );
 
 -- Like table w. information about an activity's likes
@@ -88,11 +86,11 @@ DROP TABLE IF EXISTS likes CASCADE;
 
 CREATE TABLE likes (
     activity_id INT,
-    like_owner INT,
+    like_owner VARCHAR(50),
     timestamp TIMESTAMP,
     PRIMARY KEY(activity_id, like_owner),
     CONSTRAINT fk_likes_activity_id FOREIGN KEY(activity_id) REFERENCES activity(activity_id) ON DELETE CASCADE,
-    CONSTRAINT fk_likes_owner FOREIGN KEY(like_owner) REFERENCES users(user_id) ON DELETE CASCADE
+    CONSTRAINT fk_likes_owner FOREIGN KEY(like_owner) REFERENCES users(username) ON DELETE CASCADE
 );
 
 -- Goal table w. information about the user's general fitness goal (this one needs rework:3)
@@ -100,11 +98,11 @@ DROP TABLE IF EXISTS goal CASCADE;
 
 CREATE TABLE goal (
     goal_id INT PRIMARY KEY,
-    user_id INT,
+    username VARCHAR(50),,
     repeating VARCHAR(5),
     repeating_days INT,
     timestamp TIMESTAMP,
-    CONSTRAINT fk_goal FOREIGN KEY(user_id) REFERENCES users(user_id) ON DELETE CASCADE
+    CONSTRAINT fk_goal FOREIGN KEY(username) REFERENCES users(username) ON DELETE CASCADE
 );
 
 -- Run goal table w. information about user's goal with running
@@ -134,22 +132,22 @@ CREATE TABLE exercise_goal (
 DROP TABLE IF EXISTS following_user CASCADE;
 
 CREATE TABLE following_user (
-    following_user_id INT,
-    follower_user_id INT,
+    following_username VARCHAR(50),
+    follower_username VARCHAR(50),
     timestamp TIMESTAMP,
-    PRIMARY KEY(following_user_id, follower_user_id),
-    CONSTRAINT fk_following_user_following FOREIGN KEY(following_user_id) REFERENCES users(user_id),
-    CONSTRAINT fk_following_user_follower FOREIGN KEY(follower_user_id) REFERENCES users(user_id)
+    PRIMARY KEY(following_username, follower_username),
+    CONSTRAINT fk_following_user_following FOREIGN KEY(following_username) REFERENCES users(username),
+    CONSTRAINT fk_following_user_follower FOREIGN KEY(follower_username) REFERENCES users(username)
 );
 
 -- follower table showing which users follow the user
 DROP TABLE IF EXISTS user_follower CASCADE;
 
 CREATE TABLE user_follower (
-    following_user_id INT,
-    follower_user_id INT,
+    following_username VARCHAR(50),
+    follower_username VARCHAR(50),
     timestamp TIMESTAMP,
-    PRIMARY KEY(following_user_id, follower_user_id),
-    CONSTRAINT fk_user_follower_following FOREIGN KEY(following_user_id) REFERENCES users(user_id),
-    CONSTRAINT fk_user_follower_follower FOREIGN KEY(follower_user_id) REFERENCES users(user_id)
+    PRIMARY KEY(following_username, follower_username),
+    CONSTRAINT fk_user_follower_following FOREIGN KEY(following_username) REFERENCES users(username),
+    CONSTRAINT fk_user_follower_follower FOREIGN KEY(follower_username) REFERENCES users(username)
 );
