@@ -1,18 +1,10 @@
 package org.example.workoutapp.repository;
 
-import org.example.workoutapp.model.User;
+
+import org.example.workoutapp.model.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
-@Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-    //User findById(long id);
-
-    User findByEmail(String email);
-
-    //prøver registrering av bruker
-    User findByUsername(String username);
+public interface UserRepository extends JpaRepository<Users, String> {
 
 }
+

@@ -1,3 +1,4 @@
+/*
 -- First, clean up existing data (if any) in reverse order of dependencies
 TRUNCATE TABLE users;
 
@@ -149,3 +150,4 @@ CREATE TABLE user_follower (
 								CONSTRAINT fk_user_follower_following FOREIGN KEY(following_user_id) REFERENCES users(user_id),
 								CONSTRAINT fk_user_follower_follower FOREIGN KEY(follower_user_id) REFERENCES users(user_id)
 );
+*/
