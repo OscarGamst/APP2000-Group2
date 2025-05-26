@@ -8,7 +8,7 @@ function MainLayout() {
   return (
     <div>
       <Navbar />
-      <main>
+      <main style={{minHeight:"100vh"}}>
         <Outlet />
       </main>
       <Footer />

@@ -35,9 +35,9 @@ const RegisterComponent = () => {
 
 
   return (<>
-    <form onSubmit={handleSubmit} className="logInForm">
+    <form onSubmit={handleSubmit} className="user-auth-form">
         <h2>Create a new account</h2>
-        <div className="logInContainer">
+        <div className="user-auth-container">
 
         <label htmlFor="username">Username: </label>
         <input
@@ -85,7 +85,7 @@ const RegisterComponent = () => {
         onChange={e => setRegisterData({ ...RegisterData, visibility: e.target.checked })}
         />
 
-        <button type="submit" className="logInBtn">Sign up</button>
+        <button type="submit" className="user-auth-button">Sign up</button>
         <p>{message}</p>
         </div>
         {/*<button href="">Back to login</button>*/}

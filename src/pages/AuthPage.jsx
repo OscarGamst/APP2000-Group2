@@ -16,17 +16,12 @@ function AuthPage() {
 
                 { visLogin ? <LogInComponent/> : <RegisterComponent/> }
 
-                <button onClick={()=> setVisLogin(!visLogin)}> {/*hva enn den var, bytter.*/}
+                <button onClick={()=> setVisLogin(!visLogin)} className="user-auth-toggle"> {/*hva enn den var, bytter.*/}
                     {visLogin ? "Create an account" : "Back to login"}
                 </button>
             </div>
             <div className="login-page-empty"></div><div className="login-page-empty"></div>
         </div>
-        
-
-        <br/><br/><br/><br/>
-        <br/><br/><br/><br/>
-        <br/><br/><br/><br/>
         </>
     );
 }

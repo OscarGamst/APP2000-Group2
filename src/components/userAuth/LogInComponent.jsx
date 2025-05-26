@@ -31,9 +31,9 @@ const LogInComponent = () => {
 
 
   return (<>
-    <form onSubmit={handleSubmit} className="logInForm">
+    <form onSubmit={handleSubmit} className="user-auth-form">
       <h2>Log in</h2>
-      <div className="logInContainer">
+      <div className="user-auth-container">
 
         <label htmlFor="username">Username: </label>
         <input
@@ -59,7 +59,7 @@ const LogInComponent = () => {
 
 
 
-      <button type="submit" className="logInBtn">Log in</button>
+      <button type="submit" className="user-auth-button">Log in</button>
       <p>{message}</p>
       </div>
       {/*<button href="">Create new account</button>*/}
