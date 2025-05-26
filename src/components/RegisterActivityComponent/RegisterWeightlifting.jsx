@@ -23,13 +23,21 @@ class Workout {
         this.lastIndex=0;
         this.description="";
         this.duration=0;
+        this.type="weightlifting"; //This is just to make searches easier in the backend
+        this.title="";
     }
+
     setDescription(description) {
         this.description=description;
     }
     setDuration(duration) {
         this.duration=duration;
     }
+
+    setTitle(title) {
+        this.title=title;
+    }
+
     getLastIndex() {
         return(this.lastIndex);
     }
@@ -40,6 +48,11 @@ class Workout {
     getExercise() {
         return this.exercises[0].getName();
     }
+
+    getTitle() {
+        return this.type;
+    }
+
     resetObject() {
         this.exercises=[];
         this.lastIndex=0;
@@ -114,8 +127,7 @@ const Page1 = ({next}) => {
             event.preventDefault();
             registerWorkout.setDuration(Number(event.target.elements.duration.value));
             registerWorkout.setDescription(String(event.target.elements.description.value));
-            console.log(registerWorkout);
-            console.log(next);
+            registerWorkout.setTitle(String(event.target.elements.title.value));
             next();
 
     }
@@ -130,6 +142,15 @@ const Page1 = ({next}) => {
                         id="duration"
                         name="duration"
                         min="0"
+                        required
+                    />
+                </div>
+                <div>
+                    <label>Title : </label>
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
                         required
                     />
                 </div>
@@ -161,19 +182,32 @@ const Page2 = ({back, returnToDefault}) => {
     const enableButton = () => {
         setVisibilityAdd(true);
     }
-    
-    const submitObject = () => {
+
+    /*
+    The function that handles submitting the information in the objects to the database
+
+    Copy of Alberts code:3
+    */
+
+    const submitObject = async () => {
+        try {
+            const reponseFromBackend=await fetch(`http://localhost:8080/api/activity/workout`, {
+                method: "PUT",
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(registerWorkout)
+            });
+
+            if (responseFromBackend.ok) {alert("Update successful!!");
+            } else {console.error("Failed to update :(")}
+        } catch (error) { console.error("Error:", error);}
+
+
         registerWorkout.resetObject();
         returnToDefault();
 
     }
-
-    /*
-    const editWorkoutExercise = ({exercise}) => {
-        disableButton();
-    }
-    <button onClick={editWorkoutExercise(exercise)}>Edit</button>
-    */
     
     let exerciseList=registerWorkout.exercises.map(exercise => 
         <div>
@@ -185,7 +219,7 @@ const Page2 = ({back, returnToDefault}) => {
 
     
 
-    
+    //Idk what this does tbh...
     useEffect(()=> {
         exerciseList=registerWorkout.exercises.map(exercise => 
             <div>
@@ -219,15 +253,6 @@ const AddWorkout = ({enableButton}) => {
         const arg_sets=(Number(event.target.elements.sets.value));
         const arg_kilo=(Number(event.target.elements.kg.value));
         const arg_reps=(Number(event.target.elements.reps.value));
-
-        /*
-        const exerciseObject=registerWorkout.createNewExercise();
-
-        exerciseObject.setName(Number(event.target.elements.exerciseName.value));
-        exerciseObject.setSets(Number(event.target.elements.sets.value));
-        exerciseObject.setKilos(Number(event.target.elements.kg.value));
-        exerciseObject.setReps(Number(event.target.elements.reps.value));
-        */
 
         registerWorkout.createNewExercise(arg_name,arg_sets,arg_kilo,arg_reps);
         console.log(registerWorkout.getExercise());

@@ -48,15 +48,36 @@ public class ActivityController {
     //  ------------------ POST ------------------
     //  ---------INSERT ALL POSTERS HERE----------
 
+    /*
     @PostMapping
     public ResponseEntity<Activity> addActivity(@RequestBody Activity activity) {
         Activity savedActivity = activityService.saveActivity(activity);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedActivity);
     }
+     */
 
+    @PostMapping("http://localhost:8080/api/activity/workout")
+    public ResponseEntity<Activity> addWorkout(@RequestBody Activity activity) {
+        Activity savedActivityWorkout = activityService.saveActivityWorkout(activity);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedActivityWorkout);
+    }
+
+    @PostMapping("http://localhost:8080/api/activity/run")
+    public ResponseEntity<Activity> addRun(@RequestBody Activity activity) {
+        Activity savedActivityRun = activityService.saveActivityRun(activity);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedActivityRun);
+    }
+
+    @PostMapping("http://localhost:8080/api/activity/combined")
+    public ResponseEntity<Activity> addCombined(@RequestBody Activity activity) {
+        Activity savedActivityCombined = activityService.saveActivityCombined(activity);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedActivityCombined);
+    }
 
     //  ------------------ PUT ------------------
     //  ---------INSERT ALL PUTTERS HERE---------
+
+
 
 
     //  ------------------ DELETE ------------------
