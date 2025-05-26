@@ -9,13 +9,13 @@ import { useNavigate } from 'react-router-dom';
 
 
 const RegisterComponent = () => {
-  const [RegisterData, setRegisterData] = useState({
+    const [RegisterData, setRegisterData] = useState({
     username: "",
     email: "",
     password: "",
     birthday: "",
-    visibility: "",
-  });
+    visibility: false,
+    });
 
   const [message, setMessage] = useState(''); 
   const navigate = useNavigate();
@@ -23,10 +23,11 @@ const RegisterComponent = () => {
   const handleSubmit = async (e) => { //når vi trykker på knappen
     e.preventDefault();
     try {
-      await axios.post("/users/user-Register",{RegisterData});
+        await axios.post("api/users/register",RegisterData);
       
     } catch (err) {
-      alert("YIKES!! error!!");
+        
+        alert("YIKES!! error!!");
     }
 
   };
@@ -35,27 +36,27 @@ const RegisterComponent = () => {
 
   return (<>
     <form onSubmit={handleSubmit} className="logInForm">
-      <h2>Create a new account</h2>
-      <div className="logInContainer">
+        <h2>Create a new account</h2>
+        <div className="logInContainer">
 
         <label htmlFor="username">Username: </label>
         <input
-          type="text"
-          name="username"
-          placeholder="Enter Username"
-          value={RegisterData.username}
-          onChange={e => setRegisterData({ ...RegisterData, username: e.target.value})}
-          required
-          />
+            type="text"
+            name="username"
+            placeholder="Enter Username"
+            value={RegisterData.username}
+            onChange={e => setRegisterData({ ...RegisterData, username: e.target.value})}
+            required
+            />
 
         <label htmlFor="password" >Password: </label>
         <input
-          type="password"
-          name="password"
-          placeholder="Enter Password"
-          value={RegisterData.password}
-          onChange={e => setRegisterData({ ...RegisterData, password: e.target.value})}
-          required
+            type="password"
+            name="password"
+            placeholder="Enter Password"
+            value={RegisterData.password}
+            onChange={e => setRegisterData({ ...RegisterData, password: e.target.value})}
+            required
         />
 
         <label htmlFor="email">E-mail:</label>
@@ -63,6 +64,7 @@ const RegisterComponent = () => {
         type="text"
         name="email"
         value={RegisterData.email}
+        onChange={e => setRegisterData({ ...RegisterData, email: e.target.value})}
         required
         />
 
@@ -71,6 +73,7 @@ const RegisterComponent = () => {
         type="date"
         name="birthday"
         value={RegisterData.birthday}
+        onChange={e => setRegisterData({ ...RegisterData, birthday: e.target.value})}
         required
         />
 
@@ -78,14 +81,14 @@ const RegisterComponent = () => {
         <input
         type="checkbox"
         name="visibility"
-        value={RegisterData.visibility}
-        required
+        checked={RegisterData.visibility === "true" || RegisterData.visibility === true}
+        onChange={e => setRegisterData({ ...RegisterData, visibility: e.target.checked })}
         />
 
-      <button type="submit" className="logInBtn">Sign up</button>
-      <p>{message}</p>
-      </div>
-      {/*<button href="">Back to login</button>*/}
+        <button type="submit" className="logInBtn">Sign up</button>
+        <p>{message}</p>
+        </div>
+        {/*<button href="">Back to login</button>*/}
     </form>
   </>);
 };

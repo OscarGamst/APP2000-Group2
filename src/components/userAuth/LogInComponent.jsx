@@ -21,7 +21,7 @@ const LogInComponent = () => {
     e.preventDefault();
     try {
       await axios.post("/users/user-login",{LoginData});
-      
+      setTimeout(() => navigate("/"),2000);
     } catch (err) {
       alert("Wrong login credentials");
     }

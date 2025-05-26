@@ -50,7 +50,7 @@ public class UserController {
 
 
     //
-    @PostMapping
+    @PostMapping("/register")
     @Operation(summary = "Create a new user")
     @ResponseStatus(HttpStatus.CREATED)
     @ApiResponses({
@@ -62,9 +62,10 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(userDTO));
     }
 
+/* det her er rester som jeg trodde ville forsvinne
     @PostMapping("/register")
     public User register(@RequestBody User user) {
         return userService.register(user);
     }
-
+*/
 }
