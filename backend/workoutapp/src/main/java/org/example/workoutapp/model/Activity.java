@@ -22,7 +22,14 @@ public class Activity {
     private LocalDateTime timestamp;
     */
 
+    @ManyToOne
+    @JoinColumn(name = "username", nullable = false)
+    private Users user;
+
     @OneToMany(mappedBy = "activity", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Likes> likes = new HashSet<>();
+
+    @OneToMany(mappedBy = "activity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Comment> comments = new HashSet<>();
 
 }
