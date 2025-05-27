@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Setter
@@ -20,6 +22,11 @@ public class Users {
     private LocalDate birthday;
 
     private boolean visibility;
+
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Likes> likes = new HashSet<>();
+
 
 }
 
