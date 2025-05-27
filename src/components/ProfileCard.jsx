@@ -1,8 +1,19 @@
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import "../styles/index.css";
 import default_pfp from "../pictures/default_pfp.png";
 
 const ProfileCard = () => {
+    //brukerdata
+        const [user,setUser] = useState(null);
+        useEffect(()=> {
+            const storedUser = localStorage.getItem("loggedInUser");
+            if (storedUser) {
+                setUser(JSON.parse(storedUser));
+            }
+        },[]);
+
 
     return (
         <div className="profileCard">
@@ -11,7 +22,7 @@ const ProfileCard = () => {
                 
                 <li><img src={default_pfp} alt=""/></li>
                 <li className="profileTitle">
-                <a href="/Profile" >Username</a>
+                <a href="/Profile" >{user ? user.username : "Loading.."}</a>
                 </li>
                 <li className="profileDesc">
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore et ipsum ...

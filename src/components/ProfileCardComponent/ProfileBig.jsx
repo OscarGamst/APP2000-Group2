@@ -32,6 +32,15 @@ const ProfileBigEdit = ( {id = 5 }) => {
         fetchUser();
     },[id])
 
+    //brukerdata
+    const [user,setUser] = useState(null);
+    useEffect(()=> {
+        const storedUser = localStorage.getItem("loggedInUser");
+        if (storedUser) {
+            setUser(JSON.parse(storedUser));
+        }
+    },[]);
+
     // EKSEMPEL KINDA CLOSE TIL DET VI KOMMER TIL Å BRUKE TROR JEG
     const handleSubmit = async () => {
         //setUserName(firstName , " " , lastName);

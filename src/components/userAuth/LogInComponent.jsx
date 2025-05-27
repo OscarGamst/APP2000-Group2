@@ -17,16 +17,23 @@ const LogInComponent = () => {
   const [message, setMessage] = useState(''); 
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => { //når vi trykker på knappen
-    e.preventDefault();
-    try {
-      await axios.post("/users/user-login",{LoginData});
-      setTimeout(() => navigate("/"),2000);
-    } catch (err) {
-      alert("Wrong login credentials");
-    }
+    const handleSubmit = async (e) => { //når vi trykker på knappen
+        e.preventDefault();
+        try {
+            const result = await axios.post("api/users/login",LoginData);
+            const user = result.data;
 
-  };
+            // med denna kan vi i alle andre steder kalle inn for å sjekke hvilken bruker vi ska ta utgangspunkt i.
+            localStorage.setItem("loggedInUser", JSON.stringify(user)); //Siden vi mottar en trygg DTO
+            //console.log(user);
+            //console.log("HEHEHEHEH");
+            //console.log(localStorage.getItem("loggedInUser"));
+            setTimeout(() => navigate("/"),1234); //redirect etter login til homepage
+        } catch (err) {
+            alert("Wrong login credentials");
+        }
+
+    };
 
 
 

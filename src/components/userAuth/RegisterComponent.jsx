@@ -78,12 +78,11 @@ const RegisterComponent = () => {
         />
 
         <label htmlFor="visibility">Public profile?</label>
-        <input
-        type="checkbox"
-        name="visibility"
-        checked={RegisterData.visibility === "true" || RegisterData.visibility === true}
-        onChange={e => setRegisterData({ ...RegisterData, visibility: e.target.checked })}
-        />
+        <select name="visibility" value={RegisterData.visibility.toString()} 
+            onChange={e => setRegisterData({ ...RegisterData, visibility: e.target.value === "true" })}>
+            <option value="true">Public</option>
+            <option value="false">Private</option>
+        </select>
 
         <button type="submit" className="user-auth-button">Sign up</button>
         <p>{message}</p>
