@@ -15,7 +15,7 @@ public interface ActivityService {
     Activity getActivityById(Long id);
 
     //  ------------------ SAVE ------------------
-    Activity saveActivityWorkout(Activity activity);
+    void saveActivityWorkout(Activity activity);
     Activity saveActivityRun(Activity activity);
     Activity saveActivityCombined(Activity activity);
 }

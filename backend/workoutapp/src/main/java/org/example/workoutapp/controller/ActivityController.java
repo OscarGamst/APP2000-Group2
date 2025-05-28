@@ -1,5 +1,6 @@
 package org.example.workoutapp.controller;
 
+import org.example.workoutapp.dto.ActivityWorkoutDTO;
 import org.example.workoutapp.model.Activity;
 //import org.example.workoutapp.repository.ActivityRepository;
 import org.example.workoutapp.service.ActivityService;
@@ -57,8 +58,8 @@ public class ActivityController {
      */
 
     @PostMapping("http://localhost:8080/api/activity/workout")
-    public ResponseEntity<Activity> addWorkout(@RequestBody Activity activity) {
-        Activity savedActivityWorkout = activityService.saveActivityWorkout(activity);
+    public ResponseEntity<Activity> addWorkout(@RequestBody ActivityWorkoutDTO activityWorkoutDTO) {
+        Activity savedActivityWorkout = activityService.saveActivityWorkout(activityWorkoutDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedActivityWorkout);
     }
 
