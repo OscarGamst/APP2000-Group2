@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class LikeDTO {
     private Long likeId;
-    private Long activityId;
+    private Long activity_id;
     private String username;
 }
