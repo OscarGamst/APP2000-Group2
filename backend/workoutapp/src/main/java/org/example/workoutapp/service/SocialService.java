@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @Transactional
@@ -92,5 +93,19 @@ public class SocialService {
         follow.setFollowed(followed);
         followRepository.save(follow);
         return followMapper.toFollowDTO(follow);
+    }
+
+    // vil returnere en liste med brukere som følger en person
+    //alle som følger meg
+    public List<FollowDTO> getUsersFollowers(String followedUsername) {
+        List<Follow> followers = followRepository.findByFollowedUsername(followedUsername);
+        return followMapper.toFollowDTOList(followers);
+    }
+
+    // vil returnere en liste over brukere som en person følger
+    //alle jeg følger
+    public List<FollowDTO> getUserIsFollowing(String followerUsername) {
+        List<Follow> following = followRepository.findByFollowerUsername(followerUsername);
+        return followMapper.toFollowDTOList(following);
     }
 }
