@@ -1,12 +1,5 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; 
-//det her ska brukes for å "redirecte" til andre sider
-//med utgangspunkt i kode fra forelesninger, og hjjelp fra internett :)
-//ville jeg lage en Registern-funksjon som bare tar et brukernavn og et passord fra bruker
-//og sammenlikner med brukernavn og passord som er lagret et annet sted.
-//lagret i tekstfil i dette tilfellet, men tenker database i fremtiden da.
-
 
 const RegisterComponent = () => {
     const [RegisterData, setRegisterData] = useState({
