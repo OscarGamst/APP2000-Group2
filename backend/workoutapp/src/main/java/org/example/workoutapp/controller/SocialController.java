@@ -33,7 +33,6 @@ public class SocialController {
     private final LikeMapper likeMapper;
 
     // ----------- ----------- ALT MED LIKES ----------- -----------
-
     @PostMapping("/like")
     @Operation(summary = "Give a like to an activity")
     @ResponseStatus(HttpStatus.CREATED)
@@ -44,15 +43,39 @@ public class SocialController {
     })
     public ResponseEntity<?> likeActivity(
             @RequestParam String username,
-            @RequestParam Long activityId) {
+            @RequestParam Long activity_id) {
         //Sjekker at username faktisk finnes
         Users user = userRepository.findById(username).orElseThrow(() -> new RuntimeException("User not found"));
 
         //Sjekker at activity fakitsk finnes
-        Activity activity = activityRepository.findById(activityId).orElseThrow(() -> new RuntimeException("Activity not found"));
+        Activity activity = activityRepository.findById(activity_id).orElseThrow(() -> new RuntimeException("Activity not found"));
 
         LikeDTO likeDTO = socialService.likeActivity(user, activity);
         return ResponseEntity.ok(likeDTO);
+    }
+    @DeleteMapping("/like")
+    @Operation(summary = "Unlike activity")
+    @ApiResponses({
+            @ApiResponse(responseCode = "204", description = "Activity successfully unliked"),
+            @ApiResponse(responseCode = "404", description = "Activity not found"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
+    public ResponseEntity<Void> unlikeActivity(
+            @RequestParam String username,
+            @RequestParam Long activity_id) {
+        Users user = userRepository.findById(username).orElseThrow(() -> new RuntimeException("User not found"));
+        Activity activity = activityRepository.findById(activity_id).orElseThrow(() -> new RuntimeException("Activity not found"));
+        socialService.unlikeActivity(user, activity);
+        return ResponseEntity.noContent().build();
+    }
+    @GetMapping("/like")
+    @Operation(summary = "Get Likes on an activity", description = "Retrieves a list of all likes on an activity")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved likes"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
+    public ResponseEntity<List<LikeDTO>> getLikes(@RequestParam Long activity_id) {
+        return ResponseEntity.ok(socialService.getLikes(activity_id));
     }
     // ----------- ----------- LIKES ----------- -----------
 
@@ -68,6 +91,39 @@ public class SocialController {
     public ResponseEntity<CommentDTO> commentActivity(@Valid @RequestBody CommentDTO commentDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(socialService.commentActivity(commentDTO));
 
+    }
+    @PutMapping("/{comment_id}")
+    @Operation(summary = "Update a comment")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Comment updated successfully"),
+            @ApiResponse(responseCode = "400", description = "Invalid data"),
+            @ApiResponse(responseCode = "404", description = "Comment not found"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
+    public ResponseEntity<CommentDTO> updateComment(
+            @PathVariable Long comment_id,
+            @Valid @RequestBody CommentDTO commentDTO) {
+        return ResponseEntity.ok(socialService.updateComment(comment_id,commentDTO));
+    }
+    @GetMapping("/comment")
+    @Operation(summary = "Get comments on activity", description = "Retrieves a list of all comments on an activity")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved comments"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
+    public ResponseEntity<List<CommentDTO>> getComments(@RequestParam Long activity_id) {
+        return ResponseEntity.ok(socialService.getComments(activity_id));
+    }
+    @DeleteMapping("/comment/{comment_id}")
+    @Operation(summary = "Delete comment")
+    @ApiResponses({
+            @ApiResponse(responseCode = "204", description = "Comment deleted successfully"),
+            @ApiResponse(responseCode = "404", description = "Comment not found"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
+    public ResponseEntity<Void> deleteComment(@PathVariable Long comment_id) {
+        socialService.deleteComment(comment_id);
+        return ResponseEntity.noContent().build();
     }
     // ----------- ----------- COMMENTS ----------- -----------
 
