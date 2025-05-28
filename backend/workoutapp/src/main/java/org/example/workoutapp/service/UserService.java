@@ -25,6 +25,10 @@ public class UserService {
         return userMapper.toUserBasicDTO(users);
 
     }
+    public List<UserDetailDTO>getAllUsersDetailed() {
+        List<Users> users = userRepository.findAll();
+        return userMapper.toUserDetailDTO(users);
+    }
 
     public UserDetailDTO updateUser(String username, UserDetailDTO userDTO) {
         Users user = userRepository.findById(username).orElseThrow(() -> new RuntimeException("User not found"));
@@ -66,6 +70,13 @@ public class UserService {
         // Vi kan sammenlikne passordet vi får av brukern, med det hashede passordet i databasen
         //ved hjelp av passwordEncoder.matches()
         return passwordEncoder.matches(password, user.getPassword());
+    }
+
+    public void deleteUser(String username) {
+        if (!userRepository.existsById(username)) {
+            throw new RuntimeException("User not found");
+        }
+        userRepository.deleteById(username);
     }
 
 }

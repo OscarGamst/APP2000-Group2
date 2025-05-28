@@ -45,6 +45,10 @@ public class SocialService {
     }
 
     public LikeDTO likeActivity(Users user, Activity activity) {
+        //Så man ikke liker sin egen aktivitet
+        if (activity.getUser().getUsername().equals(user.getUsername())) {
+            throw new IllegalStateException("You cannot like your own activity");
+        }
         //Hvis man allerede har likt kan man ikke like igjen
         if (hasUserLikedActivity(user.getUsername(), activity.getActivity_id() )) {
             throw new IllegalStateException("User have already liked this activity"); //kan kanskje skrive "you"!=User
