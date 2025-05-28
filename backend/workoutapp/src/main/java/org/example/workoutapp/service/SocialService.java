@@ -131,7 +131,7 @@ public class SocialService {
         followRepository.save(follow);
         return followMapper.toFollowDTO(follow);
     }
-    
+
     // vil returnere en liste med brukere som følger en person
     //alle som følger meg
     public List<FollowDTO> getUsersFollowers(String followedUsername) {

@@ -149,13 +149,13 @@ public class SocialController {
 
     // ----------- ----------- FOLLOW ----------- -----------
     // alle som følger en bruker
-    @GetMapping("followers/{username}")
+    @GetMapping("/followers/{username}")
     public ResponseEntity<List<FollowDTO>> getFollowers(@PathVariable String username) {
         return ResponseEntity.ok(socialService.getUsersFollowers(username));
     }
 
     // alle som en bruker følger
-    @GetMapping("following/{username}")
+    @GetMapping("/following/{username}")
     public ResponseEntity<List<FollowDTO>> getFollowing(@PathVariable String username) {
         return ResponseEntity.ok(socialService.getUserIsFollowing(username));
     }

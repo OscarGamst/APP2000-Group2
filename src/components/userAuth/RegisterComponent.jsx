@@ -17,8 +17,6 @@ const RegisterComponent = () => {
     visibility: false,
     });
 
-  const [message, setMessage] = useState(''); 
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => { //når vi trykker på knappen
     e.preventDefault();
@@ -85,7 +83,6 @@ const RegisterComponent = () => {
         </select>
 
         <button type="submit" className="user-auth-button">Sign up</button>
-        <p>{message}</p>
         </div>
         {/*<button href="">Back to login</button>*/}
     </form>
