@@ -16,12 +16,12 @@ The user should be able to go back to the set they added! For this reason, the i
 of workout exercises.
 */
 
+
 class Workout {
 
     constructor() {
         this.exercises=[];
-        this.lastIndex=0;
-        this.description="";
+        this.description = "";
         this.duration=0;
         this.type="weightlifting"; //This is just to make searches easier in the backend
         this.title="";
@@ -38,24 +38,19 @@ class Workout {
         this.title=title;
     }
 
-    getLastIndex() {
-        return(this.lastIndex);
-    }
     createNewExercise(name,sets,kilos,reps) {
-        this.exercises[this.lastIndex]=new Exercise(name,sets,kilos,reps);
-        this.lastIndex+=1;
+        this.exercises.push(new Exercise(name,sets,kilos,reps));
     }
     getExercise() {
         return this.exercises[0].getName();
     }
 
     getTitle() {
-        return this.type;
+        return this.title;
     }
 
     resetObject() {
         this.exercises=[];
-        this.lastIndex=0;
         this.description="";
         this.duration=0;
     }
@@ -219,8 +214,7 @@ const Page2 = ({back, returnToDefault}) => {
 
     
 
-    //Idk what this does tbh...
-    useEffect(()=> {
+    /*(()=> {
         exerciseList=registerWorkout.exercises.map(exercise => 
             <div>
                 <p>
@@ -228,6 +222,7 @@ const Page2 = ({back, returnToDefault}) => {
                 </p>
             </div>
         )}, [registerWorkout.lastIndex]);
+    */
 
     return (
         <div>

@@ -12,6 +12,9 @@ import lombok.*;
 public class ActivityWorkoutExercise {
 
     @Id
+    @Column(nullable=false, name="exercise_id")
+    private int exerciseId;
+
     @Column (nullable=false, name="exercise_name")
     private String exerciseName;
 
@@ -26,5 +29,5 @@ public class ActivityWorkoutExercise {
 
     @ManyToOne
     @JoinColumn(name="activity_id")
-    private Activity activity_id;
+    private Activity activityId;
 }

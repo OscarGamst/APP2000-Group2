@@ -1,5 +1,6 @@
 package org.example.workoutapp.controller;
 
+import org.example.workoutapp.dto.ActivityWorkoutDTO;
 import org.example.workoutapp.model.Activity;
 //import org.example.workoutapp.repository.ActivityRepository;
 import org.example.workoutapp.service.ActivityService;
@@ -56,19 +57,19 @@ public class ActivityController {
     }
      */
 
-    @PostMapping("http://localhost:8080/api/activity/workout")
-    public ResponseEntity<Activity> addWorkout(@RequestBody Activity activity) {
-        Activity savedActivityWorkout = activityService.saveActivityWorkout(activity);
+    @PostMapping("/workout")
+    public ResponseEntity<Activity> addWorkout(@RequestBody ActivityWorkoutDTO activityWorkoutDTO) {
+        Activity savedActivityWorkout = activityService.saveActivityWorkout(activityWorkoutDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedActivityWorkout);
     }
 
-    @PostMapping("http://localhost:8080/api/activity/run")
+    @PostMapping("/run")
     public ResponseEntity<Activity> addRun(@RequestBody Activity activity) {
         Activity savedActivityRun = activityService.saveActivityRun(activity);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedActivityRun);
     }
 
-    @PostMapping("http://localhost:8080/api/activity/combined")
+    @PostMapping("/combined")
     public ResponseEntity<Activity> addCombined(@RequestBody Activity activity) {
         Activity savedActivityCombined = activityService.saveActivityCombined(activity);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedActivityCombined);
