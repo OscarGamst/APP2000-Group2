@@ -8,6 +8,9 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.workoutapp.dto.UserBasicDTO;
 import org.example.workoutapp.dto.UserDetailDTO;
+import org.example.workoutapp.mapper.UserMapper;
+import org.example.workoutapp.model.Users;
+import org.example.workoutapp.repository.UserRepository;
 import org.example.workoutapp.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +25,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
     @GetMapping
     @Operation(summary = "Get all users", description = "Retrieves a list of all users with basic information")
@@ -32,8 +37,6 @@ public class UserController {
     public ResponseEntity<List<UserBasicDTO>> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsersBasic());
     }
-
-
     @PutMapping("/{username}")
     @Operation(summary = "Update a user")
     @ApiResponses({
@@ -47,10 +50,7 @@ public class UserController {
             @Valid @RequestBody UserDetailDTO userDTO) {
         return ResponseEntity.ok(userService.updateUser(username, userDTO));
     }
-
-
-    //
-    @PostMapping
+    @PostMapping("/register")
     @Operation(summary = "Create a new user")
     @ResponseStatus(HttpStatus.CREATED)
     @ApiResponses({
@@ -61,5 +61,45 @@ public class UserController {
     public ResponseEntity<UserDetailDTO> createUser(@Valid @RequestBody UserDetailDTO userDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(userDTO));
     }
+    @DeleteMapping("/delete/{username}")
+    @Operation(summary = "Delete user")
+    @ApiResponses({
+            @ApiResponse(responseCode = "204", description = "User deleted successfully"),
+            @ApiResponse(responseCode = "404", description = "User not found"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
+    public ResponseEntity<Void> deleteUser(@PathVariable String username) {
+        userService.deleteUser(username);
+        return ResponseEntity.noContent().build();
+    }
+    @PostMapping("/login")
+    @Operation(summary = "Validate user")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "User updated successfully"),
+            @ApiResponse(responseCode = "400", description = "Invalid user data"),
+            @ApiResponse(responseCode = "404", description = "User not found"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
+    public ResponseEntity<?> validateUser(@RequestBody UserDetailDTO userDTO) {
+        //får inn en true eller false her hvis brukern er gyldig eller ikke
+        boolean isValid = userService.validateUser(userDTO.getUsername(), userDTO.getPassword());
 
+        //Hvis den ikke er gyldig - dvs feil login credentials
+        if (!isValid) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid user credentials");
+        }
+
+        //hvis den er gyldig / aka brukernavn og passord er riktig -
+        Users user = userRepository.findByUsername(userDTO.getUsername());
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        }
+
+        //hvis den kommer seg forbi de to sjekkene over, sender
+        //vi en ny DTO men bare uten passordet.
+        UserDetailDTO userResponseDTO = userMapper.toUserDetailDTO(user);
+        userResponseDTO.setPassword(null); //VIKTIG å ikke returnere passordet også!!
+
+        return ResponseEntity.ok(userResponseDTO);
+    }
 }

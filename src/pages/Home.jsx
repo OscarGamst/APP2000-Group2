@@ -13,7 +13,6 @@ const Home = () => {
         <div className="flex-empty"></div> {/* Adds space to the side */}
           <div className="home-main"> {/* main content of HomePage */}
             <ProgressHomepg />
-            <TestForm /> 
             <ActivityFeed />
           </div>        
           <div className="home-sidebar"> {/* Side content */}
