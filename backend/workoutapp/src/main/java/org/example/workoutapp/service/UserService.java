@@ -31,7 +31,10 @@ public class UserService {
 
 
         user.setEmail(userDTO.getEmail());
-        user.setPassword(userDTO.getPassword());
+
+        String hashedPassword = passwordEncoder.encode(userDTO.getPassword());
+        user.setPassword(hashedPassword);
+
         user.setBirthday(userDTO.getBirthday());
         user.setVisibility(userDTO.isVisibility());
 
