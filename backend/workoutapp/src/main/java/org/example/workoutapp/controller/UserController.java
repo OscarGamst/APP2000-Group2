@@ -37,8 +37,6 @@ public class UserController {
     public ResponseEntity<List<UserBasicDTO>> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsersBasic());
     }
-
-
     @PutMapping("/{username}")
     @Operation(summary = "Update a user")
     @ApiResponses({
@@ -52,9 +50,6 @@ public class UserController {
             @Valid @RequestBody UserDetailDTO userDTO) {
         return ResponseEntity.ok(userService.updateUser(username, userDTO));
     }
-
-
-    //
     @PostMapping("/register")
     @Operation(summary = "Create a new user")
     @ResponseStatus(HttpStatus.CREATED)
@@ -66,7 +61,17 @@ public class UserController {
     public ResponseEntity<UserDetailDTO> createUser(@Valid @RequestBody UserDetailDTO userDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(userDTO));
     }
-
+    @DeleteMapping("/delete/{username}")
+    @Operation(summary = "Delete user")
+    @ApiResponses({
+            @ApiResponse(responseCode = "204", description = "User deleted successfully"),
+            @ApiResponse(responseCode = "404", description = "User not found"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
+    public ResponseEntity<Void> deleteUser(@PathVariable String username) {
+        userService.deleteUser(username);
+        return ResponseEntity.noContent().build();
+    }
     @PostMapping("/login")
     @Operation(summary = "Validate user")
     @ApiResponses({
@@ -96,8 +101,5 @@ public class UserController {
         userResponseDTO.setPassword(null); //VIKTIG å ikke returnere passordet også!!
 
         return ResponseEntity.ok(userResponseDTO);
-
     }
-
-
 }
