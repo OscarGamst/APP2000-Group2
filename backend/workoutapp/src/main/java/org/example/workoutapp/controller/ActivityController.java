@@ -5,6 +5,7 @@ import org.example.workoutapp.model.Activity;
 //import org.example.workoutapp.repository.ActivityRepository;
 import org.example.workoutapp.service.ActivityService;
 //import org.springframework.beans.factory.annotation.Autowired;
+import org.example.workoutapp.service.ActivityServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,25 +27,7 @@ public class ActivityController {
     //  ------------------ GET ------------------
     //  ---------INSERT ALL GETTERS HERE---------
 
-    @GetMapping()
-    public List<Activity> getActivities() {
-        return activityService.getAllActivities();
-    }
 
-    @GetMapping("/type/{type}")
-    public List<Activity> getActivitiesByType(@PathVariable String type) {
-        return activityService.getActivitiesByType(type);
-    }
-
-    @GetMapping("/username/{username}")
-    public List<Activity> getActivitiesByUsername(@PathVariable String username) {
-        return activityService.getActivitiesByUsername(username);
-    }
-
-    @GetMapping("/{id}")
-    public Activity getActivityById(@PathVariable Long id) {
-        return activityService.getActivityById(id);
-    }
 
     //  ------------------ POST ------------------
     //  ---------INSERT ALL POSTERS HERE----------
@@ -59,11 +42,11 @@ public class ActivityController {
 
     @PostMapping("/workout")
     public ResponseEntity<Activity> addWorkout(@RequestBody ActivityWorkoutDTO activityWorkoutDTO) {
-        Activity savedActivityWorkout = activityService.saveActivityWorkout(activityWorkoutDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedActivityWorkout);
+        Activity newActivityWorkout=activityService.saveActivityWorkout(activityWorkoutDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(newActivityWorkout);
     }
 
-    @PostMapping("/run")
+    /*@PostMapping("/run")
     public ResponseEntity<Activity> addRun(@RequestBody Activity activity) {
         Activity savedActivityRun = activityService.saveActivityRun(activity);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedActivityRun);
@@ -74,6 +57,8 @@ public class ActivityController {
         Activity savedActivityCombined = activityService.saveActivityCombined(activity);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedActivityCombined);
     }
+
+     */
 
     //  ------------------ PUT ------------------
     //  ---------INSERT ALL PUTTERS HERE---------

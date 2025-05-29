@@ -10,13 +10,9 @@ import java.util.Optional;
 @Service
 public interface ActivityService {
     //  ------------------ GET------------------
-    List<Activity> getAllActivities();
-    List<Activity> getActivitiesByType(String type);
-    List<Activity> getActivitiesByUsername(String username);
-    Activity getActivityById(Long id);
 
     //  ------------------ SAVE ------------------
-    void saveActivityWorkout(ActivityWorkoutDTO activityWorkoutDTO);
-    Activity saveActivityRun(Activity activity);
-    Activity saveActivityCombined(Activity activity);
+    Activity saveActivityWorkout(ActivityWorkoutDTO activityWorkoutDTO);
+    //Activity saveActivityRun(Activity activity);
+    //Activity saveActivityCombined(Activity activity);
 }

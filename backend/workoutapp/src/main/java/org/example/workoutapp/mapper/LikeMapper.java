@@ -12,7 +12,7 @@ import java.util.List;
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface LikeMapper {
     @Mapping(source = "user.username", target = "username")
-    @Mapping(source = "activity.activity_id", target = "activity_id")
+    @Mapping(source = "activity.activityId", target = "activityId")
     LikeDTO toLikeDTO(Likes like);
 
     List<LikeDTO> toLikeDTO(List<Likes> likes);

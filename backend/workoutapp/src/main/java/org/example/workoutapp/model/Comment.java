@@ -22,7 +22,7 @@ public class Comment {
     private LocalDateTime timestamp;
 
     @ManyToOne
-    @JoinColumn(name = "activity_id")
+    @JoinColumn(name = "activityId")
     private Activity activity;
 
     @ManyToOne
