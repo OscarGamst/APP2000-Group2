@@ -1,5 +1,6 @@
 package org.example.workoutapp.service;
 
+import org.example.workoutapp.dto.ActivityWorkoutDTO;
 import org.example.workoutapp.model.Activity;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ public interface ActivityService {
     Activity getActivityById(Long id);
 
     //  ------------------ SAVE ------------------
-    void saveActivityWorkout(Activity activity);
+    void saveActivityWorkout(ActivityWorkoutDTO activityWorkoutDTO);
     Activity saveActivityRun(Activity activity);
     Activity saveActivityCombined(Activity activity);
 }

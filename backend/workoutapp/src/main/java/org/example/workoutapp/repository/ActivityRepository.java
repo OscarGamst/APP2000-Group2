@@ -2,6 +2,7 @@ package org.example.workoutapp.repository;
 
 import org.example.workoutapp.dto.ActivityWorkoutDTO;
 import org.example.workoutapp.model.Activity;
+import org.example.workoutapp.model.ActivityWorkoutExercise;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDateTime;
@@ -19,12 +20,8 @@ public interface ActivityRepository extends JpaRepository<Activity, Long> {
     can be called by all the save-methods in the service layer.
      */
 
-    Activity save(
-            String type,
-            String title,
-            String description,
-            int duration,
-            LocalDateTime timestamp
-    );
+    Activity save(Activity activity);
+
+    ActivityWorkoutExercise saveActivityWorkoutExercise(ActivityWorkoutExercise activityWorkoutExercise);
 
 }

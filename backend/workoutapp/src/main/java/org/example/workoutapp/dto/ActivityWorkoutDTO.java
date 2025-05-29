@@ -1,13 +1,18 @@
 package org.example.workoutapp.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import java.util.List;
+import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ActivityWorkoutDTO {
-    private int type;
+    private String type;
     private String title;
     private String description;
     private int duration;
-    private List<ExerciseActivityDTO> exercises;
+    private ArrayList<ExerciseActivityDTO> exercises;
 }

@@ -57,19 +57,19 @@ public class ActivityController {
     }
      */
 
-    @PostMapping("http://localhost:8080/api/activity/workout")
+    @PostMapping("/workout")
     public ResponseEntity<Activity> addWorkout(@RequestBody ActivityWorkoutDTO activityWorkoutDTO) {
         Activity savedActivityWorkout = activityService.saveActivityWorkout(activityWorkoutDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedActivityWorkout);
     }
 
-    @PostMapping("http://localhost:8080/api/activity/run")
+    @PostMapping("/run")
     public ResponseEntity<Activity> addRun(@RequestBody Activity activity) {
         Activity savedActivityRun = activityService.saveActivityRun(activity);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedActivityRun);
     }
 
-    @PostMapping("http://localhost:8080/api/activity/combined")
+    @PostMapping("/combined")
     public ResponseEntity<Activity> addCombined(@RequestBody Activity activity) {
         Activity savedActivityCombined = activityService.saveActivityCombined(activity);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedActivityCombined);
