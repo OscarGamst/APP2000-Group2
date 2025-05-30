@@ -1,22 +1,28 @@
 package org.example.workoutapp.service;
 
+import lombok.RequiredArgsConstructor;
 import org.example.workoutapp.dto.ActivityWorkoutDTO;
 import org.example.workoutapp.dto.ExerciseActivityDTO;
 import org.example.workoutapp.mapper.ActivityMapper;
 import org.example.workoutapp.model.Activity;
 import org.example.workoutapp.model.ActivityWorkoutExercise;
 import org.example.workoutapp.repository.ActivityRepository;
+import org.example.workoutapp.repository.ActivityWorkoutExerciseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.Iterator;
-import java.util.List;
 
 @Service
-public class ActivityServiceImpl implements ActivityService {
+@Transactional
+@RequiredArgsConstructor
+public class ActivityServiceImpl {
     @Autowired
     private ActivityRepository activityRepository;
+
+    @Autowired
+    private ActivityWorkoutExerciseRepository activityWorkoutExerciseRepository;
 
     @Autowired
     private ActivityMapper activityMapper;
@@ -24,7 +30,6 @@ public class ActivityServiceImpl implements ActivityService {
     //  ------------------ GET ------------------
 
     //  ------------------ SAVE ------------------
-    @Override
     public Activity saveActivityWorkout(ActivityWorkoutDTO activityWorkoutDTO) {
 
         //Get local date time for timestamp
@@ -46,7 +51,7 @@ public class ActivityServiceImpl implements ActivityService {
         for (ExerciseActivityDTO exerciseActivityDTO:activityWorkoutDTO.getExercises()) {
             exerciseActivityDTO.setActivity(newActivity);
             ActivityWorkoutExercise newExercise=activityMapper.toActivityWorkoutExercise(exerciseActivityDTO);
-            activityRepository.saveActivityWorkoutExercise(newExercise);
+            activityWorkoutExerciseRepository.save(newExercise);
         }
 
         return newActivity;
