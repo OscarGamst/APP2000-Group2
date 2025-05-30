@@ -18,7 +18,7 @@ const Home = () => {
           </div>        
           <div className="home-sidebar"> {/* Side content */}
             <ProfileCard />
-            <FollowerList />
+            <FollowerList/>
           </div>
           <div className="flex-empty"></div> {/* Adds space to the side */}
       </div>

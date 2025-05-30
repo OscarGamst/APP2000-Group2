@@ -11,7 +11,7 @@ function Profile() {
             <div className="profile-empty"></div>
             <div className="profile-main">
                 <ProfilePageComponent/>
-                
+                {/* <FollowerList followersOrFollowing={}/> */}
             </div>
             <div className="profile-empty"></div>
         </div>

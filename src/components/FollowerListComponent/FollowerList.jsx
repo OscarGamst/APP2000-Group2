@@ -17,26 +17,39 @@ const FollowerList = () => {
     
     //const [followerList, setFollowerList] = useState([]);
     const [list, setList] = useState([]);
-    const fetch = async () => {
-        try {
-            const result = await axios.get(`api/social/${followersOrFollowing}/${user.username}`);
-            setList(result)
-        } catch (err) {
-            console.error(err);
+    
+    useEffect(() => { 
+        const fetch = async () => {
+            try {
+                if (user) {
+                const result = await axios.get(`api/social/${followersOrFollowing}/${user.username}`);
+                setList(result.data)
+                }
+            } catch (err) {
+                console.error("Failed fetch",err);
+            }
+            console.log(list)
+            
         }
-    }
+        fetch();
+    },[user,followersOrFollowing]) //utfører useEffecten bare når en av dissa endrer seg.
 
-
-    /*function FollowerListItem() {
-        const {}
-    }*/
-
-    useEffect(()=> {fetch()},[])
-
+        
     return (<>
         <div className="follower-list">
+            <div className="followers-buttons">
+                <button onClick={()=>{setFollowersOrFollowing("followers")}}>Followers</button>
+                <button onClick={()=>{setFollowersOrFollowing("following")}}>Following</button>
+            </div>
             <h2>{followersOrFollowing}</h2>
-            {list}
+            {followersOrFollowing=="followers" ? 
+                list.map((item, index) => (
+                    <div className="follow-list-item" key={index}>{JSON.stringify(item.followerUsername).replace(/"/g,'')}</div>
+                )) :
+                list.map((item, index) => (
+                    <div className="follow-list-item" key={index}>{JSON.stringify(item.followedUsername).replace(/"/g,'')}</div>
+                ))
+            }
         </div>
 
     </>)
