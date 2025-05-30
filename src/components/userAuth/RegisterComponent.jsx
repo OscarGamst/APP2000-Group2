@@ -17,7 +17,7 @@ const RegisterComponent = () => {
         await axios.post("api/users/register",RegisterData);
       
     } catch (err) {
-        
+        console.error(err);
         alert("YIKES!! error!!");
     }
 

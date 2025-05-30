@@ -5,6 +5,7 @@ import SideBar from "../components/SideBar";
 import ProfileCard from "../components/ProfileCard";
 import ProgressHomepg from "../components/ProgressHomepg";
 import TestForm from "../components/TestForm"
+import FollowerList from "../components/FollowerListComponent/FollowerList";
 
 const Home = () => {
   return (
@@ -17,6 +18,7 @@ const Home = () => {
           </div>        
           <div className="home-sidebar"> {/* Side content */}
             <ProfileCard />
+            <FollowerList />
           </div>
           <div className="flex-empty"></div> {/* Adds space to the side */}
       </div>
