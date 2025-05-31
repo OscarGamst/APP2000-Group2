@@ -37,13 +37,16 @@ public class Activity {
     @Column(name="published")
     private LocalDateTime published;
 
+
+
+    //Malin's fields
     @ManyToOne
-    @JoinColumn(name = "username", nullable = false)
     private Users user;
 
-    @OneToMany(mappedBy = "activity", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy="activity", cascade=CascadeType.ALL, orphanRemoval = true)
     private Set<ActivityWorkoutExercise> activityWorkoutExercises = new HashSet<>();
 
+    //Oscar's fields
     @OneToMany(mappedBy = "activity", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Likes> likes = new HashSet<>();
 

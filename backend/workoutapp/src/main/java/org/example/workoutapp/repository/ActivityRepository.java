@@ -8,6 +8,4 @@ import java.util.List;
 public interface ActivityRepository extends JpaRepository<Activity, Long> {
     Activity save(Activity activity);
 
-    ActivityWorkoutExercise saveActivityWorkoutExercise(ActivityWorkoutExercise activityWorkoutExercise);
-
 }

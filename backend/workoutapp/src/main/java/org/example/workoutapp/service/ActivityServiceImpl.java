@@ -49,8 +49,9 @@ public class ActivityServiceImpl {
         //through the list in ActivityWorkoutDto and save them to database
 
         for (ExerciseActivityDTO exerciseActivityDTO:activityWorkoutDTO.getExercises()) {
-            exerciseActivityDTO.setActivity(newActivity);
+            //exerciseActivityDTO.setActivity(newActivity);
             ActivityWorkoutExercise newExercise=activityMapper.toActivityWorkoutExercise(exerciseActivityDTO);
+            newExercise.setActivity(newActivity);
             activityWorkoutExerciseRepository.save(newExercise);
         }
 

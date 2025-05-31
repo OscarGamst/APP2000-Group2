@@ -28,6 +28,5 @@ public class ActivityWorkoutExercise {
     private double exerciseWeight;
 
     @ManyToOne
-    @JoinColumn(name="activityId")
     private Activity activity;
 }
