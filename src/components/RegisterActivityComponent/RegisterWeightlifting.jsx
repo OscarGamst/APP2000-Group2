@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "../../styles/index.css";
+import WorkoutObject from './WorkoutObject.jsx';
 
 /*
 The component is divided into three main parts.
@@ -17,71 +18,13 @@ of workout exercises.
 */
 
 
-class Workout {
-
-    constructor() {
-        this.exercises=[];
-        this.description = "";
-        this.duration=0;
-        this.type="weightlifting"; //This is just to make searches easier in the backend
-        this.title="";
-        this.username="";
-    }
-
-    setDescription(description) {
-        this.description=description;
-    }
-    setDuration(duration) {
-        this.duration=duration;
-    }
-
-    setTitle(title) {
-        this.title=title;
-    }
-
-    setUser(user) {
-        this.user=user;
-    }
-
-    createNewExercise(name,sets,kilos,reps) {
-        this.exercises.push(new Exercise(name,sets,kilos,reps));
-    }
-    getExercise() {
-        return this.exercises[0].getName();
-    }
-
-    getTitle() {
-        return this.title;
-    }
-
-    getUser() {
-        return this.user;
-    }
 
 
-    resetObject() {
-        this.exercises=[];
-        this.description="";
-        this.duration=0;
-    }
-}
-
-class Exercise {
-    constructor(name,sets,kilos,reps) {
-        this.name=name;
-        this.sets=sets;
-        this.kilos=kilos;
-        this.reps=reps;
-    }
-    getName() {
-        return this.name;
-    }
-}
 
 /*
 Global variable that creates the object we use for temporarily storing information about the workout exercise that the user wants to register.
  */
-const registerWorkout=new Workout();
+const registerWorkout=new WorkoutObject();
 
 /*
 Fetch function used to update the list on page 2 when a new exercise is added to the exercise list in the workout object
@@ -115,13 +58,13 @@ const RegisterWeightlifting = ({returnToDefault}) => {
     return (
         <div>
             <h3>Register Weightlifting</h3>
-            {page ? <Page1 next={next}/>:<Page2 back={back} returnToDefault={returnToDefault}/>}  
+            {page ? <Page1 next={next}/>:<Page2 back={back} returnToDefault={returnToDefault}/>}
+            <button onClick={returnToDefault}>Cancel</button>
         </div>
     );
 }
 
 const Page1 = ({next}) => {
-    
 
     /*
     This function is for handling the submittion of the form. All input is converted to numbers or strings
@@ -129,19 +72,24 @@ const Page1 = ({next}) => {
     */
 
     useEffect(() => {
-        const storedUser=localStorage.getItem("logggedInUser");
+        const storedUser=localStorage.getItem("loggedInUser");
         if (storedUser) {
-            registerWorkout.setUser(JSON.parse(storedUser));
+            registerWorkout.setUser(JSON.parse(storedUser.username));
         }
     }, []);
 
+    const [postAccess, setPostAccess]=useState(registerWorkout.getAccess());
+
     const handleSubmit = (event) => {
-        
-            event.preventDefault();
-            registerWorkout.setDuration(Number(event.target.elements.duration.value));
-            registerWorkout.setDescription(String(event.target.elements.description.value));
-            registerWorkout.setTitle(String(event.target.elements.title.value));
-            next();
+
+        event.preventDefault();
+
+        registerWorkout.setDuration(Number(event.target.elements.duration.value));
+        registerWorkout.setDescription(String(event.target.elements.description.value));
+        registerWorkout.setTitle(String(event.target.elements.title.value));
+        registerWorkout.setAccess(String(postAccess));
+        console.log(registerWorkout);
+        next();
 
     }
 
@@ -156,6 +104,7 @@ const Page1 = ({next}) => {
                         name="duration"
                         min="0"
                         required
+                        defaultValue={registerWorkout.getDuration()}
                     />
                 </div>
                 <div>
@@ -165,20 +114,33 @@ const Page1 = ({next}) => {
                         id="title"
                         name="title"
                         required
+                        defaultValue={registerWorkout.getTitle()}
                     />
                 </div>
                 <div>
                     <label>Description : </label>
-                    <input
-                        type="text"
+                    <textarea
                         id="description"
                         name="description"
                         required
-                    />
+                        defaultValue={registerWorkout.getDescription()}
+                    >
+                    </textarea>
+                </div>
+                <div>
+                    <label>Private : </label>
+                    <select
+                        id="access"
+                        name="access"
+                        value={postAccess}
+                        onChange={(e) => setPostAccess(e.target.value)}
+                    >
+                        <option value="private">Private</option>
+                        <option value="public">Public</option>
+                    </select>
                 </div>
                 <button type="submit">Next</button>
             </form>
-            <button>Cancel</button>
         </div> 
            
     );
@@ -204,7 +166,7 @@ const Page2 = ({back, returnToDefault}) => {
 
     const submitObject = async () => {
         try {
-            const reponseFromBackend=await fetch(`http://localhost:8080/api/activity/workout`, {
+            const responseFromBackend=await fetch(`http://localhost:8080/api/activity/workout`, {
                 method: "PUT",
                 headers: {
                     "content-type": "application/json"
