@@ -25,6 +25,7 @@ class Workout {
         this.duration=0;
         this.type="weightlifting"; //This is just to make searches easier in the backend
         this.title="";
+        this.username="";
     }
 
     setDescription(description) {
@@ -38,6 +39,10 @@ class Workout {
         this.title=title;
     }
 
+    setUser(user) {
+        this.user=user;
+    }
+
     createNewExercise(name,sets,kilos,reps) {
         this.exercises.push(new Exercise(name,sets,kilos,reps));
     }
@@ -48,6 +53,11 @@ class Workout {
     getTitle() {
         return this.title;
     }
+
+    getUser() {
+        return this.user;
+    }
+
 
     resetObject() {
         this.exercises=[];
@@ -111,11 +121,19 @@ const RegisterWeightlifting = ({returnToDefault}) => {
 }
 
 const Page1 = ({next}) => {
+    
 
     /*
     This function is for handling the submittion of the form. All input is converted to numbers or strings
     and added to the object initiated in the RegisterWeightlifting function.
     */
+
+    useEffect(() => {
+        const storedUser=localStorage.getItem("logggedInUser");
+        if (storedUser) {
+            registerWorkout.setUser(JSON.parse(storedUser));
+        }
+    }, []);
 
     const handleSubmit = (event) => {
         
@@ -212,17 +230,6 @@ const Page2 = ({back, returnToDefault}) => {
         </div>
         );
 
-    
-
-    /*(()=> {
-        exerciseList=registerWorkout.exercises.map(exercise => 
-            <div>
-                <p>
-                    {exercise.name}, {exercise.reps} reps with {exercise.kilos} kg for {exercise.sets} sets
-                </p>
-            </div>
-        )}, [registerWorkout.lastIndex]);
-    */
 
     return (
         <div>
