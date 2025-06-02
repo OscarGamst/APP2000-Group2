@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/index.css";
 import default_pfp from "../../pictures/default_pfp.png";
-import EditField from "./ProfileCardBigEditField";
 
 
-
-//initialValue i detta tilfellet burde være nokså enkle å få inn fra databasen
-const ProfileBigEdit = () => {
+const ProfilePageComponent = () => {
 
     //brukerdata
     const [user, setUser] = useState(null);
-    useEffect(()=> {
-        const storedUser = localStorage.getItem("loggedInUser");
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
-        }
-    },[]);
+        useEffect(()=> {
+            const storedUser = localStorage.getItem("loggedInUser");
+            if (storedUser) {
+                setUser(JSON.parse(storedUser));
+            }
+        },[]);
 
     const handleSubmit = async () => {
         console.log(user);
@@ -25,7 +22,6 @@ const ProfileBigEdit = () => {
         <div className="profileBig" >
             <div className="gradient"></div> {/*du finnern ved css for profileCard*/}
             <ul>
-
                 <div id="profileBigTop">
                     <li><img src={default_pfp} alt=""/></li>
                     <li id="profileBigTitle">
@@ -49,16 +45,9 @@ const ProfileBigEdit = () => {
                         </li>
                     </ul>
                 </div>
-
-                
-
-                <li>
-                    <button onClick={handleSubmit}>Edit</button>
-                </li>
-
             </ul>
         </div>
     );
 };
 
-export default ProfileBigEdit;
+export default ProfilePageComponent;

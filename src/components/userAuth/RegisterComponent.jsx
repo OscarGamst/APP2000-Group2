@@ -52,7 +52,7 @@ const RegisterComponent = () => {
 
         <label htmlFor="email">E-mail:</label>
         <input
-        type="text"
+        type="email"
         name="email"
         value={RegisterData.email}
         onChange={e => setRegisterData({ ...RegisterData, email: e.target.value})}

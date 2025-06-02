@@ -73,8 +73,13 @@ class Workout {
 
     resetObject() {
         this.exercises=[];
-        this.description="";
+        this.description = "";
         this.duration=0;
+        this.type=""; //This is just to make searches easier in the backend
+        this.title="";
+        this.user="";
+        this.access="private";
+        this.distance=0;
     }
 }
 
