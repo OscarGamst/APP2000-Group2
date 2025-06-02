@@ -1,17 +1,23 @@
 import React from "react";
-import ProfileBig from "../components/ProfileCardComponent/ProfileBig";
 import ProfilePageComponent from "../components/ProfileCardComponent/ProfilePageComponent"
 import "../styles/responsive.css";
-import FollowerList from "../components/FollowerListComponent/FollowerList";
+import { useState } from "react";
+import ProfilePageEdit from "../components/ProfileCardComponent/ProfilePageEdit";
 
 function Profile() {
+    const [editing, setEditing] = useState(false);
+
     return (
     <div className="profile">
         <div className="profile-wrapper">
             <div className="profile-empty"></div>
             <div className="profile-main">
-                <ProfilePageComponent/>
-                {/* <FollowerList followersOrFollowing={}/> */}
+                {!editing ? <ProfilePageComponent/> : <ProfilePageEdit/>}
+                
+                <button onClick={()=>setEditing(!editing)}>
+                    Exit
+                </button>
+                
             </div>
             <div className="profile-empty"></div>
         </div>
