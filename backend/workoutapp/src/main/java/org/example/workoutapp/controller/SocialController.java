@@ -43,12 +43,12 @@ public class SocialController {
     })
     public ResponseEntity<?> likeActivity(
             @RequestParam String username,
-            @RequestParam Long activity_id) {
+            @RequestParam Long activityId) {
         //Sjekker at username faktisk finnes
         Users user = userRepository.findById(username).orElseThrow(() -> new RuntimeException("User not found"));
 
         //Sjekker at activity fakitsk finnes
-        Activity activity = activityRepository.findById(activity_id).orElseThrow(() -> new RuntimeException("Activity not found"));
+        Activity activity = activityRepository.findById(activityId).orElseThrow(() -> new RuntimeException("Activity not found"));
 
         LikeDTO likeDTO = socialService.likeActivity(user, activity);
         return ResponseEntity.ok(likeDTO);
@@ -62,9 +62,9 @@ public class SocialController {
     })
     public ResponseEntity<Void> unlikeActivity(
             @RequestParam String username,
-            @RequestParam Long activity_id) {
+            @RequestParam Long activityId) {
         Users user = userRepository.findById(username).orElseThrow(() -> new RuntimeException("User not found"));
-        Activity activity = activityRepository.findById(activity_id).orElseThrow(() -> new RuntimeException("Activity not found"));
+        Activity activity = activityRepository.findById(activityId).orElseThrow(() -> new RuntimeException("Activity not found"));
         socialService.unlikeActivity(user, activity);
         return ResponseEntity.noContent().build();
     }
@@ -74,8 +74,8 @@ public class SocialController {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved likes"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    public ResponseEntity<List<LikeDTO>> getLikes(@RequestParam Long activity_id) {
-        return ResponseEntity.ok(socialService.getLikes(activity_id));
+    public ResponseEntity<List<LikeDTO>> getLikes(@RequestParam Long activityId) {
+        return ResponseEntity.ok(socialService.getLikes(activityId));
     }
     // ----------- ----------- LIKES ----------- -----------
 
@@ -111,8 +111,8 @@ public class SocialController {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved comments"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    public ResponseEntity<List<CommentDTO>> getComments(@RequestParam Long activity_id) {
-        return ResponseEntity.ok(socialService.getComments(activity_id));
+    public ResponseEntity<List<CommentDTO>> getComments(@RequestParam Long activityId) {
+        return ResponseEntity.ok(socialService.getComments(activityId));
     }
     @DeleteMapping("/comment/{comment_id}")
     @Operation(summary = "Delete comment")

@@ -13,7 +13,7 @@ import java.util.List;
 public interface CommentMapper {
     //These two lines with @Mapping I used AI, because I couldn't figure out why it wasn't mapping username/activityid correctly
     @Mapping(source = "user.username", target = "username")
-    @Mapping(source = "activity.activity_id", target = "activity_id")
+    @Mapping(source = "activity.activityId", target = "activityId")
     CommentDTO toCommentDTO(Comment comment);
 
     List<CommentDTO> toCommentDTO(List<Comment> comments);

@@ -34,12 +34,12 @@ public class SocialService {
     private final ActivityRepository activityRepository;
 
     // ----------- ----------- ALT MED LIKES ----------- -----------
-    public boolean hasUserLikedActivity(String username, Long activity_id) {
+    public boolean hasUserLikedActivity(String username, Long activityId) {
         // sjekker om User finnes
         Users user = userRepository.findById(username).orElseThrow(() -> new RuntimeException("User not found"));
 
         //Sjekker om Activity finness
-        Activity activity = activityRepository.findById(activity_id).orElseThrow(() -> new RuntimeException("Activity not found"));
+        Activity activity = activityRepository.findById(activityId).orElseThrow(() -> new RuntimeException("Activity not found"));
         return likeRepository.findByUserAndActivity(user, activity).isPresent();
         //return likeRepository.findByUsernameAndActivity_id(username, activity_id).isPresent();
     }
@@ -50,7 +50,7 @@ public class SocialService {
             throw new IllegalStateException("You cannot like your own activity");
         }
         //Hvis man allerede har likt kan man ikke like igjen
-        if (hasUserLikedActivity(user.getUsername(), activity.getActivity_id() )) {
+        if (hasUserLikedActivity(user.getUsername(), activity.getActivityId() )) {
             throw new IllegalStateException("User have already liked this activity"); //kan kanskje skrive "you"!=User
         }
         //Lagrer likes
@@ -71,8 +71,8 @@ public class SocialService {
             throw new EntityNotFoundException("User have not liked this activity");
         }
     }
-    public List<LikeDTO> getLikes(Long activity_id) {
-        Activity activity = activityRepository.findById(activity_id).orElseThrow(() -> new RuntimeException("Activity not found"));
+    public List<LikeDTO> getLikes(Long activityId) {
+        Activity activity = activityRepository.findById(activityId).orElseThrow(() -> new RuntimeException("Activity not found"));
 
         List<Likes> likes = likeRepository.findByActivity(activity);
         return likeMapper.toLikeDTO(likes);
@@ -82,7 +82,7 @@ public class SocialService {
     // ----------- ----------- ALT MED COMMENTS ----------- -----------
     public CommentDTO commentActivity(CommentDTO commentDTO) {
         Users user = userRepository.findById(commentDTO.getUsername()).orElseThrow(() -> new RuntimeException("User not found"));
-        Activity activity = activityRepository.findById(commentDTO.getActivity_id()).orElseThrow(() -> new RuntimeException("Activity not found"));
+        Activity activity = activityRepository.findById(commentDTO.getActivityId()).orElseThrow(() -> new RuntimeException("Activity not found"));
 
         Comment comment = new Comment();
         comment.setUser(user);
@@ -102,8 +102,8 @@ public class SocialService {
         return commentMapper.toCommentDTO(updatedComment);
     }
 
-    public List<CommentDTO> getComments(Long activity_id) {
-        Activity activity = activityRepository.findById(activity_id).orElseThrow(() -> new RuntimeException("Activity not found"));
+    public List<CommentDTO> getComments(Long activityId) {
+        Activity activity = activityRepository.findById(activityId).orElseThrow(() -> new RuntimeException("Activity not found"));
 
         List<Comment> comments = commentRepository.findByActivity(activity);
         return commentMapper.toCommentDTO(comments);

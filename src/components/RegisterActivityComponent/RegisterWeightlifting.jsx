@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "../../styles/index.css";
+import WorkoutObject from './WorkoutObject.jsx';
 
 /*
 The component is divided into three main parts.
@@ -11,59 +12,20 @@ Part 3: Form to get information about set, such as type, reps, etc.
 The information in the form should not be submitted to the database before the user has clicked save!
 This is to make sure that the user can go back and make corrections to the information before its
 submitted.
-
-The user should be able to go back to the set they added! For this reason, the information has to be saved in an object called Workout, that includes a list
-of workout exercises.
 */
 
-class Workout {
 
-    constructor() {
-        this.exercises=[];
-        this.lastIndex=0;
-        this.description="";
-        this.duration=0;
-    }
-    setDescription(description) {
-        this.description=description;
-    }
-    setDuration(duration) {
-        this.duration=duration;
-    }
-    getLastIndex() {
-        return(this.lastIndex);
-    }
-    createNewExercise(name,sets,kilos,reps) {
-        this.exercises[this.lastIndex]=new Exercise(name,sets,kilos,reps);
-        this.lastIndex+=1;
-    }
-    getExercise() {
-        return this.exercises[0].getName();
-    }
-    resetObject() {
-        this.exercises=[];
-        this.lastIndex=0;
-        this.description="";
-        this.duration=0;
-    }
-}
 
-class Exercise {
-    constructor(name,sets,kilos,reps) {
-        this.name=name;
-        this.sets=sets;
-        this.kilos=kilos;
-        this.reps=reps;
-    }
-    getName() {
-        return this.name;
-    }
-}
+
 
 /*
-Global variable that creates the object we use for temporarily storing information about the workout exercise that the user wants to register.
+To make it easy to retrive the information, we save the information in an object. This will make it possible for the
+user to change the information if they wrote something wrong. The object instansation is kept global, so that all
+the functions can use the object freely.
  */
-const registerWorkout=new Workout();
+
+const registerWorkout=new WorkoutObject();
+registerWorkout.setType("weightlifting");
 
 /*
 Fetch function used to update the list on page 2 when a new exercise is added to the exercise list in the workout object
@@ -82,11 +44,6 @@ const RegisterWeightlifting = ({returnToDefault}) => {
     
     const [page, setPage]=useState(true);
 
-    /*
-    To make it easy to retrive the information, we save the information in an object. This will make it possible for the user to change the information
-    if the wrote something wrong.
-    */
-
     const back = () => {
         setPage(true);
     }
@@ -97,7 +54,8 @@ const RegisterWeightlifting = ({returnToDefault}) => {
     return (
         <div>
             <h3>Register Weightlifting</h3>
-            {page ? <Page1 next={next}/>:<Page2 back={back} returnToDefault={returnToDefault}/>}  
+            {page ? <Page1 next={next}/>:<Page2 back={back} returnToDefault={returnToDefault}/>}
+            <button onClick={returnToDefault}>Cancel</button>
         </div>
     );
 }
@@ -109,20 +67,63 @@ const Page1 = ({next}) => {
     and added to the object initiated in the RegisterWeightlifting function.
     */
 
+    useEffect(() => {
+        const storedUser=localStorage.getItem("loggedInUser");
+        if (storedUser) {
+            registerWorkout.setUser(JSON.parse(storedUser.username));
+        }
+    }, []);
+
+    const [postAccess, setPostAccess]=useState(registerWorkout.getAccess());
+
     const handleSubmit = (event) => {
-        
-            event.preventDefault();
-            registerWorkout.setDuration(Number(event.target.elements.duration.value));
-            registerWorkout.setDescription(String(event.target.elements.description.value));
-            console.log(registerWorkout);
-            console.log(next);
-            next();
+
+        event.preventDefault();
+
+        registerWorkout.setDuration(Number(event.target.elements.duration.value));
+        registerWorkout.setDescription(String(event.target.elements.description.value));
+        registerWorkout.setTitle(String(event.target.elements.title.value));
+        registerWorkout.setAccess(String(postAccess));
+        console.log(registerWorkout);
+        next();
 
     }
 
     return (
         <div>
             <form onSubmit={handleSubmit}>
+                <div>
+                    <label>Title : </label>
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        required
+                        defaultValue={registerWorkout.getTitle()}
+                    />
+                </div>
+                <div>
+                    <label>Description : </label>
+                    <textarea
+                        id="description"
+                        name="description"
+                        required
+                        defaultValue={registerWorkout.getDescription()}
+                    >
+                    </textarea>
+                </div>
+                <div>
+                    <label>Private : </label>
+                    <select
+                        id="access"
+                        name="access"
+                        value={postAccess}
+                        onChange={(e) => setPostAccess(e.target.value)}
+                    >
+                        <option value="private">Private</option>
+                        <option value="public">Public</option>
+                    </select>
+                </div>
                 <div>
                     <label>Duration (min) : </label>
                     <input
@@ -131,20 +132,11 @@ const Page1 = ({next}) => {
                         name="duration"
                         min="0"
                         required
-                    />
-                </div>
-                <div>
-                    <label>Description : </label>
-                    <input
-                        type="text"
-                        id="description"
-                        name="description"
-                        required
+                        defaultValue={registerWorkout.getDuration()}
                     />
                 </div>
                 <button type="submit">Next</button>
             </form>
-            <button>Cancel</button>
         </div> 
            
     );
@@ -161,19 +153,32 @@ const Page2 = ({back, returnToDefault}) => {
     const enableButton = () => {
         setVisibilityAdd(true);
     }
-    
-    const submitObject = () => {
+
+    /*
+    The function that handles submitting the information in the objects to the database
+
+    Copy of Alberts code:3
+    */
+
+    const submitObject = async () => {
+        try {
+            const responseFromBackend=await fetch(`http://localhost:8080/api/activity/workout`, {
+                method: "PUT",
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(registerWorkout)
+            });
+
+            if (responseFromBackend.ok) {alert("Update successful!!");
+            } else {console.error("Failed to update :(")}
+        } catch (error) { console.error("Error:", error);}
+
+
         registerWorkout.resetObject();
         returnToDefault();
 
     }
-
-    /*
-    const editWorkoutExercise = ({exercise}) => {
-        disableButton();
-    }
-    <button onClick={editWorkoutExercise(exercise)}>Edit</button>
-    */
     
     let exerciseList=registerWorkout.exercises.map(exercise => 
         <div>
@@ -183,17 +188,6 @@ const Page2 = ({back, returnToDefault}) => {
         </div>
         );
 
-    
-
-    
-    useEffect(()=> {
-        exerciseList=registerWorkout.exercises.map(exercise => 
-            <div>
-                <p>
-                    {exercise.name}, {exercise.reps} reps with {exercise.kilos} kg for {exercise.sets} sets
-                </p>
-            </div>
-        )}, [registerWorkout.lastIndex]);
 
     return (
         <div>
@@ -219,15 +213,6 @@ const AddWorkout = ({enableButton}) => {
         const arg_sets=(Number(event.target.elements.sets.value));
         const arg_kilo=(Number(event.target.elements.kg.value));
         const arg_reps=(Number(event.target.elements.reps.value));
-
-        /*
-        const exerciseObject=registerWorkout.createNewExercise();
-
-        exerciseObject.setName(Number(event.target.elements.exerciseName.value));
-        exerciseObject.setSets(Number(event.target.elements.sets.value));
-        exerciseObject.setKilos(Number(event.target.elements.kg.value));
-        exerciseObject.setReps(Number(event.target.elements.reps.value));
-        */
 
         registerWorkout.createNewExercise(arg_name,arg_sets,arg_kilo,arg_reps);
         console.log(registerWorkout.getExercise());
