@@ -9,5 +9,5 @@ public class ExerciseActivityDTO {
     private int sets;
     private int weight;
     private int reps;
-    private Activity activity;
+    private long activityId;
 }

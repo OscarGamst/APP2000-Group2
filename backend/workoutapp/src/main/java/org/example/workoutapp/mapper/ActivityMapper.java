@@ -16,8 +16,9 @@ public interface ActivityMapper {
     //One way this could be implemented is to make the dto include runs as well:3
 
     //Need a function to tell which user is online xd - this has to be added to the activity
+    @Mapping(source="user", target="user.username")
     Activity toActivity(ActivityWorkoutDTO activityWorkoutDTO);
 
-    @Mapping(source = "activity", target = "activity")
+    @Mapping(source = "exerciseActivityDTO.activityId", target = "activity.activityId")
     ActivityWorkoutExercise toActivityWorkoutExercise(ExerciseActivityDTO exerciseActivityDTO);
 }

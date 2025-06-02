@@ -40,6 +40,7 @@ public class ActivityController {
 
     @PostMapping("/workout")
     public ResponseEntity<Activity> addWorkout(@RequestBody ActivityWorkoutDTO activityWorkoutDTO) {
+        System.out.println(activityWorkoutDTO);
         Activity newActivityWorkout=activityServiceImpl.saveActivityWorkout(activityWorkoutDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(newActivityWorkout);
     }

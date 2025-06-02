@@ -22,7 +22,7 @@ public class Activity {
     @Column(name="activityId")
     private long activityId;
 
-    @Column(name="activity_type")
+    @Column(name="activityType")
     private String type;
 
     @Column(name="title")
@@ -37,10 +37,13 @@ public class Activity {
     @Column(name="published")
     private LocalDateTime published;
 
+    @Column(name="postAccess")
+    private String access;
 
 
     //Malin's fields
     @ManyToOne
+    @JoinColumn(name="username")
     private Users user;
 
     @OneToMany(mappedBy="activity", cascade=CascadeType.ALL, orphanRemoval = true)

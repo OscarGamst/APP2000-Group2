@@ -4,11 +4,10 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name="Activity")
-@Data
-@NoArgsConstructor
+@Setter
+@Getter
 @AllArgsConstructor
-@Builder
+@NoArgsConstructor
 public class ActivityWorkoutExercise {
 
     @Id
@@ -28,5 +27,6 @@ public class ActivityWorkoutExercise {
     private double exerciseWeight;
 
     @ManyToOne
+    @JoinColumn(name="activityId")
     private Activity activity;
 }

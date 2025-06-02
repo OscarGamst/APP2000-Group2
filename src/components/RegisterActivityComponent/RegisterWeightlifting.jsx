@@ -70,7 +70,7 @@ const Page1 = ({next}) => {
     useEffect(() => {
         const storedUser=localStorage.getItem("loggedInUser");
         if (storedUser) {
-            registerWorkout.setUser(JSON.parse(storedUser.username));
+            registerWorkout.setUser((JSON.parse(storedUser)).username);
         }
     }, []);
 
