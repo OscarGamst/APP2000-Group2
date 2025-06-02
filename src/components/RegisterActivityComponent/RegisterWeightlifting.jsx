@@ -12,9 +12,6 @@ Part 3: Form to get information about set, such as type, reps, etc.
 The information in the form should not be submitted to the database before the user has clicked save!
 This is to make sure that the user can go back and make corrections to the information before its
 submitted.
-
-The user should be able to go back to the set they added! For this reason, the information has to be saved in an object called Workout, that includes a list
-of workout exercises.
 */
 
 
@@ -22,9 +19,13 @@ of workout exercises.
 
 
 /*
-Global variable that creates the object we use for temporarily storing information about the workout exercise that the user wants to register.
+To make it easy to retrive the information, we save the information in an object. This will make it possible for the
+user to change the information if they wrote something wrong. The object instansation is kept global, so that all
+the functions can use the object freely.
  */
+
 const registerWorkout=new WorkoutObject();
+registerWorkout.setType("weightlifting");
 
 /*
 Fetch function used to update the list on page 2 when a new exercise is added to the exercise list in the workout object
@@ -42,11 +43,6 @@ const RegisterWeightlifting = ({returnToDefault}) => {
     */
     
     const [page, setPage]=useState(true);
-
-    /*
-    To make it easy to retrive the information, we save the information in an object. This will make it possible for the user to change the information
-    if the wrote something wrong.
-    */
 
     const back = () => {
         setPage(true);
@@ -97,17 +93,6 @@ const Page1 = ({next}) => {
         <div>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>Duration (min) : </label>
-                    <input
-                        type="number"
-                        id="duration"
-                        name="duration"
-                        min="0"
-                        required
-                        defaultValue={registerWorkout.getDuration()}
-                    />
-                </div>
-                <div>
                     <label>Title : </label>
                     <input
                         type="text"
@@ -138,6 +123,17 @@ const Page1 = ({next}) => {
                         <option value="private">Private</option>
                         <option value="public">Public</option>
                     </select>
+                </div>
+                <div>
+                    <label>Duration (min) : </label>
+                    <input
+                        type="number"
+                        id="duration"
+                        name="duration"
+                        min="0"
+                        required
+                        defaultValue={registerWorkout.getDuration()}
+                    />
                 </div>
                 <button type="submit">Next</button>
             </form>
