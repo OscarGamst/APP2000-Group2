@@ -1,6 +1,7 @@
 package org.example.workoutapp.dto;
 
 import lombok.Data;
+import org.example.workoutapp.model.Activity;
 
 @Data
 public class ExerciseActivityDTO {
@@ -8,5 +9,5 @@ public class ExerciseActivityDTO {
     private int sets;
     private int weight;
     private int reps;
-    private int activityId;
+    private Activity activity;
 }

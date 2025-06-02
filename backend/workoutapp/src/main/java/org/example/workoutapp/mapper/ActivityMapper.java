@@ -5,6 +5,7 @@ import org.example.workoutapp.model.Activity;
 import org.example.workoutapp.model.ActivityWorkoutExercise;
 import org.example.workoutapp.dto.ExerciseActivityDTO;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 @Mapper(componentModel="spring")
 public interface ActivityMapper {
@@ -14,7 +15,9 @@ public interface ActivityMapper {
 
     //One way this could be implemented is to make the dto include runs as well:3
 
+    //Need a function to tell which user is online xd - this has to be added to the activity
     Activity toActivity(ActivityWorkoutDTO activityWorkoutDTO);
 
-    ActivityWorkoutExercise toActivityWorkoutExercise(ExerciseActivityDTO ExerciseActivityDTO);
+    @Mapping(source = "activity", target = "activity")
+    ActivityWorkoutExercise toActivityWorkoutExercise(ExerciseActivityDTO exerciseActivityDTO);
 }

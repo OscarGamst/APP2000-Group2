@@ -1,60 +1,46 @@
 package org.example.workoutapp.service;
 
+import lombok.RequiredArgsConstructor;
 import org.example.workoutapp.dto.ActivityWorkoutDTO;
 import org.example.workoutapp.dto.ExerciseActivityDTO;
 import org.example.workoutapp.mapper.ActivityMapper;
 import org.example.workoutapp.model.Activity;
 import org.example.workoutapp.model.ActivityWorkoutExercise;
 import org.example.workoutapp.repository.ActivityRepository;
+import org.example.workoutapp.repository.ActivityWorkoutExerciseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.Iterator;
-import java.util.List;
 
 @Service
-public class ActivityServiceImpl implements ActivityService {
+@Transactional
+@RequiredArgsConstructor
+public class ActivityServiceImpl {
     @Autowired
     private ActivityRepository activityRepository;
+
+    @Autowired
+    private ActivityWorkoutExerciseRepository activityWorkoutExerciseRepository;
 
     @Autowired
     private ActivityMapper activityMapper;
 
     //  ------------------ GET ------------------
-    @Override
-    public List<Activity> getAllActivities() {
-        return activityRepository.findAll();
-    }
-
-    @Override
-    public List<Activity> getActivitiesByType(String type) {
-        return activityRepository.findAllByType(type);
-    }
-
-    @Override
-    public List<Activity> getActivitiesByUsername(String username) {
-        return activityRepository.getActivitiesByUsername(username);
-    }
-
-    @Override
-    public Activity getActivityById(Long id) {
-        return activityRepository.findById(id).orElse(null);
-    }
 
     //  ------------------ SAVE ------------------
-    @Override
-    public void saveActivityWorkout(ActivityWorkoutDTO activityWorkoutDTO) {
+    public Activity saveActivityWorkout(ActivityWorkoutDTO activityWorkoutDTO) {
 
         //Get local date time for timestamp
         LocalDateTime timestamp=LocalDateTime.now();
 
+        //Get current user logged in
+
+
         //Create an activity object using mapper
         Activity newActivity=activityMapper.toActivity(activityWorkoutDTO);
         newActivity.setPublished(timestamp);
-
-        //Save the id generated for the object
-        int newActivityId=newActivity.getActivityId();
 
         //Save the activity object to the database
         activityRepository.save(newActivity);
@@ -63,14 +49,17 @@ public class ActivityServiceImpl implements ActivityService {
         //through the list in ActivityWorkoutDto and save them to database
 
         for (ExerciseActivityDTO exerciseActivityDTO:activityWorkoutDTO.getExercises()) {
-            exerciseActivityDTO.setActivityId(newActivityId);
+            //exerciseActivityDTO.setActivity(newActivity);
             ActivityWorkoutExercise newExercise=activityMapper.toActivityWorkoutExercise(exerciseActivityDTO);
-            activityRepository.saveActivityWorkoutExercise(newExercise);
+            newExercise.setActivity(newActivity);
+            activityWorkoutExerciseRepository.save(newExercise);
         }
+
+        return newActivity;
 
     }
 
-    @Override
+    /*Override
     public Activity saveActivityRun(Activity activity) {
         return activityRepository.saveRun(activity);
     }
@@ -79,5 +68,7 @@ public class ActivityServiceImpl implements ActivityService {
     public Activity saveActivityCombined(Activity activity) {
         return activityRepository.saveActivityInfo(activity);
     }
+
+     */
 
 }

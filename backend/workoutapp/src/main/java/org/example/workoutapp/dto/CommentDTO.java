@@ -14,5 +14,5 @@ public class CommentDTO {
     private String comment_content;
     private LocalDateTime timestamp;
     private String username;
-    private long activity_id;
+    private long activityId;
 }

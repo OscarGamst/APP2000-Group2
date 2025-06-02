@@ -12,22 +12,21 @@ import lombok.*;
 public class ActivityWorkoutExercise {
 
     @Id
-    @Column(nullable=false, name="exercise_id")
-    private int exerciseId;
+    @Column(nullable=false, name="exerciseId")
+    private long exerciseId;
 
-    @Column (nullable=false, name="exercise_name")
+    @Column (nullable=false, name="exerciseName")
     private String exerciseName;
 
-    @Column (nullable=false, name="exercise_sets")
+    @Column (nullable=false, name="exerciseSets")
     private int exerciseSets;
 
-    @Column (nullable=false, name="exercise_reps")
+    @Column (nullable=false, name="exerciseReps")
     private int exerciseReps;
 
-    @Column (nullable=false, name="exercise_weight")
+    @Column (nullable=false, name="exerciseWeight")
     private double exerciseWeight;
 
     @ManyToOne
-    @JoinColumn(name="activity_id")
-    private Activity activityId;
+    private Activity activity;
 }
