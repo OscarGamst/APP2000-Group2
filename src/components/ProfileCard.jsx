@@ -21,8 +21,10 @@ const ProfileCard = () => {
     const fetchFollower = async () => { // må bruke backticks `` for å flette inn verdien
         try {
             const result = await axios.get(`api/social/followers/${user.username}`) 
-        setFollowerCount(result.data.length);
-    } catch (err) {console.error(err)}
+            setFollowerCount(result.data.length);
+        } catch (err) {
+            console.error(err)
+        }
     }
 
     const fetchFollowing = async () => {

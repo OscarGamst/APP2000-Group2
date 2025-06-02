@@ -1,8 +1,7 @@
 import React from "react";
 import "../styles/index.css";
-import BertComponent from "../components/ProfileCardComponent/ProfileBig";
-import ProfileCard from "../components/ProfileCard";
-import ActivityFeed from "../components/ActivityFeed";
+import FollowerList from "../components/FollowerListComponent/FollowerList";
+
 
 function Albert() {
     return (
@@ -10,8 +9,7 @@ function Albert() {
         <div className="home-wrapper">
         <div className="flex-empty"></div>
             <div className="home-main">
-            
-            <BertComponent />
+                
             </div>        
             <div className="home-sidebar">
             
