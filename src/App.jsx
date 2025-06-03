@@ -32,9 +32,9 @@ function App() {
           <Route path="/Progress" element={<Progress />} />
           <Route path="/Activity" element={<Activity />} />
           <Route path="/Albert" element={<Albert />} />
-          <Route path="/Auth" element={<AuthPage />} />
         </Route>
         <Route path="/TestPageNoNav" element={<TestPageNoNav />} />
+        <Route path="/Auth" element={<AuthPage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -6,7 +6,7 @@ const LogOutButton = () => {
     const navigate = useNavigate();
     const handleClick = () => {
         localStorage.removeItem("loggedInUser");
-        setTimeout(() => navigate("/auth"), 1234);
+        setTimeout(() => navigate("/auth"), 700);
     }
 
     return (<>

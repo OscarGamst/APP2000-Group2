@@ -28,7 +28,7 @@ const LogInComponent = () => {
             //console.log(user);
             //console.log("HEHEHEHEH");
             //console.log(localStorage.getItem("loggedInUser"));
-            setTimeout(() => navigate("/"),1234); //redirect etter login til homepage
+            setTimeout(() => navigate("/"),1000); //redirect etter login til homepage
         } catch (err) {
             alert("Wrong login credentials");
         }
