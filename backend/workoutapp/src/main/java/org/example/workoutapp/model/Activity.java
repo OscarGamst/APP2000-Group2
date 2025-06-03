@@ -1,5 +1,6 @@
 package org.example.workoutapp.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,25 +20,19 @@ public class Activity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="activityId")
     private long activityId;
 
-    @Column(name="activityType")
     private String type;
 
-    @Column(name="title")
     private String title;
 
-    @Column(name="description")
     private String description;
 
-    @Column(name="duration")
     private int duration;
 
-    @Column(name="published")
-    private LocalDateTime published;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime timestamp;
 
-    @Column(name="postAccess")
     private String access;
 
 
