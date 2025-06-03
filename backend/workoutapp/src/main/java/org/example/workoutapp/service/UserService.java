@@ -3,6 +3,7 @@ package org.example.workoutapp.service;
 import lombok.RequiredArgsConstructor;
 import org.example.workoutapp.dto.UserBasicDTO;
 import org.example.workoutapp.dto.UserDetailDTO;
+import org.example.workoutapp.dto.UserNoPwDTO;
 import org.example.workoutapp.mapper.UserMapper;
 import org.example.workoutapp.model.Users;
 import org.example.workoutapp.repository.UserRepository;
@@ -30,6 +31,17 @@ public class UserService {
         return userMapper.toUserDetailDTO(users);
     }
 
+    public UserNoPwDTO updateWithoutPassword(String username, UserNoPwDTO userNoPwDTO) {
+        Users user = userRepository.findById(username).orElseThrow(() -> new RuntimeException("User not found"));
+
+        user.setEmail(userNoPwDTO.getEmail());
+        user.setBirthday(userNoPwDTO.getBirthday());
+        user.setVisibility(userNoPwDTO.isVisibility());
+
+        Users updatedUser = userRepository.save(user);
+        return userMapper.toUserNoPwDTO(updatedUser);
+    }
+
     public UserDetailDTO updateUser(String username, UserDetailDTO userDTO) {
         Users user = userRepository.findById(username).orElseThrow(() -> new RuntimeException("User not found"));
 
@@ -45,6 +57,7 @@ public class UserService {
         Users updatedUser = userRepository.save(user);
         return userMapper.toUserDetailDTO(updatedUser);
     }
+
 
     @Autowired
     private PasswordEncoder passwordEncoder;

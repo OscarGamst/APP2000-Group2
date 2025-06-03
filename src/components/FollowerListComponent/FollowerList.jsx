@@ -28,7 +28,7 @@ const FollowerList = () => {
             } catch (err) {
                 console.error("Failed fetch",err);
             }
-            console.log(list)
+            
             
         }
         fetch();

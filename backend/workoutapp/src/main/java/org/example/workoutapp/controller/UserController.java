@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.workoutapp.dto.UserBasicDTO;
 import org.example.workoutapp.dto.UserDetailDTO;
+import org.example.workoutapp.dto.UserNoPwDTO;
 import org.example.workoutapp.mapper.UserMapper;
 import org.example.workoutapp.model.Users;
 import org.example.workoutapp.repository.UserRepository;
@@ -49,6 +50,19 @@ public class UserController {
             @PathVariable String username,
             @Valid @RequestBody UserDetailDTO userDTO) {
         return ResponseEntity.ok(userService.updateUser(username, userDTO));
+    }
+    @PutMapping("/update-no-pw/{username}")
+    @Operation(summary = "Update a user, without password")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "User updated successfully"),
+            @ApiResponse(responseCode = "400", description = "Invalid user data"),
+            @ApiResponse(responseCode = "404", description = "User not found"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
+    public ResponseEntity<UserNoPwDTO> updateUserNoPw(
+            @PathVariable String username,
+            @Valid @RequestBody UserNoPwDTO userNoPwDTO) {
+        return ResponseEntity.ok(userService.updateWithoutPassword(username, userNoPwDTO));
     }
     @PostMapping("/register")
     @Operation(summary = "Create a new user")

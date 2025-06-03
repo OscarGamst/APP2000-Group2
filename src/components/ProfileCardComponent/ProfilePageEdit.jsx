@@ -16,18 +16,10 @@ const ProfilePageEdit = () => {
     },[]);
 
     const [newInfo, setNewInfo] = useState({
-        username: user ? user.username : "loading..",
         email: user ? user.email : "loading..",
-        password: "********",
-        birthday: user ? user.birthday : "loading..",
+        birthday: user ? user.birthday : "2000-01-01",
         visibility: user ? user.visibility : "loading..",
     });
-
-    const [username, setUsername] = useState("");
-    const [email, setemail] = useState("");
-    const [password, setPassword] = useState("");
-    const [birthday, setBirthday] = useState("");
-    const [visibility, setVisibility] = useState(false);
 
     useEffect(()=> {
         if (user) {
@@ -35,12 +27,20 @@ const ProfilePageEdit = () => {
         };
     },[user]);
 
-
     const handleSave = async (e) => {
         e.preventDefault();
+        setNewInfo({...newInfo, username: user.username})
+        const updatedUser = {...user, ...newInfo}; //merger gammel med ny
         try {
-            await axios.put("api/users/")
-
+            await axios.put(`api/users/update-no-pw/${newInfo.username}`,{
+                email: newInfo.email,
+                birthday: newInfo.birthday,
+                visibility: newInfo.visibility,
+            });
+            //oppdaterer lagra bruker også
+            setUser(updatedUser);
+            localStorage.setItem("loggedInUser",JSON.stringify(updatedUser))
+            alert("Updated userinfo")
         } catch(error) {
             console.error(error);
             alert("Error")
@@ -51,55 +51,42 @@ const ProfilePageEdit = () => {
         <div className="profileBig" >
             <div className="gradient"></div> {/*du finnern ved css for profileCard*/}
             <form>
-            <ul>
                 <div id="profileBigTop">
-                    <li><img src={default_pfp} alt=""/></li>
-                    <li id="profileBigTitle">
-                        
-                    </li>
+                    <img src={default_pfp} alt=""/>
+                    <div id="profileBigTitle">
+                        {user ? user.username : "Loading.."}
+                    </div>
                 </div>
-            </ul>
-                <div className="profileBigRest">
+                <div className="profileBigRest">    
+                    <label htmlFor="email">E-mail: </label>
+                    <input
+                        type="text"
+                        name="email"
+                        placeholder={newInfo.email}
+                        value={newInfo.email}
+                        onChange={e => setNewInfo({ ...newInfo, email: e.target.value})}
+                        required
+                    />
+                
+                    <label htmlFor="birthday">Birthday:</label>
+                    <input
+                        type="date"
+                        name="birthday"
+                        placeholder={newInfo.birthday}
+                        value={newInfo.birthday}
+                        onChange={e => setNewInfo({ ...newInfo, birthday: e.target.value})}
+                        required
+                    />
+
+                    <label htmlFor="visibility">Public profile?</label>
+                    <select name="visibility" value={newInfo.visibility.toString()} 
+                        onChange={e => setNewInfo({ ...newInfo, visibility: e.target.value === "true" })}>
+                        <option value="true">Public</option>
+                        <option value="false">Private</option>
+                    </select>
                     
-                        
-                    <ul>
-                        <li>
-                            <label htmlFor="username">Username: </label>
-                            <input
-                                type="text"
-                                name="username"
-                                placeholder={newInfo.username}
-                                value={newInfo.username}
-                                onChange={e => setNewInfo({ ...newInfo, username: e.target.value})}
-                                required
-                            />
-                        </li>
-                        <li>
-                            <label htmlFor="email">E-mail: </label>
-                            <input
-                                type="text"
-                                name="email"
-                                placeholder={newInfo.email}
-                                value={newInfo.email}
-                                onChange={e => setNewInfo({ ...newInfo, email: e.target.value})}
-                                required
-                            />
-                        </li>
-                        <li>
-                            <label>Birthday: </label>
-                            {user ? user.birthday : "birthday"}
-                        </li>
-                        <li>
-                            <label>Public profile: </label>
-                            {user ? user.visibility==false?"false":"true" : "visibility"}
-                        </li>
-                    </ul>
                 </div>
-
-                <li>
-                    <button onClick={"handleSave"}>Save</button>
-                </li>
-
+                    <button onClick={handleSave}>Save</button>
             </form>
         </div>
     );

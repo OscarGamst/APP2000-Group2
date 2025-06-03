@@ -14,8 +14,8 @@ function Profile() {
             <div className="profile-main">
                 {!editing ? <ProfilePageComponent/> : <ProfilePageEdit/>}
                 
-                <button onClick={()=>setEditing(!editing)}>
-                    Exit
+                <button onClick={()=>setEditing(!editing)}className="user-auth-button">
+                    {editing ? "Exit" : "Edit"}
                 </button>
                 
             </div>
