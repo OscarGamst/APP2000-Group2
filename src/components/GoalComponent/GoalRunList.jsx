@@ -16,7 +16,7 @@ const GoalRunList = () => {
     const fetchGoals = async () => {
       if (user && user.username) {
         try {
-          const res = await axios.get(`/api/goals/run/${user.username}`);
+          const res = await axios.get(`/api/goal/run/${user.username}`);
           setGoals(res.data);
         } catch (err) {
           console.error("Failed fetch", err);
