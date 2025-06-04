@@ -19,5 +19,5 @@ public interface GoalMapper {
     GoalWeightliftingDTO toGoalWeightliftingDTO(GoalWeightlifting goalWeightlifting);
 
     List<GoalRunDTO> toGoalRunDTO(List<GoalRun> goalRuns);
-    List<GoalWeightlifting> toGoalWeightliftingDTO(List<GoalWeightlifting> goalWeightliftings);
+    List<GoalWeightliftingDTO> toGoalWeightliftingDTO(List<GoalWeightlifting> goalWeightliftings);
 }

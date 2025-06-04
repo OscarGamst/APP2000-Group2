@@ -11,7 +11,7 @@ import lombok.Setter;
 public class GoalRun {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long goalId;
+    private Long runGoalId;
 
     private String type;
     private String repeating;

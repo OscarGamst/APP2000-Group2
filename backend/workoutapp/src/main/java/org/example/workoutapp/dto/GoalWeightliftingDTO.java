@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GoalWeightliftingDTO {
-    private long goalId;
+    private Long weightGoalId;
     private String type;
     private String repeating;
     private int frequency;

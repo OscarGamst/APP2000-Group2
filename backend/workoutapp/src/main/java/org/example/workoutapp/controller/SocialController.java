@@ -151,6 +151,10 @@ public class SocialController {
     // alle som følger en bruker
     @GetMapping("/followers/{username}")
     @Operation(summary = "Get all followers of a username")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved followers"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
     public ResponseEntity<List<FollowDTO>> getFollowers(@PathVariable String username) {
         return ResponseEntity.ok(socialService.getUsersFollowers(username));
     }
@@ -158,6 +162,10 @@ public class SocialController {
     // alle som en bruker følger
     @GetMapping("/following/{username}")
     @Operation(summary = "Get all users followed by a username")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved following"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
     public ResponseEntity<List<FollowDTO>> getFollowing(@PathVariable String username) {
         return ResponseEntity.ok(socialService.getUserIsFollowing(username));
     }

@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GoalRunDTO {
-    private Long goalId;
+    private Long runGoalId;
     private String type;
     private String repeating;
     private int frequency;

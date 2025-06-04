@@ -11,7 +11,7 @@ import lombok.Setter;
 public class GoalWeightlifting {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long goalId;
+    private Long weightGoalId;
 
     private String type;
     private String repeating;
