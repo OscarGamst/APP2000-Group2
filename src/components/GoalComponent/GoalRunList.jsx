@@ -28,7 +28,7 @@ const GoalRunList = () => {
 
   return (
     <div>
-      <h2>Run Goals</h2>
+      <h3>Run Goals</h3>
       <ul>
         {goals.map((goal) => (
           <li key={goal.runGoalId}>
