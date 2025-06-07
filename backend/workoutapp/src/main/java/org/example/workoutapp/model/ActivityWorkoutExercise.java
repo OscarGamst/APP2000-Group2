@@ -6,8 +6,6 @@ import lombok.*;
 @Entity
 @Setter
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
 public class ActivityWorkoutExercise {
 
     @Id
@@ -26,4 +24,8 @@ public class ActivityWorkoutExercise {
     @JoinColumn(name = "activityId")
     private Activity activity;
 
+    //This was gotten from chatgpt
+    public Long getActivityId() {
+        return activity != null ? activity.getActivityId() : null;
+    }
 }

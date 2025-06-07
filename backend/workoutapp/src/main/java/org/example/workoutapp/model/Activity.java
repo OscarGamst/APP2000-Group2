@@ -2,9 +2,7 @@ package org.example.workoutapp.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
@@ -14,13 +12,10 @@ import java.util.Set;
 @Entity
 @Setter
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
 public class Activity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long activityId;
+    private Long activityId;
 
     private String type;
 
@@ -41,8 +36,11 @@ public class Activity {
     @JoinColumn(name="username")
     private Users user;
 
-    @OneToMany(mappedBy="activity", cascade=CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy= "activity", cascade=CascadeType.ALL, orphanRemoval = true)
     private Set<ActivityWorkoutExercise> activityWorkoutExercises = new HashSet<>();
+
+    @OneToOne(mappedBy= "activity", cascade=CascadeType.ALL, orphanRemoval = true)
+    private ActivityRun activityRun;
 
     //Oscar's fields
     @OneToMany(mappedBy = "activity", cascade = CascadeType.ALL, orphanRemoval = true)
