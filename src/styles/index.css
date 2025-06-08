@@ -516,31 +516,43 @@ ul {
 /* Selve GoalTabben */
 .goalTabs {
   overflow: hidden;
-  border: 1px solid #ccc;
+  width: 92%;
+  margin: 0 auto;
+  padding: 1.5rem;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.5rem;
   background-color: white;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
 }
 
-.goalTab button {
+.goalTabs button {
   background-color: inherit;
+  font-size: 1.3rem;
+  font-weight: bold;
   float: left;
   border: none;
+  border-radius: 0.5rem;
   outline: none;
   cursor: pointer;
-  padding: 14px;
+  padding: 2rem;
   transition: 0.3s;
 }
 
 .goalTab button.active {
-  background-color: darkgray;
+  background: linear-gradient(90deg, #00796b, #388e3c);
 }
 
 .goalTabContent {
   display: none;
-  padding: 6px 12px;
-  border: 1px solid #ccc;
+  width: 92%;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.5rem;
   border-top: none;
   background-color: white;
 }
+
 
 /* -------------- Slutt på Oscar sin goal components --------------*/
 
