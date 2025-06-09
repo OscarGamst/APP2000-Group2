@@ -1,6 +1,6 @@
 const activities = [
   {
-    username: "Username", 
+    username: "osc", 
     type: "workout",
     id: 1,
     title: "Morning Workout",

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import "../../styles/index.css";
 import RegisterWeightlifting from './RegisterWeightlifting.jsx'
+import RegisterRun from './RegisterRun.jsx'
+import RegisterCombined from './RegisterCombined.jsx'
 
 const RegisterActivity = () => {
     /*
@@ -26,6 +28,16 @@ const RegisterActivity = () => {
 		setVisibilityWeightlifting(true);
 		disableItems();
 	}
+
+	const showRun = () => {
+		setVisibilityRun(true);
+		disableItems();
+	}
+
+	const showCombined = () => {
+		setVisibilityCombo(true);
+		disableItems();
+	}
     /*
     */
     const disableItems = () => {
@@ -35,6 +47,9 @@ const RegisterActivity = () => {
 	const returnToDefault = () => {
 		setVisibilityItems(true);
 		setVisibilityWeightlifting(false);
+		setVisibilityRun(false);
+		setVisibilityCombo();
+
 	}
 
     //Main code for component
@@ -44,11 +59,13 @@ const RegisterActivity = () => {
 				<div>
 					<h3>Register Activity</h3>
 					<button onClick={showWeightlift}>Weightlifting</button>
-					<button>Run</button>
-					<button>Combined</button>
+					<button onClick={showRun}>Run</button>
+					<button onClick={showCombined}>Combined</button>
 				</div>
 			) : null}
 			{visibilityWeightlifting ? <RegisterWeightlifting returnToDefault={returnToDefault}/> :null}
+			{visibilityRun ? <RegisterRun returnToDefault={returnToDefault}/> :null}
+			{visibilityCombo ? <RegisterCombined returnToDefault={returnToDefault}/> :null}
 			
 		</div>
     );

@@ -9,6 +9,8 @@ import ProfileCard from "../components/ProfileCard";
 import Goals from "../components/Goals";
 import ActivityList from "../components/ActivityList";
 import Add from "../components/Add";
+import GoalRunList from "../components/GoalComponent/GoalRunList";
+import GoalTab from "../components/GoalComponent/GoalTab";
 
 const Activity = () => {
   return (
@@ -21,6 +23,7 @@ const Activity = () => {
       <div className="activity-page-siebar">
       <Goals/>
       <Add />
+      <GoalTab />
       </div> 
       <div className="activity-page-empty"></div> 
     </div>

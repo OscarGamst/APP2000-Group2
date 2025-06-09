@@ -5,7 +5,10 @@
   box-sizing: border-box;
 }
 
-body {
+html, body {
+  min-height: 100vh;
+  min-width: auto;
+  
   font-family: Arial, sans-serif; 
   background-color: #f4f4f9;
   color: #333;
@@ -34,7 +37,7 @@ ul {
 }
 
 .home-main {
-  flex: 2;
+  flex: 2.5;
 }
 
 .home-sidebar {
@@ -149,8 +152,9 @@ ul {
   align-items: center; 
   gap: 0.125rem; 
   flex: 1; 
-  justify-content: right; 
+  justify-content: right;
   margin-right: 2rem; 
+  max-width: 35vw;
 }
 
 .searchbox input {
@@ -507,6 +511,50 @@ ul {
 
 
 /*goals done*/
+
+/* -------------- Oscar sin goal components -------------- */
+/* Selve GoalTabben */
+.goalTabs {
+  overflow: hidden;
+  width: 92%;
+  margin: 0 auto;
+  padding: 1.5rem;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.5rem;
+  background-color: white;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.goalTabs button {
+  background-color: inherit;
+  font-size: 1.3rem;
+  font-weight: bold;
+  float: left;
+  border: none;
+  border-radius: 0.5rem;
+  outline: none;
+  cursor: pointer;
+  padding: 2rem;
+  transition: 0.3s;
+}
+
+.goalTab button.active {
+  background: linear-gradient(90deg, #00796b, #388e3c);
+}
+
+.goalTabContent {
+  display: none;
+  width: 92%;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.5rem;
+  border-top: none;
+  background-color: white;
+}
+
+
+/* -------------- Slutt på Oscar sin goal components --------------*/
 
 /*Satart of activity list*/
 
@@ -905,26 +953,26 @@ ul {
 
 /* ---- LOG IN ---- */
 
-.logInForm {
+.user-auth-form {
   margin: 1rem;
   background: linear-gradient(145deg, #ffffff, #f0f0f0);
   border-radius: 1rem;
-  box-shadow: 0 0.7rem 1rem rgba(0, 0, 0, 0.1), 0 0.4rem 0.6rem rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0.7rem 1rem rgba(0,0,0,0.1);
   overflow: hidden;
   text-align: center;
   
 }
 
-.logInForm h2{
+.user-auth-form h2{
   font-size: 2rem;
   margin: 1rem;
 }
 
-.logInForm input{
+.user-auth-form input{
   text-align: center;
 }
 
-.logInContainer {
+.user-auth-container {
   border-top: 0.1rem solid #ddd;
   display: flex;
   flex-direction: column;
@@ -932,44 +980,156 @@ ul {
   padding: 1rem;
 }
 
-.logInContainer label {
+.user-auth-container label {
   font-weight: bold;
   align-self: flex-start;
   margin-left: 1rem;
 }
 
-.logInContainer input[type=text], input[type=password]{
-  width: 90%;
-  padding: 0.7rem 1.2rem;
-  margin: 0.5rem 0 1.5rem 0;
-  display: inline-block;
-  border: 0.1rem solid #ccc;
-  box-sizing: border-box;
+.user-auth-container input[type=text], input[type=email],
+input[type=password], input[type=date]
+{
+    width: 80%;
+    height: auto;
+    padding: 0.7rem 1.2rem;
+    margin: 0.5rem 0 1.5rem 0;
+    display: inline-block;
+    border: 0.1rem solid #ccc;
+    box-sizing: border-box;
+    border-radius: 0.7rem;
 }
 
-.login-page-bottom-flex {
-  flex-direction: row;
-  flex: 15;
+.user-auth-page-bottom-flex {
+    flex-direction: row;
+    flex: 15;
 }
 
-.logInBtn {
-  margin: 2rem auto 1rem auto;
-  padding: 0.5rem 1rem;
-  background-color: #070707;
-  color: white;
-  border: none;
-  border-radius: 0.4rem;
-  cursor: pointer;
-  font-size: 1.4rem;
-  transition: background-color 0.3s;
+.user-auth-button {
+    margin: 2rem auto 1rem auto;
+    padding: 0.5rem 1rem;
+    background-color: #070707;
+    color: white;
+    border: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    font-size: 1.4rem;
+    transition: background-color 0.3s;
 }
 
-.logInBtn:hover {
-  background-color: #003d80;
+.user-auth-button:hover {
+    background-color: #003d80;
 }
 
-#logInRemember {
-  align-self: flex-start;
+#user-auth-remember {
+    align-self: flex-start;
+}
+
+.user-auth-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    margin: auto;
+    padding: 0.5rem 1rem;
+    background-color: #070707;
+    color: white;
+    border: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    font-size: 1.4rem;
+    transition: background-color 0.3s;
+}
+
+.user-auth-toggle:hover {
+    background-color: #003d80;
 }
 
 /* ---- END OF LOG IN ---- */
+
+/* ----LOGOUT----*/
+
+.logout-button {
+    margin: auto;
+    padding: 0.5rem 1rem;
+    background-color: #070707;
+    color: white;
+    border: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+    background-color: #003d80;
+}
+
+/* ---- END OF LOG OUT ---- */
+
+/* ---- FOLLOWERLIST ---- */
+
+.follower-list {
+    /*max-width: 20rem;*/
+    position: relative;
+    
+    width: 19rem auto;
+    margin: 1rem;
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    border-radius: 1rem;
+    box-shadow: 0 0.7rem 1rem rgba(0, 0, 0, 0.1), 0 0.4rem 0.6rem rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    text-align: center;
+    max-height: 20rem;
+    overflow-y: auto;
+}
+
+.follower-list h2 {
+    margin: 0 2rem;
+    font-size: xx-large;
+    border-bottom: 0.2rem solid #ddd;
+}
+
+.follow-list-item {
+    margin: 0 3rem ;
+    
+    padding: 0.5rem;
+    border-bottom: 0.1rem solid #ddd;
+    font-size: 1rem;
+    color: #333;
+    transition: background 0.2s ease;
+}
+
+.follow-list-item:hover {
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+.followers-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1rem;
+    background-color: #f7f7f7;
+    padding: 0.5rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.followers-buttons button {
+    border: none;
+    background: none;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: #555;
+    border-bottom: 0.2rem solid transparent;
+    transition: all 0.2s ease;
+}
+.followers-buttons button:hover {
+
+}
+
+.followers-buttons button:first-child {
+    border-right:#000;
+}
+
+
+/* ---- END OF FOLLOWERLIST ---- */

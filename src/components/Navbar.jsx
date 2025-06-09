@@ -4,11 +4,12 @@ import { Link } from "react-router-dom";
 import "../styles/index.css";
 import pp from "../pictures/default_pfp.png";
 import bell from "../pictures/NavbarBell.png";
+import LogOutButton from "./userAuth/LogOutButton";
 
 const Navbar = () => {
   const handleSearch = () => {
     const searchValue = document.querySelector(".searchbox input").value;
-    alert(`You searched on: ${searchValue}`);
+    alert(`You searched for: ${searchValue}`);
   };
 
   return (
@@ -26,6 +27,9 @@ const Navbar = () => {
         </button>
       </div>
       <ul className="navbarbilde">
+        <li>
+            <LogOutButton/>
+        </li>
         <li>
           <Link to="/Profile">
             <img src={pp} alt="Profile" className="defaultpp" />

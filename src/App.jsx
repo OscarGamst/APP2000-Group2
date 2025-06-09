@@ -8,10 +8,21 @@ import Progress from "./pages/Progress";
 import Activity from "./pages/Activity";
 import TestPageNoNav from "./pages/TestPageNoNav";
 import Albert from "./pages/Albert";
-import LogIn from "./pages/LogIn";
 import "./styles/responsive.css";
+import AuthPage from "./pages/AuthPage";
+import { useEffect } from "react";
+import { useState } from "react";
 
 function App() {
+    //brukerdata
+    const [user,setUser] = useState(null);
+    useEffect(()=> {
+        const storedUser = localStorage.getItem("loggedInUser");
+        if (storedUser) {
+            setUser(JSON.parse(storedUser));
+        }
+    },[]);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -21,9 +32,9 @@ function App() {
           <Route path="/Progress" element={<Progress />} />
           <Route path="/Activity" element={<Activity />} />
           <Route path="/Albert" element={<Albert />} />
-          <Route path="/LogIn" element={<LogIn />} />
         </Route>
         <Route path="/TestPageNoNav" element={<TestPageNoNav />} />
+        <Route path="/Auth" element={<AuthPage />} />
       </Routes>
     </BrowserRouter>
   );
