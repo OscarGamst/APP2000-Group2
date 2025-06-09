@@ -2,6 +2,7 @@ package org.example.workoutapp.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.example.workoutapp.dto.ActivityCombinedDTO;
 import org.example.workoutapp.dto.ActivityRunDTO;
 import org.example.workoutapp.dto.ActivityWorkoutDTO;
 import org.example.workoutapp.model.Activity;
@@ -52,14 +53,12 @@ public class ActivityController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedActivityRun);
     }
 
-    /*
+
     @PostMapping("/combined")
-    public ResponseEntity<Activity> addCombined(@RequestBody Activity activity) {
-        Activity savedActivityCombined = activityService.saveActivityCombined(activity);
+    public ResponseEntity<Activity> addCombined(@RequestBody ActivityCombinedDTO activityCombinedDTO) {
+        Activity savedActivityCombined = activityServiceImpl.saveActivityCombined(activityCombinedDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedActivityCombined);
     }
-
-     */
 
     //  ------------------ PUT ------------------
     //  ---------INSERT ALL PUTTERS HERE---------

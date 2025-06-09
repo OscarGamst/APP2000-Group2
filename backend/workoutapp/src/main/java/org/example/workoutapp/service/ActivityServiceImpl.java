@@ -1,6 +1,7 @@
 package org.example.workoutapp.service;
 
 import lombok.RequiredArgsConstructor;
+import org.example.workoutapp.dto.ActivityCombinedDTO;
 import org.example.workoutapp.dto.ActivityRunDTO;
 import org.example.workoutapp.dto.ActivityWorkoutDTO;
 import org.example.workoutapp.dto.ExerciseActivityDTO;
@@ -102,8 +103,6 @@ public class ActivityServiceImpl {
 
         Activity newActivity=saveActivity(activityWorkoutDTO);
 
-        //Activity registeredActivity = activityRepository.findById(newActivityId).orElseThrow(() -> new RuntimeException("Activity not found"));
-
         //turn the exerciseActivityDtos to exerciseobjects by iterating
         //through the list in ActivityWorkoutDto and save them to database
 
@@ -152,16 +151,55 @@ public class ActivityServiceImpl {
 
         newActivity.setUser(user);
 
-        activityRepository.save(newActivity);
+        Activity newRegisteredActivity=activityRepository.save(newActivity);
 
         //Create the run
         ActivityRun newActivityRun=new ActivityRun();
 
-        newActivityRun.setActivity(newActivity);
+        newActivityRun.setActivity(newRegisteredActivity);
         newActivityRun.setDistance(activityRunDTO.getDistance());
 
         activityRunRepository.save(newActivityRun);
 
         return newActivity;
+    }
+
+    public Activity saveActivityCombined(ActivityCombinedDTO activityCombinedDTO) {
+        //Create new activity
+        Activity newActivity=new Activity();
+
+        //Generate id for activity
+        boolean idExist=true;
+        SecureRandom random=new SecureRandom();
+        Long newActivityId =null;
+
+        while (idExist) {
+            newActivityId=random.nextLong();
+
+            if (newActivityId<0) {
+                newActivityId=newActivityId*(-1);
+            }
+
+            var foundActivity=activityRepository.findById(newActivityId).orElse(null);
+
+            if (foundActivity==null) {
+                newActivity.setActivityId(newActivityId);
+                idExist=false;
+            }
+        }
+
+        newActivity.setType(activityCombinedDTO.getType());
+        newActivity.setTitle(activityCombinedDTO.getTitle());
+        newActivity.setDescription(activityCombinedDTO.getDescription());
+        newActivity.setDuration(activityCombinedDTO.getDuration());
+        newActivity.setTimestamp(LocalDateTime.now());
+        newActivity.setAccess(activityCombinedDTO.getAccess());
+
+        //Find the user in the database - copy of Oscar's code
+        Users user = userRepository.findById(activityCombinedDTO.getUser()).orElseThrow(() -> new RuntimeException("User not found"));
+
+        newActivity.setUser(user);
+
+        return activityRepository.save(newActivity);
     }
 }
