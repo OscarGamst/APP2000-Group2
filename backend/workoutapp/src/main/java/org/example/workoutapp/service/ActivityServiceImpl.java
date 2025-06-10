@@ -20,6 +20,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -44,22 +45,21 @@ public class ActivityServiceImpl {
         List<Activity> allActivities=activityRepository.findActivitiesTypeUsername(username, "weightlifting");
         List<AllActivitiesDTO> allActivitiesList=activityMapper.toAllActivitiesDTO(allActivities);
 
-        /*
+
         //Iterate through the list to check the types of each activity registered
         for (AllActivitiesDTO allActivitiesDTO:allActivitiesList){
 
             //Find the exercises in the exercises table
             //and put them in a list. Then, update the exercises field in the dto to the list.
 
-            List<ActivityWorkoutExercise> activityWorkoutExercises=activityWorkoutExerciseRepository.findByActivityId(allActivitiesDTO.getActivityId());
-            List<ExerciseActivityDTO> exercises=activityMapper.toExerciseActivityDTO(activityWorkoutExercises);
-            allActivitiesDTO.setExercises(exercises);
+            Set<ActivityWorkoutExercise> exercises=activityWorkoutExerciseRepository.findByActivityId(allActivitiesDTO.getActivityId());
+            Set<ExerciseActivityDTO> exercisesDTO=activityMapper.toExerciseActivityDTO(exercises);
+            allActivitiesDTO.setExercises(exercisesDTO);
 
             //Get the total number of likes for the post and set this to the dto
 
             //Get the total number of comments for the post and set this to the dto
         }
-         */
 
         //Lastly, return the list back to frontend.
         return allActivitiesList;

@@ -10,6 +10,7 @@ import org.mapstruct.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Mapper(componentModel = "spring",
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
@@ -40,5 +41,5 @@ public interface ActivityMapper {
 
     List<AllActivitiesDTO> toAllActivitiesDTO(List<Activity> allActivities);
 
-    //List<ExerciseActivityDTO> toExerciseActivityDTO(List<ActivityWorkoutExercise> activityWorkoutExercises);
+    Set<ExerciseActivityDTO> toExerciseActivityDTO(Set<ActivityWorkoutExercise> activityWorkoutExercises);
 }
