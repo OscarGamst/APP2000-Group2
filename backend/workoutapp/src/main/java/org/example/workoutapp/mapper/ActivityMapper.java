@@ -1,5 +1,6 @@
 package org.example.workoutapp.mapper;
 
+import org.example.workoutapp.dto.ActivityCombinedDTO;
 import org.example.workoutapp.dto.ActivityWorkoutDTO;
 import org.example.workoutapp.dto.AllActivitiesDTO;
 import org.example.workoutapp.model.Activity;
@@ -39,6 +40,9 @@ public interface ActivityMapper {
     }
 
     List<AllActivitiesDTO> toAllActivitiesDTO(List<Activity> allActivities);
+
+    @Mapping(source = "user.username", target = "user")
+    ActivityCombinedDTO toActivityCombinedDTO(Activity activity);
 
     //List<ExerciseActivityDTO> toExerciseActivityDTO(List<ActivityWorkoutExercise> activityWorkoutExercises);
 }

@@ -11,15 +11,12 @@ import org.example.workoutapp.repository.ActivityRepository;
 import org.example.workoutapp.repository.ActivityRunRepository;
 import org.example.workoutapp.repository.ActivityWorkoutExerciseRepository;
 import org.example.workoutapp.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -226,4 +223,5 @@ public class ActivityServiceImpl {
 
         return activityRepository.save(newActivity);
     }
+
 }
