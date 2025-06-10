@@ -8,12 +8,6 @@ const ActivityFeed = () => {
     const [showFriends, setShowFriends] = useState(false);
     const [user, setUser] = useState(); // Just a basic placeholder, until we have log in
 
-    useEffect(() => {
-        const storedUser = localStorage.getItem("loggedInUser");
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
-        }
-    },[]);
 
     const toggleFilter = () => {
     setShowFriends(!showFriends);

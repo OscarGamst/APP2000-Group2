@@ -9,12 +9,14 @@ import ProfileCard from "../components/ProfileCard";
 import Goals from "../components/Goals";
 import ActivityList from "../components/ActivityList";
 import Add from "../components/Add";
+import NewActivityList from "../components/ActivityFeedComponent/NewActivityFeed";
 
 const Activity = () => {
   return (
     <div className="activity-page-wrapper">
       <div className="activity-page-main">
       <ProgressBar/>
+          <NewActivityList/>
       <ActivityList/>
       </div> 
       

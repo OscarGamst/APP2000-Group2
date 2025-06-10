@@ -1,10 +1,7 @@
 package org.example.workoutapp.service;
 
 import lombok.RequiredArgsConstructor;
-import org.example.workoutapp.dto.ActivityCombinedDTO;
-import org.example.workoutapp.dto.ActivityRunDTO;
-import org.example.workoutapp.dto.ActivityWorkoutDTO;
-import org.example.workoutapp.dto.ExerciseActivityDTO;
+import org.example.workoutapp.dto.*;
 import org.example.workoutapp.mapper.ActivityMapper;
 import org.example.workoutapp.model.Activity;
 import org.example.workoutapp.model.ActivityRun;
@@ -20,27 +17,63 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class ActivityServiceImpl {
-    @Autowired
-    private ActivityRepository activityRepository;
 
-    @Autowired
-    private ActivityWorkoutExerciseRepository activityWorkoutExerciseRepository;
-
-    @Autowired
-    private ActivityMapper activityMapper;
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private ActivityRunRepository activityRunRepository;
+    private final ActivityRepository activityRepository;
+    private final ActivityWorkoutExerciseRepository activityWorkoutExerciseRepository;
+    private final ActivityMapper activityMapper;
+    private final UserRepository userRepository;
+    private final ActivityRunRepository activityRunRepository;
 
     //  ------------------ GET ------------------
+
+    public List<AllActivitiesDTO> getAllActivities(String username) {
+
+        //Check if the username exists. If it does not, throw an error.
+        Users user = userRepository.findById(username).orElseThrow(() -> new RuntimeException("User not found"));
+
+        //Get a list of all activities registered on the user ordered by timestamp and map each
+        //activity object to an all-activities-dto.
+        List<Activity> allActivities=activityRepository.findByUsername(username);
+        List<AllActivitiesDTO> allActivitiesList=activityMapper.toAllActivitiesDTO(allActivities);
+
+
+        //Iterate through the list to check the types of each activity registered
+        for (AllActivitiesDTO allActivitiesDTO:allActivitiesList){
+
+            //If the activity is of type run, find the distance in the run table and update
+            //the distance field in the dto
+            if (allActivitiesDTO.getType().equals("run")){
+                Optional<ActivityRun> activityRun=activityRunRepository.findById(allActivitiesDTO.getActivityId());
+                allActivitiesDTO.setDistance(activityRun.get().getDistance());
+
+            }
+
+            //If the activity is of type weightlifting, find the exercises in the exercises table
+            //and put them in a list. Then, update the exercises field in the dto to the list.
+            else if (allActivitiesDTO.getType().equals("weightlifting")){
+                List<ActivityWorkoutExercise> activityWorkoutExercises=activityWorkoutExerciseRepository.findByActivityId(allActivitiesDTO.getActivityId());
+                List<ExerciseActivityDTO> exercises=activityMapper.toExerciseActivityDTO(activityWorkoutExercises);
+                allActivitiesDTO.setExercises(exercises);
+            }
+
+            //Get the total number of likes for the post and set this to the dto
+
+            //Get the total number of comments for the post and set this to the dto
+        }
+
+        //Lastly, return the list back to frontend.
+        return allActivitiesList;
+
+    }
+
 
     //  ------------------ SAVE ------------------
 
@@ -97,7 +130,6 @@ public class ActivityServiceImpl {
         activityWorkoutExerciseRepository.save(newActivityWorkoutExercise);
 
     }
-
 
     public Activity saveActivityWorkout(ActivityWorkoutDTO activityWorkoutDTO) {
 
