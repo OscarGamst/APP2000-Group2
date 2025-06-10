@@ -1,11 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useLocation  } from "react-router-dom";
 import "../../styles/index.css";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 
-const SearchResultItem = () => {
+const SearchResult = () => {
     //brukerdata
     const [user,setUser] = useState(null);
     useEffect(()=> {
@@ -16,22 +16,35 @@ const SearchResultItem = () => {
     },[]);
 
     const [fetchedResults, setFetchedResults] = useState([]);
-    let searchValue="ber"
-    const handleSearch = async () => {
-        try {
+    const location = useLocation();
+    const queryParameters = new URLSearchParams(location.search);
+    const searchValue = queryParameters.get("q") || "";
+
+    useEffect(()=> {
+        const handleSearch = async () => {
+            try {
                 const res = await axios.get(`api/users/search/${searchValue}`);
                 setFetchedResults(res.data);
                 console.log(res.data)
-        } catch (err) {
+            } catch (err) {
                 console.error(err);
+            }
         }
-    }
+        
+        if (searchValue) {
+            handleSearch();
+        }
+
+    },[searchValue]);
+    
+
+
             //await axios.post("api/social/follow",
             //    {
             //        followerUsername : user.username,
             //        followedUsername : followTarget,
             //    });
-            //funka ikke, Mr. GPT foreslo denne endringa ->>
+            //funka ikke, Mr. GPT foreslo å legget til "null", params pga JSON-kluss
     const handleFollow = async (followTarget) => {
         try {
             await axios.post("api/social/follow", null,{
@@ -50,7 +63,7 @@ const SearchResultItem = () => {
     return (<>
         <ul>
             {fetchedResults
-                .filter(item => item.visibility === true)
+                .filter(item => item.visibility === true && item.username!==user.username)
                 .map(item => (
                     <li key={item.username}>
                         {item.username}
@@ -58,9 +71,7 @@ const SearchResultItem = () => {
                     </li>
                 ))}
         </ul>
-        <button onClick={handleSearch}>search</button></>
-    );
-
+    </>);
 }
 
-export default SearchResultItem;
+export default SearchResult;

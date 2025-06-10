@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import SearchResult from "../components/SearchBarComponent/SearchResult";
 
 
-function Search(searchValue) {
+function Search() {
     //brukerdata
     const [user,setUser] = useState(null);
     useEffect(()=> {
@@ -16,12 +16,10 @@ function Search(searchValue) {
         }
     },[]);
 
-    const [fetchedResults, setFetchedResults] = useState();
-
-
     return (
         <div>
-            <SearchResult input={searchValue}/>
+            <h2>Search Results</h2>
+            <SearchResult/>
         </div>
     );
 
