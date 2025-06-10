@@ -77,17 +77,6 @@ public class ActivityController {
         Activity savedActivityCombined = activityServiceImpl.saveActivityCombined(activityCombinedDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedActivityCombined);
     }
-    @PostMapping("/register")
-    @Operation(summary = "Create a new activity")
-    @ResponseStatus(HttpStatus.CREATED)
-    @ApiResponses({
-            @ApiResponse(responseCode = "201", description = "act created successfulyy"),
-            @ApiResponse(responseCode = "400", description = "Invalid user Data"),
-            @ApiResponse(responseCode = "500", description = "Internal server error")
-    })
-    public ResponseEntity<Activity> createActivityTest(@RequestBody ActivityCombinedDTO activityCombinedDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(activityServiceImpl.saveActivityCombined(activityCombinedDTO));
-    }
 
     //  ------------------ PUT ------------------
     //  ---------INSERT ALL PUTTERS HERE---------

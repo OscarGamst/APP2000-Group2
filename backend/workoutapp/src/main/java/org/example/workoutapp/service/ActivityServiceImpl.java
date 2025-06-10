@@ -224,17 +224,4 @@ public class ActivityServiceImpl {
         return activityRepository.save(newActivity);
     }
 
-    public ActivityCombinedDTO createActivityTest(ActivityCombinedDTO activityCombinedDTO) {
-        Activity activity=new Activity();
-
-        activity.setDescription(activityCombinedDTO.getDescription());
-        activity.setDuration(activityCombinedDTO.getDuration());
-        activity.setType(activityCombinedDTO.getType());
-        activity.setTitle(activityCombinedDTO.getTitle());
-        activity.setAccess(activityCombinedDTO.getAccess());
-
-        Activity savedActivity = activityRepository.save(activity);
-        return activityMapper.toActivityCombinedDTO(savedActivity);
-
-    }
 }
