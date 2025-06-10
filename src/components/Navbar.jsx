@@ -5,6 +5,7 @@ import "../styles/index.css";
 import pp from "../pictures/default_pfp.png";
 import bell from "../pictures/NavbarBell.png";
 import LogOutButton from "./userAuth/LogOutButton";
+import SearchBar from "./SearchBarComponent/SearchBar";
 
 const Navbar = () => {
   const handleSearch = () => {
@@ -20,12 +21,7 @@ const Navbar = () => {
         <li><Link to="/Activity">Activity</Link></li>
         <li><Link to="/Profile">Profile</Link></li>
       </ul>
-      <div className="searchbox">
-        <input type="text" placeholder="Search..." />
-        <button className="searchbutton" onClick={handleSearch}>
-          Search
-        </button>
-      </div>
+      <SearchBar/>
       <ul className="navbarbilde">
         <li>
             <LogOutButton/>

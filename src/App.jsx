@@ -12,6 +12,7 @@ import "./styles/responsive.css";
 import AuthPage from "./pages/AuthPage";
 import { useEffect } from "react";
 import { useState } from "react";
+import Search from "./pages/Search";
 
 function App() {
     //brukerdata
@@ -25,17 +26,18 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route element={<MainLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/Profile" element={<Profile />} />
-          <Route path="/Progress" element={<Progress />} />
-          <Route path="/Activity" element={<Activity />} />
-          <Route path="/Albert" element={<Albert />} />
-        </Route>
-        <Route path="/TestPageNoNav" element={<TestPageNoNav />} />
-        <Route path="/Auth" element={<AuthPage />} />
-      </Routes>
+        <Routes>
+            <Route element={<MainLayout />}>
+                <Route path="/" element={<Home />} />
+                <Route path="/Profile" element={<Profile />} />
+                <Route path="/Progress" element={<Progress />} />
+                <Route path="/Activity" element={<Activity />} />
+                <Route path="/Albert" element={<Albert />} />
+                <Route path="/Search" element={<Search/>}></Route>
+            </Route>
+            <Route path="/TestPageNoNav" element={<TestPageNoNav />} />
+            <Route path="/Auth" element={<AuthPage />} />
+        </Routes>
     </BrowserRouter>
   );
 }

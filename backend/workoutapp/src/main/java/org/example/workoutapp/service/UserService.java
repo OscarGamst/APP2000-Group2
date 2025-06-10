@@ -42,6 +42,11 @@ public class UserService {
         return userMapper.toUserNoPwDTO(updatedUser);
     }
 
+    public List<UserBasicDTO> getAllUsersLike(String username) {
+        List<Users> users = userRepository.findAllByUsernameContainingIgnoreCase(username);
+        return userMapper.toUserBasicDTO(users);
+    }
+
     public UserDetailDTO updateUser(String username, UserDetailDTO userDTO) {
         Users user = userRepository.findById(username).orElseThrow(() -> new RuntimeException("User not found"));
 
