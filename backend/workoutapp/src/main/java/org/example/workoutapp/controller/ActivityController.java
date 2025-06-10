@@ -1,8 +1,10 @@
 package org.example.workoutapp.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.workoutapp.dto.ActivityCombinedDTO;
 import org.example.workoutapp.dto.ActivityRunDTO;
@@ -74,6 +76,17 @@ public class ActivityController {
     public ResponseEntity<Activity> addCombined(@RequestBody ActivityCombinedDTO activityCombinedDTO) {
         Activity savedActivityCombined = activityServiceImpl.saveActivityCombined(activityCombinedDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedActivityCombined);
+    }
+    @PostMapping("/register")
+    @Operation(summary = "Create a new activity")
+    @ResponseStatus(HttpStatus.CREATED)
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", description = "act created successfulyy"),
+            @ApiResponse(responseCode = "400", description = "Invalid user Data"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
+    public ResponseEntity<Activity> createActivityTest(@RequestBody ActivityCombinedDTO activityCombinedDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(activityServiceImpl.saveActivityCombined(activityCombinedDTO));
     }
 
     //  ------------------ PUT ------------------
