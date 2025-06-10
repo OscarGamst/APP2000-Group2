@@ -11,12 +11,14 @@ import ActivityList from "../components/ActivityList";
 import Add from "../components/Add";
 import GoalRunList from "../components/GoalComponent/GoalRunList";
 import GoalTab from "../components/GoalComponent/GoalTab";
+import NewActivityList from "../components/ActivityFeedComponent/NewActivityFeed";
 
 const Activity = () => {
   return (
     <div className="activity-page-wrapper">
       <div className="activity-page-main">
       <ProgressBar/>
+          <NewActivityList/>
       <ActivityList/>
       </div> 
       
@@ -24,7 +26,7 @@ const Activity = () => {
       <Goals/>
       <Add />
       <GoalTab />
-      </div> 
+      </div>
       <div className="activity-page-empty"></div> 
     </div>
   );

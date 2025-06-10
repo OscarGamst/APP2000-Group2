@@ -4,17 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ActivityWorkoutDTO {
-    private String type;
-    private String user;
-    private String title;
+public class ActivityRunDTO {
     private String description;
     private int duration;
+    private String type;
+    private String title;
+    private String user;
     private String access;
-    private ArrayList<ExerciseActivityDTO> exercises;
+    private double distance;
 }

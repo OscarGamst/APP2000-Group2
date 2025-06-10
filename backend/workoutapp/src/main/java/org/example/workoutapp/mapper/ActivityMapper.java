@@ -1,23 +1,44 @@
 package org.example.workoutapp.mapper;
 
 import org.example.workoutapp.dto.ActivityWorkoutDTO;
+import org.example.workoutapp.dto.AllActivitiesDTO;
 import org.example.workoutapp.model.Activity;
 import org.example.workoutapp.model.ActivityWorkoutExercise;
 import org.example.workoutapp.dto.ExerciseActivityDTO;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.example.workoutapp.model.Users;
+import org.mapstruct.*;
 
-@Mapper(componentModel="spring")
+import java.util.ArrayList;
+import java.util.List;
+
+@Mapper(componentModel = "spring",
+        nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface ActivityMapper {
 
+    default AllActivitiesDTO map(Activity activity) {
+        AllActivitiesDTO allActivitiesDTO=new AllActivitiesDTO();
+        allActivitiesDTO.setActivityId(activity.getActivityId());
+        allActivitiesDTO.setType(activity.getType());
+        allActivitiesDTO.setUser(activity.getUser().getUsername());
+        allActivitiesDTO.setTitle(activity.getTitle());
+        allActivitiesDTO.setDescription(activity.getDescription());
+        allActivitiesDTO.setDescription(activity.getDescription());
+        allActivitiesDTO.setDuration(activity.getDuration());
+        allActivitiesDTO.setAccess(activity.getAccess());
+        allActivitiesDTO.setExercises(null);
+        return allActivitiesDTO;
+    }
 
-    //Would it be possible to have this go for all the dtos for the different activities?
+    default ExerciseActivityDTO map(ActivityWorkoutExercise activityWorkoutExercise) {
+        ExerciseActivityDTO exerciseActivityDTO=new ExerciseActivityDTO();
+        exerciseActivityDTO.setName(activityWorkoutExercise.getExerciseName());
+        exerciseActivityDTO.setSets(activityWorkoutExercise.getExerciseSets());
+        exerciseActivityDTO.setReps(activityWorkoutExercise.getExerciseReps());
+        exerciseActivityDTO.setWeight(activityWorkoutExercise.getExerciseWeight());
+        return exerciseActivityDTO;
+    }
 
-    //One way this could be implemented is to make the dto include runs as well:3
+    List<AllActivitiesDTO> toAllActivitiesDTO(List<Activity> allActivities);
 
-    //Need a function to tell which user is online xd - this has to be added to the activity
-    Activity toActivity(ActivityWorkoutDTO activityWorkoutDTO);
-
-    @Mapping(source = "activity", target = "activity")
-    ActivityWorkoutExercise toActivityWorkoutExercise(ExerciseActivityDTO exerciseActivityDTO);
+    //List<ExerciseActivityDTO> toExerciseActivityDTO(List<ActivityWorkoutExercise> activityWorkoutExercises);
 }

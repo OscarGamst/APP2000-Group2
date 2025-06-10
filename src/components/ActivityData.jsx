@@ -4,6 +4,7 @@ const activities = [
     type: "workout",
     id: 1,
     title: "Morning Workout",
+    distance: null,
     duration: 30,
     //Optional
     profilePic: "default_pfp.png",
@@ -31,6 +32,7 @@ const activities = [
     type: "workout",
     id: 3,
     title: "Evening Yoga",
+    distance: null,
     duration: 90,
     description: "Relaxing evening session.",
     calories: 0,

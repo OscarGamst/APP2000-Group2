@@ -4,29 +4,28 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name="Activity")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@Setter
+@Getter
 public class ActivityWorkoutExercise {
 
     @Id
-    @Column(nullable=false, name="exerciseId")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long exerciseId;
 
-    @Column (nullable=false, name="exerciseName")
     private String exerciseName;
 
-    @Column (nullable=false, name="exerciseSets")
     private int exerciseSets;
 
-    @Column (nullable=false, name="exerciseReps")
     private int exerciseReps;
 
-    @Column (nullable=false, name="exerciseWeight")
-    private double exerciseWeight;
+    private int exerciseWeight;
 
     @ManyToOne
+    @JoinColumn(name = "activityId")
     private Activity activity;
+
+    //This was gotten from chatgpt
+    public Long getActivityId() {
+        return activity != null ? activity.getActivityId() : null;
+    }
 }
