@@ -59,7 +59,7 @@ const Goals = () => {
                 <li key={index}>
                   {goal}
                   <button className="delete-goal-button" onClick={() => removeGoal(category, index)}>
-                    ❌
+
                   </button>
                 </li>
               ))}

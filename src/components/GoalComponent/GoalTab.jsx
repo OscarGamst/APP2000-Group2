@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../../styles/index.css";
 import GoalRunList from "./GoalRunList";
+import GoalWeightliftList from "./GoalWeightliftList";
 /*
 <div className="goalTab">
     <button className="goalTabLinks" onClick="openGoal(event, 'Run')">Run</button>
@@ -19,7 +20,7 @@ const GoalTab = () => {
     };
 
     return (
-        <div>
+        <div className="goalTab">
             <div className="goalTabs">
                 {/* Hver button er en tab, enten så er den "active" eller så er det en tom string */}
                 <button
@@ -35,14 +36,11 @@ const GoalTab = () => {
             </div>
 
             <div className="goalTabContent" style={{ display: activeTab ==="Run" ? "block" : "none"}}>
-                <h3>RunGoal</h3>
-                <p>test</p>
                 <GoalRunList/>
             </div>
 
             <div className="goalTabContent" style={{ display: activeTab ==="Weightlift" ? "block" : "none"}}>
-                <h3>WeightGoal</h3>
-                <p>test2</p>
+                <GoalWeightliftList/>
             </div>
         </div>
     );
