@@ -1,11 +1,22 @@
 package org.example.workoutapp.repository;
 
 import org.example.workoutapp.model.Activity;
-import org.example.workoutapp.model.ActivityWorkoutExercise;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
 import java.util.List;
+import java.util.Optional;
 
 public interface ActivityRepository extends JpaRepository<Activity, Long> {
-    Activity save(Activity activity);
 
+    @Query(
+            value="SELECT activity.*, COUNT(likes.likesId) as totalLikes " +
+                    "FROM activity " +
+                    "LEFT JOIN likes ON activity.activityId=likes.activityId "+
+                    "GROUP BY activity.activityId "+
+                    "HAVING activity.user.username== :username AND activity.type==:activityType",
+            nativeQuery=true
+    )
+    List<Activity> findActivitiesTypeUsername(@Param("username") String username,  @Param("activityType") String activityType);
 }

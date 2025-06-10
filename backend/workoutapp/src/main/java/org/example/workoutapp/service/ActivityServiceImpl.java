@@ -1,74 +1,229 @@
 package org.example.workoutapp.service;
 
 import lombok.RequiredArgsConstructor;
-import org.example.workoutapp.dto.ActivityWorkoutDTO;
-import org.example.workoutapp.dto.ExerciseActivityDTO;
+import org.example.workoutapp.dto.*;
 import org.example.workoutapp.mapper.ActivityMapper;
 import org.example.workoutapp.model.Activity;
+import org.example.workoutapp.model.ActivityRun;
 import org.example.workoutapp.model.ActivityWorkoutExercise;
+import org.example.workoutapp.model.Users;
 import org.example.workoutapp.repository.ActivityRepository;
+import org.example.workoutapp.repository.ActivityRunRepository;
 import org.example.workoutapp.repository.ActivityWorkoutExerciseRepository;
+import org.example.workoutapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.security.SecureRandom;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class ActivityServiceImpl {
-    @Autowired
-    private ActivityRepository activityRepository;
 
-    @Autowired
-    private ActivityWorkoutExerciseRepository activityWorkoutExerciseRepository;
-
-    @Autowired
-    private ActivityMapper activityMapper;
+    private final ActivityRepository activityRepository;
+    private final ActivityWorkoutExerciseRepository activityWorkoutExerciseRepository;
+    private final ActivityMapper activityMapper;
+    private final UserRepository userRepository;
+    private final ActivityRunRepository activityRunRepository;
 
     //  ------------------ GET ------------------
 
+    public List<AllActivitiesDTO> getAllActivities(String username) {
+
+        //Check if the username exists. If it does not, throw an error.
+        Users user = userRepository.findById(username).orElseThrow(() -> new RuntimeException("User not found"));
+
+        //Get a list of all activities registered on the user ordered by timestamp and map each
+        //activity object to an all-activities-dto.
+        List<Activity> allActivities=activityRepository.findActivitiesTypeUsername(username, "weightlifting");
+        List<AllActivitiesDTO> allActivitiesList=activityMapper.toAllActivitiesDTO(allActivities);
+
+        /*
+        //Iterate through the list to check the types of each activity registered
+        for (AllActivitiesDTO allActivitiesDTO:allActivitiesList){
+
+            //Find the exercises in the exercises table
+            //and put them in a list. Then, update the exercises field in the dto to the list.
+
+            List<ActivityWorkoutExercise> activityWorkoutExercises=activityWorkoutExerciseRepository.findByActivityId(allActivitiesDTO.getActivityId());
+            List<ExerciseActivityDTO> exercises=activityMapper.toExerciseActivityDTO(activityWorkoutExercises);
+            allActivitiesDTO.setExercises(exercises);
+
+            //Get the total number of likes for the post and set this to the dto
+
+            //Get the total number of comments for the post and set this to the dto
+        }
+         */
+
+        //Lastly, return the list back to frontend.
+        return allActivitiesList;
+
+    }
+
+
     //  ------------------ SAVE ------------------
+
+    public Activity saveActivity(ActivityWorkoutDTO activityWorkoutDTO) {
+        //Create new activity
+        Activity newActivity=new Activity();
+
+        //Generate id for activity
+        boolean idExist=true;
+        SecureRandom random=new SecureRandom();
+        Long newActivityId =null;
+
+        while (idExist) {
+            newActivityId=random.nextLong();
+
+            if (newActivityId<0) {
+                newActivityId=newActivityId*(-1);
+            }
+
+            var foundActivity=activityRepository.findById(newActivityId).orElse(null);
+
+            if (foundActivity==null) {
+                newActivity.setActivityId(newActivityId);
+                idExist=false;
+            }
+        }
+
+        newActivity.setType(activityWorkoutDTO.getType());
+        newActivity.setTitle(activityWorkoutDTO.getTitle());
+        newActivity.setDescription(activityWorkoutDTO.getDescription());
+        newActivity.setDuration(activityWorkoutDTO.getDuration());
+        newActivity.setTimestamp(LocalDateTime.now());
+        newActivity.setAccess(activityWorkoutDTO.getAccess());
+
+        //Find the user in the database - copy of Oscar's code
+        Users user = userRepository.findById(activityWorkoutDTO.getUser()).orElseThrow(() -> new RuntimeException("User not found"));
+
+        newActivity.setUser(user);
+
+        return activityRepository.save(newActivity);
+    }
+
+    public void saveActivityWorkoutExercise(ExerciseActivityDTO exerciseActivityDTO, Activity newActivity) {
+        ActivityWorkoutExercise newActivityWorkoutExercise=new ActivityWorkoutExercise();
+
+        newActivityWorkoutExercise.setActivity(newActivity);
+
+        newActivityWorkoutExercise.setExerciseName(exerciseActivityDTO.getName());
+        newActivityWorkoutExercise.setExerciseSets(exerciseActivityDTO.getSets());
+        newActivityWorkoutExercise.setExerciseReps(exerciseActivityDTO.getReps());
+
+        newActivityWorkoutExercise.setExerciseWeight(exerciseActivityDTO.getWeight());
+
+        activityWorkoutExerciseRepository.save(newActivityWorkoutExercise);
+
+    }
+
     public Activity saveActivityWorkout(ActivityWorkoutDTO activityWorkoutDTO) {
 
-        //Get local date time for timestamp
-        LocalDateTime timestamp=LocalDateTime.now();
-
-        //Get current user logged in
-
-
-        //Create an activity object using mapper
-        Activity newActivity=activityMapper.toActivity(activityWorkoutDTO);
-        newActivity.setPublished(timestamp);
-
-        //Save the activity object to the database
-        activityRepository.save(newActivity);
+        Activity newActivity=saveActivity(activityWorkoutDTO);
 
         //turn the exerciseActivityDtos to exerciseobjects by iterating
         //through the list in ActivityWorkoutDto and save them to database
 
-        for (ExerciseActivityDTO exerciseActivityDTO:activityWorkoutDTO.getExercises()) {
-            //exerciseActivityDTO.setActivity(newActivity);
-            ActivityWorkoutExercise newExercise=activityMapper.toActivityWorkoutExercise(exerciseActivityDTO);
-            newExercise.setActivity(newActivity);
-            activityWorkoutExerciseRepository.save(newExercise);
-        }
+            for (ExerciseActivityDTO exerciseActivityDTO:activityWorkoutDTO.getExercises()) {
+                saveActivityWorkoutExercise(exerciseActivityDTO, newActivity);
+
+            }
 
         return newActivity;
 
     }
 
-    /*Override
-    public Activity saveActivityRun(Activity activity) {
-        return activityRepository.saveRun(activity);
+    public Activity saveActivityRun(ActivityRunDTO activityRunDTO) {
+        //Create new activity
+        Activity newActivity=new Activity();
+
+        //Generate id for activity
+        boolean idExist=true;
+        SecureRandom random=new SecureRandom();
+        Long newActivityId =null;
+
+        while (idExist) {
+            newActivityId=random.nextLong();
+
+            if (newActivityId<0) {
+                newActivityId=newActivityId*(-1);
+            }
+
+            var foundActivity=activityRepository.findById(newActivityId).orElse(null);
+
+            if (foundActivity==null) {
+                newActivity.setActivityId(newActivityId);
+                idExist=false;
+            }
+        }
+
+        newActivity.setType(activityRunDTO.getType());
+        newActivity.setTitle(activityRunDTO.getTitle());
+        newActivity.setDescription(activityRunDTO.getDescription());
+        newActivity.setDuration(activityRunDTO.getDuration());
+        newActivity.setTimestamp(LocalDateTime.now());
+        newActivity.setAccess(activityRunDTO.getAccess());
+
+        //Find the user in the database - copy of Oscar's code
+        Users user = userRepository.findById(activityRunDTO.getUser()).orElseThrow(() -> new RuntimeException("User not found"));
+
+        newActivity.setUser(user);
+
+        Activity newRegisteredActivity=activityRepository.save(newActivity);
+
+        //Create the run
+        ActivityRun newActivityRun=new ActivityRun();
+
+        newActivityRun.setActivity(newRegisteredActivity);
+        newActivityRun.setDistance(activityRunDTO.getDistance());
+
+        activityRunRepository.save(newActivityRun);
+
+        return newActivity;
     }
 
-    @Override
-    public Activity saveActivityCombined(Activity activity) {
-        return activityRepository.saveActivityInfo(activity);
+    public Activity saveActivityCombined(ActivityCombinedDTO activityCombinedDTO) {
+        //Create new activity
+        Activity newActivity=new Activity();
+
+        //Generate id for activity
+        boolean idExist=true;
+        SecureRandom random=new SecureRandom();
+        Long newActivityId =null;
+
+        while (idExist) {
+            newActivityId=random.nextLong();
+
+            if (newActivityId<0) {
+                newActivityId=newActivityId*(-1);
+            }
+
+            var foundActivity=activityRepository.findById(newActivityId).orElse(null);
+
+            if (foundActivity==null) {
+                newActivity.setActivityId(newActivityId);
+                idExist=false;
+            }
+        }
+
+        newActivity.setType(activityCombinedDTO.getType());
+        newActivity.setTitle(activityCombinedDTO.getTitle());
+        newActivity.setDescription(activityCombinedDTO.getDescription());
+        newActivity.setDuration(activityCombinedDTO.getDuration());
+        newActivity.setTimestamp(LocalDateTime.now());
+        newActivity.setAccess(activityCombinedDTO.getAccess());
+
+        //Find the user in the database - copy of Oscar's code
+        Users user = userRepository.findById(activityCombinedDTO.getUser()).orElseThrow(() -> new RuntimeException("User not found"));
+
+        newActivity.setUser(user);
+
+        return activityRepository.save(newActivity);
     }
-
-     */
-
 }
