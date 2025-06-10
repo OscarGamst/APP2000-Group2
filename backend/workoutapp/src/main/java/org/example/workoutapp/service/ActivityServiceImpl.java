@@ -41,33 +41,25 @@ public class ActivityServiceImpl {
 
         //Get a list of all activities registered on the user ordered by timestamp and map each
         //activity object to an all-activities-dto.
-        List<Activity> allActivities=activityRepository.findByUsername(username);
+        List<Activity> allActivities=activityRepository.findActivitiesTypeUsername(username, "weightlifting");
         List<AllActivitiesDTO> allActivitiesList=activityMapper.toAllActivitiesDTO(allActivities);
 
-
+        /*
         //Iterate through the list to check the types of each activity registered
         for (AllActivitiesDTO allActivitiesDTO:allActivitiesList){
 
-            //If the activity is of type run, find the distance in the run table and update
-            //the distance field in the dto
-            if (allActivitiesDTO.getType().equals("run")){
-                Optional<ActivityRun> activityRun=activityRunRepository.findById(allActivitiesDTO.getActivityId());
-                allActivitiesDTO.setDistance(activityRun.get().getDistance());
-
-            }
-
-            //If the activity is of type weightlifting, find the exercises in the exercises table
+            //Find the exercises in the exercises table
             //and put them in a list. Then, update the exercises field in the dto to the list.
-            else if (allActivitiesDTO.getType().equals("weightlifting")){
-                List<ActivityWorkoutExercise> activityWorkoutExercises=activityWorkoutExerciseRepository.findByActivityId(allActivitiesDTO.getActivityId());
-                List<ExerciseActivityDTO> exercises=activityMapper.toExerciseActivityDTO(activityWorkoutExercises);
-                allActivitiesDTO.setExercises(exercises);
-            }
+
+            List<ActivityWorkoutExercise> activityWorkoutExercises=activityWorkoutExerciseRepository.findByActivityId(allActivitiesDTO.getActivityId());
+            List<ExerciseActivityDTO> exercises=activityMapper.toExerciseActivityDTO(activityWorkoutExercises);
+            allActivitiesDTO.setExercises(exercises);
 
             //Get the total number of likes for the post and set this to the dto
 
             //Get the total number of comments for the post and set this to the dto
         }
+         */
 
         //Lastly, return the list back to frontend.
         return allActivitiesList;

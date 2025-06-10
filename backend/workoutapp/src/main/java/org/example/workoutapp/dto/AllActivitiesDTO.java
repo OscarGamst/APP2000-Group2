@@ -3,7 +3,7 @@ package org.example.workoutapp.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -16,8 +16,5 @@ public class AllActivitiesDTO {
     private String description;
     private int duration;
     private String access;
-    private double distance;
-    private int likes;
-    private int comments;
-    private List<ExerciseActivityDTO> exercises;
+    private Set<ExerciseActivityDTO> exercises;
 }

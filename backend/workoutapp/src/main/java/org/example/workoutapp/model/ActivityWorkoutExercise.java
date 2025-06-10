@@ -18,7 +18,7 @@ public class ActivityWorkoutExercise {
 
     private int exerciseReps;
 
-    private double exerciseWeight;
+    private int exerciseWeight;
 
     @ManyToOne
     @JoinColumn(name = "activityId")

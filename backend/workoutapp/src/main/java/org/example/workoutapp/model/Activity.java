@@ -32,7 +32,7 @@ public class Activity {
 
 
     //Malin's fields
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="username")
     private Users user;
 
