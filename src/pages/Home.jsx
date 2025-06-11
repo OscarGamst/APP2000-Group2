@@ -8,6 +8,7 @@ import TestForm from "../components/TestForm"
 import FollowerList from "../components/FollowerListComponent/FollowerList";
 import GoalTab from "../components/GoalComponent/GoalTab";
 import ActivityFeedHome from "../components/ActivityFeedComponent/ActivityFeedHome";
+import NewActivityFeed from "../components/ActivityFeedComponent/NewActivityFeed";
 
 const Home = () => {
   return (

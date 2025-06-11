@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ActivityFeedDTO {
+    private Long activityId;
     private String user;
     private String title;
     private String type;

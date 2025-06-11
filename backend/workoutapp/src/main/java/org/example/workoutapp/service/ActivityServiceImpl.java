@@ -99,7 +99,7 @@ public class ActivityServiceImpl {
         return allActivitiesCombinedList;
     }
 
-    //Oscar
+    //Oscar, her får man alle fra activity tabellen
     public List<ActivityFeedDTO> getAllActivitiesFeed(String username) {
         Users user = userRepository.findById(username).orElseThrow(() -> new RuntimeException("User not found"));
 
