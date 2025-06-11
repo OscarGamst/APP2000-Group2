@@ -62,18 +62,7 @@ public class ActivityController {
     public ResponseEntity<List<AllActivitiesCombinedDTO>> getAllActivitiesCombined(@PathVariable String username) {
         return ResponseEntity.ok(activityServiceImpl.getAllActivitiesCombined(username));
     }
-    //Oscar
-    @GetMapping("/allActivities/{username}")
-    @Operation(summary = "Get all activities")
-    @ResponseStatus(HttpStatus.CREATED)
-    @ApiResponses({
-            @ApiResponse(responseCode = "201", description = "List recieved"),
-            @ApiResponse(responseCode = "400", description = "Invalid"),
-            @ApiResponse(responseCode = "500", description = "Internal server error")
-    })
-    public ResponseEntity<List<ActivityFeedDTO>> getAllActivitiesFeed (@PathVariable String username) {
-        return ResponseEntity.ok(activityServiceImpl.getAllActivitiesFeed(username));
-    }
+
     //  ------------------ POST ------------------
     //  ---------INSERT ALL POSTERS HERE----------
 

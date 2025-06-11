@@ -10,5 +10,5 @@ import java.util.Set;
 public interface ActivityWorkoutExerciseRepository extends JpaRepository<ActivityWorkoutExercise, Long> {
     ActivityWorkoutExercise save(ActivityWorkoutExercise activityWorkoutExercise);
 
-    Set<ActivityWorkoutExercise> findByActivity_ActivityId(Long activityId);
+    Set<ActivityWorkoutExercise> findByActivity_ActivityId(Integer activityId);
 }

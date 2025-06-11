@@ -16,7 +16,7 @@ import java.util.Set;
 public class ActivityRun {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long runId;
+    private Integer runId;
 
     private double distance;
 

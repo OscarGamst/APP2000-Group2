@@ -39,7 +39,7 @@ public class Activity {
     @OneToMany(mappedBy= "activity", cascade=CascadeType.ALL, orphanRemoval = true)
     private Set<ActivityWorkoutExercise> activityWorkoutExercises = new HashSet<>();
 
-    @OneToOne(mappedBy= "activity", cascade=CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy= "activity", cascade=CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private ActivityRun activityRun;
 
     //Oscar's fields

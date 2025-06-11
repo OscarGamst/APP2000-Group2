@@ -12,14 +12,10 @@ import java.util.Optional;
 public interface ActivityRepository extends JpaRepository<Activity, Integer> {
 
     @Query(
-            value="SELECT activity.*, COUNT(likes.like_id) as totalLikes " +
+            value="SELECT activity.* " +
                     "FROM activity " +
-                    "LEFT JOIN likes ON activity.activity_id=likes.activity_id "+
-                    "GROUP BY activity.activity_id "+
-                    "HAVING activity.username= :username AND activity.type=:activityType",
+                    "WHERE activity.username= :username AND activity.type=:activityType",
             nativeQuery=true
     )
-    //Oscar
     List<Activity> findActivitiesTypeUsername(@Param("username") String username,  @Param("activityType") String activityType);
-    List<Activity> findAllByUser(Users user);
 }

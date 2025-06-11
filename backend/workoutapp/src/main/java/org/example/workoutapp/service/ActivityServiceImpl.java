@@ -11,16 +11,13 @@ import org.example.workoutapp.repository.ActivityRepository;
 import org.example.workoutapp.repository.ActivityRunRepository;
 import org.example.workoutapp.repository.ActivityWorkoutExerciseRepository;
 import org.example.workoutapp.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -94,19 +91,9 @@ public class ActivityServiceImpl {
         //Get a list of all activities registered on the user ordered by timestamp and map each
         //activity object to an all-activities-dto.
         List<Activity> allActivities=activityRepository.findActivitiesTypeUsername(username, "combined");
-        List<AllActivitiesCombinedDTO> allActivitiesCombinedList=activityMapper.toAllActivitiesCombinedDTO(allActivities);
 
-        return allActivitiesCombinedList;
+        return activityMapper.toAllActivitiesCombinedDTO(allActivities);
     }
-
-    //Oscar, her får man alle fra activity tabellen
-    public List<ActivityFeedDTO> getAllActivitiesFeed(String username) {
-        Users user = userRepository.findById(username).orElseThrow(() -> new RuntimeException("User not found"));
-
-        List<Activity> activities = activityRepository.findAllByUser(user);
-        return activityMapper.toActivityFeedDTO(activities);
-    }
-
 
     //  ------------------ SAVE ------------------
 

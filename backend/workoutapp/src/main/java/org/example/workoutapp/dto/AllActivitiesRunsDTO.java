@@ -11,7 +11,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AllActivitiesRunsDTO {
-    private long activityId;
+    private Integer activityId;
     private String type;
     private String user;
     private String title;
