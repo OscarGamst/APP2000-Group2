@@ -4,10 +4,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.example.workoutapp.dto.ActivityCombinedDTO;
-import org.example.workoutapp.dto.ActivityRunDTO;
-import org.example.workoutapp.dto.ActivityWorkoutDTO;
-import org.example.workoutapp.dto.AllActivitiesDTO;
+import org.example.workoutapp.dto.*;
 import org.example.workoutapp.model.Activity;
 import org.example.workoutapp.service.ActivityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +27,15 @@ public class ActivityController {
     //  ------------------ GET ------------------
     //  ---------INSERT ALL GETTERS HERE---------
 
-    @GetMapping("/allActivities/{username}")
+    @GetMapping("/allActivitiesWeightlifting/{username}")
     public ResponseEntity<List<AllActivitiesDTO>> getAllActivities(@PathVariable String username) {
         return ResponseEntity.ok(activityServiceImpl.getAllActivities(username));
     }
 
+    @GetMapping("/allActivitiesRuns/{username}")
+    public ResponseEntity<List<AllActivitiesRunsDTO>> getAllActivitiesRuns(@PathVariable String username) {
+        return ResponseEntity.ok(activityServiceImpl.getAllActivitiesRuns(username));
+    }
 
     //  ------------------ POST ------------------
     //  ---------INSERT ALL POSTERS HERE----------

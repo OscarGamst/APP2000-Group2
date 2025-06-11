@@ -7,7 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Set;
 
-public interface ActivityWorkoutExerciseRepository extends JpaRepository<Activity, Long> {
+public interface ActivityWorkoutExerciseRepository extends JpaRepository<ActivityWorkoutExercise, Long> {
     ActivityWorkoutExercise save(ActivityWorkoutExercise activityWorkoutExercise);
-    Set<ActivityWorkoutExercise> findByActivityId(Long activityId);
+
+    Set<ActivityWorkoutExercise> findByActivity_ActivityId(Long activityId);
 }
