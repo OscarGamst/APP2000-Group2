@@ -26,8 +26,8 @@ const ActivityItem = () => {
         try {
           const resRun = await axios.get(`/api/activity/allActivitiesRuns/${user.username}`);
           const resWeight = await axios.get(`/api/activity/allActivitiesWeightlifting/${user.username}`);
-          //console.log(activityRun);
-          //console.log(activityWeightlift);
+          console.log(activityRun);
+          console.log(activityWeightlift);
           setRuns(resRun.data);
           setWeightlift(resWeight.data);
           setActivities([...resRun.data, ...resWeight.data]);
@@ -86,7 +86,7 @@ const ActivityItem = () => {
               <ul>
                 {activity.exercises.map((ex, idx) => (
                   <li key={idx}>
-                    {ex.name}: {ex.sets} sets × {ex.reps} reps  {ex.weight}kg
+                    {ex.name}: {ex.sets} sets x {ex.reps} reps  {ex.weight}kg
                   </li>
                 ))}
               </ul>
