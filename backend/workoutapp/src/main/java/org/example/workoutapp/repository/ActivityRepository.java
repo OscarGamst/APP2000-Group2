@@ -1,6 +1,7 @@
 package org.example.workoutapp.repository;
 
 import org.example.workoutapp.model.Activity;
+import org.example.workoutapp.model.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,5 +19,7 @@ public interface ActivityRepository extends JpaRepository<Activity, Long> {
                     "HAVING activity.username= :username AND activity.type=:activityType",
             nativeQuery=true
     )
+    //Oscar
     List<Activity> findActivitiesTypeUsername(@Param("username") String username,  @Param("activityType") String activityType);
+    List<Activity> findAllByUser(Users user);
 }

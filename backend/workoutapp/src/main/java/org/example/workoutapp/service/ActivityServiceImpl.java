@@ -99,6 +99,14 @@ public class ActivityServiceImpl {
         return allActivitiesCombinedList;
     }
 
+    //Oscar
+    public List<ActivityFeedDTO> getAllActivitiesFeed(String username) {
+        Users user = userRepository.findById(username).orElseThrow(() -> new RuntimeException("User not found"));
+
+        List<Activity> activities = activityRepository.findAllByUser(user);
+        return activityMapper.toActivityFeedDTO(activities);
+    }
+
 
     //  ------------------ SAVE ------------------
 

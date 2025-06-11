@@ -81,4 +81,10 @@ public interface ActivityMapper {
                 .map(this::mapToCombinedDTO)
                 .collect(Collectors.toList());
     }
+
+    //Oscar
+    @Mapping(source ="user.username", target = "user")
+    ActivityFeedDTO mapToActivityFeedDTO(Activity activity);
+
+    List<ActivityFeedDTO> toActivityFeedDTO(List<Activity> activityFeed);
 }
