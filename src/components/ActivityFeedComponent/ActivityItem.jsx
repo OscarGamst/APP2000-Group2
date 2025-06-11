@@ -7,6 +7,11 @@ const ActivityItem = () => {
   const [activities, setActivities] = useState([]);
   const [activityRun, setRuns] = useState([]);
   const [activityWeightlift, setWeightlift] = useState([]);
+  const [comments, setComments] = useState({});
+
+  // likes må jobbes med, men vanskelig å teste før vio kan se andres aktiviteter
+  //const [likedActivities, setLikedActivities] = useState({});
+  // const [likeCounts, setLikeCounts] = useState({});
 
   useEffect(() => {
     const storedUser = localStorage.getItem("loggedInUser");
@@ -21,12 +26,16 @@ const ActivityItem = () => {
         try {
           const resRun = await axios.get(`/api/activity/allActivitiesRuns/${user.username}`);
           const resWeight = await axios.get(`/api/activity/allActivitiesWeightlifting/${user.username}`);
-          console.log(activityRun);
-          console.log(activityWeightlift);
+          //console.log(activityRun);
+          //console.log(activityWeightlift);
           setRuns(resRun.data);
           setWeightlift(resWeight.data);
-
           setActivities([...resRun.data, ...resWeight.data]);
+          const allActivities = [...resRun.data, ...resWeight.data];
+
+          allActivities.forEach((activity) => {
+            fetchComments(activity.activityId);
+          });
         } catch (err) {
           console.error("Failed fetch for activities", err);
         }
@@ -35,31 +44,74 @@ const ActivityItem = () => {
     fetchActivities();
   }, [user]);
 
-  const deletePost = async (activityId) => {
-    console.log(activityId);
+  const fetchComments = async (activityId) => {
     try {
-      await axios.delete("api/activity/deleteActivity", activityId);
+      const res = await axios.get("/api/comment", {
+        params: { activityId: activityId }
+      });
+      setComments((prev) => ({ ...prev, [activityId]: res.data }));
     } catch (err) {
-      console.error(err);
+      console.error(`Failed to fetch comments for activity ${activityId}`, err);
     }
+  };
+
+
+
+  const getActivityClass = (type) => {
+  switch (type) {
+    case "weightlifting":
+      return "activity-workout";
+    case "run":
+      return "activity-run";
+    default:
+      return "activity-default";
   }
+};
+
+
+
 
   return (
     <div>
       {activities.map((activity) => (
-        <div className="activity-item">
+        <div className={`activity-item ${getActivityClass(activity.type)}`}>
           <h3>Username {activity.user}</h3>
           <h4>Title {activity.title}</h4>
           <p>Type: {activity.type} </p>
           <p>Duration: {activity.duration} </p>
-          <p>Distance: {activity.distance}km</p>
+          {activity.distance !== undefined && <p><strong>Distance:</strong> {activity.distance} km</p>}
+          {activity.exercises && activity.exercises.length > 0 && (
+            <div className="exercise-section">
+              <h5>Exercises:</h5>
+              <ul>
+                {activity.exercises.map((ex, idx) => (
+                  <li key={idx}>
+                    {ex.name}: {ex.sets} sets × {ex.reps} reps  {ex.weight}kg
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           <p>Timestamp: {activity.timestamp} </p>
-          <button onClick={() => deletePost(activity.activityId)}>Delete</button>
+          <div className="activity-social">
+            <ul>
+              <button id="like-btn" >Like</button>
+              <button className="activity-comment" type="button">Comment</button>
+              <span id="like-count"> likes</span>
+            </ul>
+           </div>
+           <div className="commentSection">
+            <p>Comments:</p>
+            {(comments[activity.activityId] || []).map((comment, id) => (
+              <p key={id}> {comment.commenterUsername}:  {comment.content} </p>
+            ))}
+
+            </div>
         </div>
 
       ))}
     </div>
   )
-}
+};
 
 export default ActivityItem;
