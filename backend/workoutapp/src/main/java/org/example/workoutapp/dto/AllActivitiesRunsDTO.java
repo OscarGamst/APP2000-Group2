@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Data
@@ -16,6 +17,7 @@ public class AllActivitiesRunsDTO {
     private String title;
     private String description;
     private int duration;
+    private LocalDateTime timestamp;
     private String access;
     private double distance;
 }
