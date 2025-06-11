@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "../../styles/index.css";
 import WorkoutObject from './WorkoutObject.jsx';
+import axios from "axios";
 
 /*
 To make it easy to retrive the information, we save the information in an object. This will make it possible for the
@@ -9,11 +10,10 @@ the functions can use the object freely.
  */
 
 const registerWorkout=new WorkoutObject();
-registerWorkout.setType("combined");
 
 
 const RegisterCombined = ({returnToDefault}) => {
-
+    registerWorkout.setType("combined");
 
 
     return (
@@ -35,34 +35,14 @@ const Page1 = ({returnToDefault}) => {
     useEffect(() => {
         const storedUser=localStorage.getItem("loggedInUser");
         if (storedUser) {
-            registerWorkout.setUser(JSON.parse(storedUser.username));
+            registerWorkout.setUser((JSON.parse(storedUser).username));
         }
     }, []);
 
     const [postAccess, setPostAccess]=useState(registerWorkout.getAccess());
 
-    const submitObject = async () => {
-        try {
-            const responseFromBackend = await fetch(`http://localhost:8080/api/activity/workout`, {
-                method: "PUT",
-                headers: {
-                    "content-type": "application/json"
-                },
-                body: JSON.stringify(registerWorkout)
-            });
 
-            if (responseFromBackend.ok) {
-                alert("Update successful!!");
-            } else {
-                console.error("Failed to update :(")
-            }
-        } catch (error) {
-            console.error("Error:", error);
-        }
-
-    }
-
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
 
         event.preventDefault();
 
@@ -71,9 +51,14 @@ const Page1 = ({returnToDefault}) => {
         registerWorkout.setTitle(String(event.target.elements.title.value));
         registerWorkout.setAccess(String(postAccess));
 
+        try {
+            await axios.post("api/activity/combined",registerWorkout);
+        } catch (err) {
+            console.error(err);
+            alert("YIKES ! Error !!");
+        }
 
         console.log(registerWorkout);
-        submitObject();
         registerWorkout.resetObject();
         returnToDefault();
 
@@ -125,7 +110,7 @@ const Page1 = ({returnToDefault}) => {
                         defaultValue={registerWorkout.getDuration()}
                     />
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit">Save</button>
             </form>
         </div>
 
