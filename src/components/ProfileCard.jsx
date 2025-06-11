@@ -56,11 +56,11 @@ const ProfileCard = () => {
                 <ul>
                 <li>
                     <label htmlFor="pfcfollowers">Followers: </label>
-                    <a href="" >{followerCount}</a>
+                    <a href="" >{followerCount?followerCount:0}</a>
                 </li>
                 <li>
                     <label htmlFor="pfcfollowing">Following: </label>
-                    <a href="" >{followingCount}</a>
+                    <a href="" >{followingCount?followingCount:0}</a>
                 </li>
                 <li>
                     <label htmlFor="pfcposts">Posts: </label>

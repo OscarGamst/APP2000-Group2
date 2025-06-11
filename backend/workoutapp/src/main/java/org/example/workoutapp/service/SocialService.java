@@ -136,6 +136,18 @@ public class SocialService {
         return followMapper.toFollowDTO(follow);
     }
 
+    public FollowDTO unfollowUser(String followerUsername, String followedUsername) {
+        Users follower = userRepository.findById(followerUsername).orElseThrow(() -> new RuntimeException("User not found"));
+        Users followed = userRepository.findById(followedUsername).orElseThrow(() -> new RuntimeException("User not found"));
+        if (followRepository.findByFollowerAndFollowed(follower, followed).isPresent()) {
+            //hvis den finnes kan vi slettan
+            followRepository.delete(followRepository.findByFollowerAndFollowed(follower, followed).get());
+        } else {
+            throw new EntityNotFoundException("Follow-relation not found");
+        }
+        return null;
+    }
+
     // vil returnere en liste med brukere som følger en person
     //alle som følger meg
     public List<FollowDTO> getUsersFollowers(String followedUsername) {

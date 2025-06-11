@@ -1127,6 +1127,13 @@ input[type=password], input[type=date]
 
 }
 
+#active {
+    border-bottom: 0.3rem solid #00796b;
+    color: #00796b;
+    font-weight: bold;
+    
+}
+
 .followers-buttons button:first-child {
     border-right:#000;
 }
@@ -1165,6 +1172,10 @@ input[type=password], input[type=date]
     box-shadow: 0 0.7rem 1rem rgba(0, 0, 0, 0.1), 0 0.4rem 0.6rem rgba(0, 0, 0, 0.05);
     text-align: center;
     font-size: 2.5vh;
+}
+
+.search-result-item button {
+    margin-inline: 1vh;
 }
 
 

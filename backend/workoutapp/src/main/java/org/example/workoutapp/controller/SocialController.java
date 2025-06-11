@@ -147,6 +147,17 @@ public class SocialController {
         return ResponseEntity.ok(followDTO);
     }
 
+    @DeleteMapping("/unfollow")
+    @Operation(summary = "Delete a follow")
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", description = "Follow successfully deleted"),
+            @ApiResponse(responseCode = "400", description = "Invalid"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
+    public void unfollowUser(@RequestBody FollowDTO followDTO) {
+        socialService.unfollowUser(followDTO.getFollowerUsername(), followDTO.getFollowedUsername());
+    }
+
     // ----------- ----------- FOLLOW ----------- -----------
     // alle som følger en bruker
     @GetMapping("/followers/{username}")

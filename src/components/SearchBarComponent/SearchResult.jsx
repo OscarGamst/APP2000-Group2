@@ -20,7 +20,14 @@ const SearchResult = () => {
     const queryParameters = new URLSearchParams(location.search);
     const searchValue = queryParameters.get("q") || ""; //default er da tom string
 
+    const [following,setFollowing] = useState([]);
     useEffect(()=> {
+        if (!user || !searchValue) {return};
+        const fetchFollowing = async () => {
+            const result = await axios.get(`api/social/following/${user.username}`)
+            setFollowing(result.data);
+        }
+
         const handleSearch = async () => {
             try {
                 const res = await axios.get(`api/users/search/${searchValue}`);
@@ -34,9 +41,10 @@ const SearchResult = () => {
         //hvis searchValue ikke er en tom string
         if (searchValue) {
             handleSearch();
+            fetchFollowing();
         }
 
-    },[searchValue]);
+    },[user,searchValue]);
     
 
 
@@ -54,7 +62,21 @@ const SearchResult = () => {
                     followedUsername : followTarget,
                 }
             });
-            alert(`You are now following ${followTarget}!`);
+            setFollowing(prev => [...prev, {followedUsername:followTarget}]);
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    const handleUnfollow = async (unfollowTarget) => {
+        try {
+            await axios.delete("api/social/unfollow", {
+                data: {
+                    followerUsername : user.username,
+                    followedUsername : unfollowTarget,
+                }
+            });
+            setFollowing(prev => prev.filter(f => f.followedUsername !== unfollowTarget)); //fjerne fra lista, så knappen endrer seg riktig
         } catch (err) {
             console.error(err);
         }
@@ -68,7 +90,10 @@ const SearchResult = () => {
                 .map(item => (
                     <div key={item.username} className="search-result-item">
                         {item.username}
-                        <button onClick={()=>handleFollow(item.username)}>Follow</button>
+                        {!following.map(f => f.followedUsername).includes(item.username) ?
+                        <button onClick={()=>handleFollow(item.username)}>Follow</button> :
+                        <button onClick={()=>handleUnfollow(item.username)}>Unfollow</button>
+                        }
                     </div>
                 ))}
         </div>
