@@ -87,6 +87,18 @@ public class ActivityServiceImpl {
         return allActivitiesRunsList;
     }
 
+    public List<AllActivitiesCombinedDTO> getAllActivitiesCombined(@PathVariable String username) {
+        //Check if the username exists. If it does not, throw an error.
+        Users user = userRepository.findById(username).orElseThrow(() -> new RuntimeException("User not found"));
+
+        //Get a list of all activities registered on the user ordered by timestamp and map each
+        //activity object to an all-activities-dto.
+        List<Activity> allActivities=activityRepository.findActivitiesTypeUsername(username, "combined");
+        List<AllActivitiesCombinedDTO> allActivitiesCombinedList=activityMapper.toAllActivitiesCombinedDTO(allActivities);
+
+        return allActivitiesCombinedList;
+    }
+
 
     //  ------------------ SAVE ------------------
 
