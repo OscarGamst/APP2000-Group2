@@ -117,10 +117,10 @@ public class ActivityServiceImpl {
         //Generate id for activity
         boolean idExist=true;
         SecureRandom random=new SecureRandom();
-        Long newActivityId =null;
+        int newActivityId =0;
 
         while (idExist) {
-            newActivityId=random.nextLong();
+            newActivityId=random.nextInt();
 
             if (newActivityId<0) {
                 newActivityId=newActivityId*(-1);
@@ -187,10 +187,10 @@ public class ActivityServiceImpl {
         //Generate id for activity
         boolean idExist=true;
         SecureRandom random=new SecureRandom();
-        Long newActivityId =null;
+        int newActivityId =0;
 
         while (idExist) {
-            newActivityId=random.nextLong();
+            newActivityId=random.nextInt();
 
             if (newActivityId<0) {
                 newActivityId=newActivityId*(-1);
@@ -236,10 +236,10 @@ public class ActivityServiceImpl {
         //Generate id for activity
         boolean idExist=true;
         SecureRandom random=new SecureRandom();
-        Long newActivityId =null;
+        int newActivityId =0;
 
         while (idExist) {
-            newActivityId=random.nextLong();
+            newActivityId=random.nextInt();
 
             if (newActivityId<0) {
                 newActivityId=newActivityId*(-1);
@@ -266,5 +266,17 @@ public class ActivityServiceImpl {
         newActivity.setUser(user);
 
         return activityRepository.save(newActivity);
+    }
+
+    //  ------------------ DELETE ------------------
+    public void deleteActivity(@PathVariable Integer activityId) {
+
+        //Check if the activity exists in the database
+        Activity foundActivity=activityRepository.findById(activityId).orElse(null);
+
+        if  (foundActivity!=null) {
+            //If it does exist, delete the activity and everything it is connected to.
+            activityRepository.deleteById(activityId);
+        }
     }
 }

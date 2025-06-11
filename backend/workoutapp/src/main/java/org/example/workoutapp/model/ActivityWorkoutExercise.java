@@ -25,7 +25,7 @@ public class ActivityWorkoutExercise {
     private Activity activity;
 
     //This was gotten from chatgpt
-    public Long getActivityId() {
+    public Integer getActivityId() {
         return activity != null ? activity.getActivityId() : null;
     }
 }

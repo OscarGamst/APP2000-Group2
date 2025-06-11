@@ -34,7 +34,7 @@ public class SocialService {
     private final ActivityRepository activityRepository;
 
     // ----------- ----------- ALT MED LIKES ----------- -----------
-    public boolean hasUserLikedActivity(String username, Long activityId) {
+    public boolean hasUserLikedActivity(String username, Integer activityId) {
         // sjekker om User finnes
         Users user = userRepository.findById(username).orElseThrow(() -> new RuntimeException("User not found"));
 
@@ -71,7 +71,7 @@ public class SocialService {
             throw new EntityNotFoundException("User have not liked this activity");
         }
     }
-    public List<LikeDTO> getLikes(Long activityId) {
+    public List<LikeDTO> getLikes(Integer activityId) {
         Activity activity = activityRepository.findById(activityId).orElseThrow(() -> new RuntimeException("Activity not found"));
 
         List<Likes> likes = likeRepository.findByActivity(activity);
@@ -102,7 +102,7 @@ public class SocialService {
         return commentMapper.toCommentDTO(updatedComment);
     }
 
-    public List<CommentDTO> getComments(Long activityId) {
+    public List<CommentDTO> getComments(Integer activityId) {
         Activity activity = activityRepository.findById(activityId).orElseThrow(() -> new RuntimeException("Activity not found"));
 
         List<Comment> comments = commentRepository.findByActivity(activity);

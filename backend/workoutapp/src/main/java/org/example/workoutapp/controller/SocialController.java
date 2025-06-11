@@ -43,7 +43,7 @@ public class SocialController {
     })
     public ResponseEntity<?> likeActivity(
             @RequestParam String username,
-            @RequestParam Long activityId) {
+            @RequestParam Integer activityId) {
         //Sjekker at username faktisk finnes
         Users user = userRepository.findById(username).orElseThrow(() -> new RuntimeException("User not found"));
 
@@ -62,7 +62,7 @@ public class SocialController {
     })
     public ResponseEntity<Void> unlikeActivity(
             @RequestParam String username,
-            @RequestParam Long activityId) {
+            @RequestParam Integer activityId) {
         Users user = userRepository.findById(username).orElseThrow(() -> new RuntimeException("User not found"));
         Activity activity = activityRepository.findById(activityId).orElseThrow(() -> new RuntimeException("Activity not found"));
         socialService.unlikeActivity(user, activity);
@@ -74,7 +74,7 @@ public class SocialController {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved likes"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    public ResponseEntity<List<LikeDTO>> getLikes(@RequestParam Long activityId) {
+    public ResponseEntity<List<LikeDTO>> getLikes(@RequestParam Integer activityId) {
         return ResponseEntity.ok(socialService.getLikes(activityId));
     }
     // ----------- ----------- LIKES ----------- -----------
@@ -111,7 +111,7 @@ public class SocialController {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved comments"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    public ResponseEntity<List<CommentDTO>> getComments(@RequestParam Long activityId) {
+    public ResponseEntity<List<CommentDTO>> getComments(@RequestParam Integer activityId) {
         return ResponseEntity.ok(socialService.getComments(activityId));
     }
     @DeleteMapping("/comment/{comment_id}")
