@@ -127,4 +127,15 @@ public class UserController {
         return ResponseEntity.ok(userService.getAllUsersLike(username));
     }
 
+    @GetMapping("/getUser/{username}")
+    @Operation(summary = "Get user", description = "Get user by username")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved users"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
+    public ResponseEntity<UserBasicDTO> getUser(@PathVariable String username) {
+        return ResponseEntity.ok(userService.getUser(username));
+    }
+
+
 }

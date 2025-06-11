@@ -100,4 +100,9 @@ public class UserService {
         userRepository.deleteById(username);
     }
 
+    public UserBasicDTO getUser(String username) {
+        Users user = userRepository.findByUsername(username);
+        return userMapper.toUserBasicDTO(user);
+    }
+
 }

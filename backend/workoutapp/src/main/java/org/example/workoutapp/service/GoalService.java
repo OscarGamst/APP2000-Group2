@@ -4,9 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.example.workoutapp.dto.GoalRunDTO;
 import org.example.workoutapp.dto.GoalWeightliftingDTO;
 import org.example.workoutapp.mapper.GoalMapper;
+import org.example.workoutapp.model.ActivityRun;
 import org.example.workoutapp.model.GoalRun;
 import org.example.workoutapp.model.GoalWeightlifting;
 import org.example.workoutapp.model.Users;
+import org.example.workoutapp.repository.ActivityRepository;
 import org.example.workoutapp.repository.GoalRunRepository;
 import org.example.workoutapp.repository.GoalWeightliftingRepository;
 import org.example.workoutapp.repository.UserRepository;
@@ -15,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
