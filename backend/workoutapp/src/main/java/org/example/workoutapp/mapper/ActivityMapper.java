@@ -54,6 +54,7 @@ public interface ActivityMapper {
         allActivitiesRunsDTO.setDescription(activity.getDescription());
         allActivitiesRunsDTO.setDuration(activity.getDuration());
         allActivitiesRunsDTO.setAccess(activity.getAccess());
+        allActivitiesRunsDTO.setTimestamp(activity.getTimestamp());
         allActivitiesRunsDTO.setDistance(0);
         return allActivitiesRunsDTO;
     }
@@ -81,4 +82,10 @@ public interface ActivityMapper {
                 .map(this::mapToCombinedDTO)
                 .collect(Collectors.toList());
     }
+
+    //Oscar
+    @Mapping(source ="user.username", target = "user")
+    ActivityFeedDTO mapToActivityFeedDTO(Activity activity);
+
+    List<ActivityFeedDTO> toActivityFeedDTO(List<Activity> activityFeed);
 }

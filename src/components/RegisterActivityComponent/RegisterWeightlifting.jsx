@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "../../styles/index.css";
 import WorkoutObject from './WorkoutObject.jsx';
+import axios from "axios";
 
 /*
 The component is divided into three main parts.
@@ -25,7 +26,7 @@ the functions can use the object freely.
  */
 
 const registerWorkout=new WorkoutObject();
-registerWorkout.setType("weightlifting");
+
 
 /*
 Fetch function used to update the list on page 2 when a new exercise is added to the exercise list in the workout object
@@ -33,6 +34,7 @@ Fetch function used to update the list on page 2 when a new exercise is added to
 
 
 const RegisterWeightlifting = ({returnToDefault}) => {
+    registerWorkout.setType("weightlifting");
     /*
     To make the component easier to program, we decided to only use one boolean variable (poge) to determine
     which page is shown. True means that page one is shown, while false shows that page two is shown.
@@ -156,28 +158,18 @@ const Page2 = ({back, returnToDefault}) => {
 
     /*
     The function that handles submitting the information in the objects to the database
-
-    Copy of Alberts code:3
     */
 
     const submitObject = async () => {
-        try {
-            const responseFromBackend=await fetch(`http://localhost:8080/api/activity/workout`, {
-                method: "PUT",
-                headers: {
-                    "content-type": "application/json"
-                },
-                body: JSON.stringify(registerWorkout)
-            });
-
-            if (responseFromBackend.ok) {alert("Update successful!!");
-            } else {console.error("Failed to update :(")}
-        } catch (error) { console.error("Error:", error);}
-
+            try {
+                await axios.post("api/activity/workout",registerWorkout);
+            } catch (err) {
+                console.error(err);
+                alert("YIKES ! Error !!");
+            }
 
         registerWorkout.resetObject();
         returnToDefault();
-
     }
     
     let exerciseList=registerWorkout.exercises.map(exercise => 

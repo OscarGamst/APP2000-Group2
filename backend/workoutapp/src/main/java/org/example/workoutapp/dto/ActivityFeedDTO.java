@@ -5,19 +5,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.Set;
 
+//Oscar
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AllActivitiesRunsDTO {
-    private long activityId;
-    private String type;
+public class ActivityFeedDTO {
+    private Long activityId;
     private String user;
     private String title;
+    private String type;
     private String description;
     private int duration;
     private LocalDateTime timestamp;
-    private String access;
-    private double distance;
 }

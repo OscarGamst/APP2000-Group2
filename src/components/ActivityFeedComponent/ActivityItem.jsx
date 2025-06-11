@@ -1,57 +1,55 @@
-import React, { useState } from "react";
-import "../styles/index.css";
-import "../styles/responsive.css";
-import { FormatDuration } from "./FormatDuration";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "../../styles/index.css"
 
+const ActivityItem = () => {
+  const [user, setUser] = useState();
+  const [activities, setActivities] = useState([]);
+  const [activityRun, setRuns] = useState([]);
+  const [activityWeightlift, setWeightlift] = useState([]);
 
-// checks the type of activity, and returns a CSS class
-const getActivityClass = (type) => { 
-  switch (type) {
-    case "workout":
-      return "activity-workout"; 
-    case "run":
-      return "activity-run"; 
-    default:
-      return "activity-default"; 
-  }
-};
-
-const ActivityItem = ({ activity }) => { 
-  const [likes, setLikes] = useState(0); 
-  const [liked, setLiked] = useState(false); 
-
-  const toggleLike = () => {
-    if (liked) { 
-      setLikes(likes - 1);
-    } else {
-      setLikes(likes + 1); 
+  useEffect(() => {
+    const storedUser = localStorage.getItem("loggedInUser");
+    if(storedUser) {
+      setUser(JSON.parse(storedUser));
     }
-    setLiked(!liked);
-  };
+  },[])
 
-  // returns items and adds HTML tags based on class and data input
+  useEffect(() => {
+    const fetchActivities = async () => {
+      if (user && user.username) {
+        try {
+          const resRun = await axios.get(`/api/activity/allActivitiesRuns/${user.username}`);
+          const resWeight = await axios.get(`/api/activity/allActivitiesWeightlifting/${user.username}`);
+          console.log(activityRun);
+          console.log(activityWeightlift);
+          setRuns(resRun.data);
+          setWeightlift(resWeight.data);
+
+          setActivities([...resRun.data, ...resWeight.data]);
+        } catch (err) {
+          console.error("Failed fetch for activities", err);
+        }
+      }
+    };
+    fetchActivities();
+  }, [user]);
+
   return (
-    <div className={`activity-item ${getActivityClass(activity.type)}`}>
-      <img src={activity.profilePic} alt="#" />
-      <h3>{activity.username}</h3> 
-      <h4>{activity.title}</h4> 
-      <p>{activity.description}</p>
-      <p><strong>Duration:</strong> {FormatDuration(activity.duration)}</p> 
-      {activity.distance !== undefined && <p><strong>Distance:</strong> {activity.distance} km</p>} 
-      <div className="activity-social">
-        <ul>
-          <button id="like-btn" onClick={toggleLike}> 
-            {liked ? "Unlike" : "Like"}
-          </button>
-          <button className="activity-comment" type="button">Comment</button>
-          <span id="like-count">{likes} likes</span> 
-        </ul>
-      </div>
+    <div>
+      {activities.map((activity) => (
+        <div className="activity-item">
+          <h3>Username {activity.user}</h3>
+          <h4>Title {activity.title}</h4>
+          <p>Type: {activity.type} </p>
+          <p>Duration: {activity.duration} </p>
+          <p>Distance: {activity.distance}km</p>
+          <p>Timestamp: {activity.timestamp} </p>
+        </div>
+
+      ))}
     </div>
-  );
-};
+  )
+}
 
 export default ActivityItem;
-
-
-

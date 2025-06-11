@@ -7,6 +7,8 @@ import ProgressHomepg from "../components/ProgressHomepg";
 import TestForm from "../components/TestForm"
 import FollowerList from "../components/FollowerListComponent/FollowerList";
 import GoalTab from "../components/GoalComponent/GoalTab";
+import ActivityFeedHome from "../components/ActivityFeedComponent/ActivityFeedHome";
+import NewActivityFeed from "../components/ActivityFeedComponent/NewActivityFeed";
 
 const Home = () => {
   return (
@@ -16,6 +18,7 @@ const Home = () => {
           <div className="home-main"> {/* main content of HomePage */}
             <ProgressHomepg />
             <ActivityFeed />
+            <ActivityFeedHome />
           </div>        
           <div className="home-sidebar"> {/* Side content */}
             <ProfileCard />
