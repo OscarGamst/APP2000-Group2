@@ -122,4 +122,13 @@ public class ActivityController {
 
     //  ------------------ DELETE ------------------
     //  ---------INSERT ALL DELETES HERE------------
+    @DeleteMapping("/deleteActivity/{activityId}")
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", description = "Activity deleted"),
+            @ApiResponse(responseCode = "400", description = "Invalid"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
+    public void deleteActivity(@PathVariable int activityId) {
+        activityServiceImpl.deleteActivity(activityId);
+    }
 }

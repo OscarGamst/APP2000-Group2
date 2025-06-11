@@ -15,7 +15,7 @@ import java.util.Set;
 public class Activity {
 
     @Id
-    private Long activityId;
+    private Integer activityId;
 
     private String type;
 

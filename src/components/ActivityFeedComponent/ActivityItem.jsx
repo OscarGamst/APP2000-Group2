@@ -35,6 +35,15 @@ const ActivityItem = () => {
     fetchActivities();
   }, [user]);
 
+  const deletePost = async (activityId) => {
+    console.log(activityId);
+    try {
+      await axios.delete("api/activity/deleteActivity", activityId);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
   return (
     <div>
       {activities.map((activity) => (
@@ -45,6 +54,7 @@ const ActivityItem = () => {
           <p>Duration: {activity.duration} </p>
           <p>Distance: {activity.distance}km</p>
           <p>Timestamp: {activity.timestamp} </p>
+          <button onClick={() => deletePost(activity.activityId)}>Delete</button>
         </div>
 
       ))}
