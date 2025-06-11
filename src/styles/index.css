@@ -393,7 +393,7 @@ ul {
 /*Satrt of goals*/
 /* Container styling */
 .goals-container {
-  width: 150%;
+  width: 100%;
   max-width: 70 rem;
   padding: 0.5rem;
   border: 0.1rem solid rgb(198, 198, 198);
@@ -613,7 +613,7 @@ ul {
 /* ADD ACTIVITY GREIA*/
 
 .add-container {
-  width: 150%;
+  width: 100%;
   max-width: 70rem;
   padding: 2rem;
   background-color: #fff;
