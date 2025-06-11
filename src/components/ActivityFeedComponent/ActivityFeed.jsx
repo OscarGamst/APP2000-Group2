@@ -2,22 +2,21 @@ import React, { useState, useEffect } from "react";
 import ActivityItem from "./ActivityItem";
 import "../styles/index.css";
 import "../styles/responsive.css";
-import activities from "./ActivityData";
+import activities from "./ActivityFeedData";
 
 const ActivityFeed = () => { 
-
-
+    
     useEffect(() => {
         const storedUser = localStorage.getItem("loggedInUser");
         if (storedUser) {
             setUser(JSON.parse(storedUser));
         }
-    const [showFriends, setShowFriends] = useState(false);
+    const [showFollowing, setShowFollowing] = useState(false);
     const [User, setUser] = useState(); // Just a basic placeholder, until we have log in
     },[]);
 
     const toggleFilter = () => {
-    setShowFriends(!showFriends);
+    setShowFollowing(!showFollowing);
     };
 
     // change placeholder to change user
@@ -38,4 +37,4 @@ const ActivityFeed = () => {
     );
     };
 
-export default ActivityFeed2;
+export default ActivityFeed;
