@@ -30,20 +30,32 @@ const ProfilePageComponent = () => {
                 </div>
 
                 <div className="profileBigRest">
-                    <ul>
-                        <li>
-                            <label>E-mail: </label>
-                            {user ? user.email : "e-mail"}
-                        </li>
-                        <li>
-                            <label>Birthday: </label>
-                            {user ? user.birthday : "birthday"}
-                        </li>
-                        <li>
-                            <label>Public profile: </label>
-                            {user ? user.visibility==false?"false":"true" : "visibility"}
-                        </li>
-                    </ul>
+                    <table>
+                        <tr>
+                            <td>
+                                <label>E-mail: </label>
+                            </td>
+                            <td>
+                                <span>{user ? user.email : "e-mail"}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Birthday: </label>
+                            </td>
+                            <td>
+                                <span>{user ? user.birthday : "birthday"}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Public profile: </label>
+                            </td>
+                            <td>
+                                <span>{user ? user.visibility==false?"false":"true" : "visibility"}</span>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </ul>
         </div>

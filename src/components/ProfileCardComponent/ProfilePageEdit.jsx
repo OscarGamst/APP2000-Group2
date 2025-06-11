@@ -57,35 +57,38 @@ const ProfilePageEdit = () => {
                         {user ? user.username : "Loading.."}
                     </div>
                 </div>
-                <div className="profileBigRest">    
+                <div className="profileBigRest">
                     <label htmlFor="email">E-mail: </label>
                     <input
                         type="text"
                         name="email"
                         placeholder={newInfo.email}
                         value={newInfo.email}
-                        onChange={e => setNewInfo({ ...newInfo, email: e.target.value})}
+                        onChange={e => setNewInfo({ ...newInfo, email: e.target.value })}
                         required
                     />
-                
+
                     <label htmlFor="birthday">Birthday:</label>
                     <input
                         type="date"
                         name="birthday"
                         placeholder={newInfo.birthday}
                         value={newInfo.birthday}
-                        onChange={e => setNewInfo({ ...newInfo, birthday: e.target.value})}
+                        onChange={e => setNewInfo({ ...newInfo, birthday: e.target.value })}
                         required
                     />
 
                     <label htmlFor="visibility">Public profile?</label>
-                    <select name="visibility" value={newInfo.visibility.toString()} 
-                        onChange={e => setNewInfo({ ...newInfo, visibility: e.target.value === "true" })}>
+                    <select
+                        name="visibility"
+                        value={newInfo.visibility.toString()}
+                        onChange={e => setNewInfo({ ...newInfo, visibility: e.target.value === "true" })}
+                    >
                         <option value="true">Public</option>
                         <option value="false">Private</option>
                     </select>
-                    
                 </div>
+
                     <button onClick={handleSave}>Save</button>
             </form>
         </div>

@@ -10,6 +10,7 @@ const ProfileCard = () => {
     const [user,setUser] = useState(null);
     const [followerCount, setFollowerCount] = useState();
     const [followingCount, setFollowingCount] = useState();
+    const [activityCount, setActivityCount] = useState();
 
     useEffect(()=> {
         const storedUser = localStorage.getItem("loggedInUser");
@@ -32,10 +33,18 @@ const ProfileCard = () => {
         setFollowingCount(result.data.length);
     }
 
+    const fetchActivityCount = async () => {
+        const result1 = await axios.get(`/api/activity/allActivitiesWeightlifting/${user.username}`)
+        const result2 = await axios.get(`/api/activity/allActivitiesRuns/${user.username}`)
+        const result3 = await axios.get(`/api/activity/allActivitiesCombined/${user.username}`)
+        setActivityCount(result1.data.length + result2.data.length + result3.data.length);
+    }
+
     useEffect(() => {
         if (user) {
         fetchFollower();
         fetchFollowing();
+        fetchActivityCount();
         }
     },[user]);
 
@@ -63,8 +72,8 @@ const ProfileCard = () => {
                     <a href="" >{followingCount?followingCount:0}</a>
                 </li>
                 <li>
-                    <label htmlFor="pfcposts">Posts: </label>
-                    <a href="">999</a>
+                    <label htmlFor="pfcposts">Sessions: </label>
+                    <a href="">{activityCount?activityCount:0}</a>
                 </li>
                 </ul>
                 </div>

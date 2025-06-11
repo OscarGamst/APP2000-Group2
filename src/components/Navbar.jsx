@@ -16,7 +16,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <ul className="navbar-links">
-        <li><span className="navbar-title">HERCULES</span></li>
+        <li><span className="navbar-title" style={{userSelect:"none"}}>HERCULES</span></li>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/Activity">Activity</Link></li>
         <li><Link to="/Profile">Profile</Link></li>

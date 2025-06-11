@@ -70,18 +70,20 @@ ul {
 
 /* ProfilePage*/
 .profile-wrapper {
-  display: flex;
-  gap: 1.5rem;
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    min-height: 100vh;
 }
 
 .profile-main {
-  flex: 1.5;
+    width: 100%;
+    max-width: 800px;
 }
 
 .profile-empty {
-  flex: 0.5;
+    flex: 1;
 }
-
 /*LogIn*/
 .login-page-wrapper {
   display: flex;
@@ -130,11 +132,11 @@ ul {
 .navbar-links a {
   color: #333333;
   font-weight: bold;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease-out;
 }
 
 .navbar-links a:hover {
-  color: #007BFF;
+  color: #388e3c;
 }
 
 .navbarbilde {
@@ -214,12 +216,12 @@ ul {
   border-radius: 5px;
   font-size: 1rem;
   margin-top: 1.4rem;
-  transition: background-color 0.4s ease;
+  transition: background-color 0.3s ease;
 
 }
 
 .back-to-top:hover {
-  background-color: #1b84f4;
+  background-color: #388e3c;
 }
 
 /* ----- End of Footer ----- */
@@ -349,7 +351,7 @@ ul {
 
 
 .filter-button:hover {
-  background: #0d44b0;
+  background: #388e3c;
 }
 
 .progress-bar-container {
@@ -431,10 +433,11 @@ ul {
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .add-goal-button:hover {
-  background-color: #0d44b0;
+  background-color: #388e3c;
 }
 
 /* Content styling */
@@ -565,10 +568,11 @@ ul {
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .show-more-button:hover {
-  background-color: #0056b3;
+  background-color: #388e3c;
 }
 
 /*activity list slutt*/
@@ -609,7 +613,7 @@ ul {
 } 
 
 .add-button:hover {
-  background-color: #0056b3;
+  background-color: #388e3c;
 }
 
 
@@ -664,7 +668,7 @@ ul {
     color: #333;
 }
 .profileTitle a:hover {
-  color: #2575fc;
+  color: #388e3c;
 }
 .profileCard .profileDesc {
     font-size: 1rem;
@@ -706,49 +710,6 @@ ul {
 
 /* ---- End of Profile Card ---- */
 
-/* --- FIDGETSPINNER LOL --- */
-/*bare pølsevev ta her
-.fidgetSpinner {
-
-  height: 16rem;
-  width: 16rem;
-  border-radius: 50%;
-  pointer-events: none;
-  background-color: #0ddbae;
-  text-align: center;
-  
-}
-
-.fidgetSpinner img {
-  height: 16rem;
-  width: 16rem;
-  animation: bilde-spin 0.2s linear;
-}
-
-@keyframes bilde-spin {
-  from {
-      transform: rotate(0deg);
-  }
-  to {
-      transform: rotate(360deg);
-  }
-}
-.fidgetSpinner button {
-  background-color: #0ddbae;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: background-color 0.3s;
-}
-
-.fidgetSpinner button:hover {
-  background-color: #0056b3;
-}
-/* --- END OF FIDGETSPINNER :( --- */
-
 /* ---- Progress Home Page ---- */
 .progressBoxColumn {
   display:flex;
@@ -788,116 +749,73 @@ ul {
 /* ---- ProfileBig ---- */
 
 .profileBig {
-  position: relative;
-  width: 60vw;
-  height: auto;
-  margin: 1rem;
-  font-size: 0.7rem;
-  background: linear-gradient(145deg, #ffffff, #f0f0f0);
-  border-radius: 1rem;
-  box-shadow: 0 0.7rem 1rem rgba(0, 0, 0, 0.1), 0 0.4rem 0.6rem rgba(0, 0, 0, 0.05);
-  overflow: hidden;
-  text-align: center;
-  justify-content: space-evenly;
+    width: 100%;
+    margin: 0 auto;
+    font-size: 0.7rem;
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    border-radius: 1rem;
+    box-shadow: 0 0.7rem 1rem rgba(0, 0, 0, 0.1), 0 0.4rem 0.6rem rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    text-align: center;
 }
 
 .profileBig img {
     width: 20vw;
     height: auto;
+    max-width: 400px;
     border-radius: 50%;
     margin-top: -50px;
     border: 1rem solid #fff;
     box-shadow: 0 0.7rem 1rem rgba(0, 0, 0, 0.1);
 }
 
-.profileBigRest {
-  border-top: 0.2rem solid #ddd;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.profileBigRest li{
-  margin: 1.5rem 2rem 1.5rem 2rem;
-
-}
-
 #profileBigTitle {
-  font-size: 3.6rem;
-  font-weight: bold;
-  color: #333;
+    font-size: 3.6rem;
+    font-weight: bold;
+    color: #333;
 }
 
-#profileBigTitle:hover {
-  /*color: #2575fc;*/
+.profileBigRest {
+    border-top: 0.2rem solid #ddd;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    gap: 1rem;
+    max-width: 40rem;
+    width: 90%;
+    padding: 1rem;
 }
 
-.profileGrid {
-  display: flex;
-  align-items: center; 
-  
-  gap: 2rem; /* spacing between label & input */
-  width: 60%; 
-  margin-bottom: 10px;
-  border-bottom: 0.1rem solid #ddd;
+.profileBigRest input,
+.profileBigRest select {
+    font-size: 1.4rem;
+    padding: 0.7rem 1rem;
+    background-color: white;
+    border: 0.1rem solid #aaa;
+    border-radius: 0.4rem;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
 }
 
-.profileGridEmpty {
-  flex: 0.7;
+.profileBigRest label {
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: -0.4rem;
+    color: #333;
 }
 
-.profileGrid label{
-  font-size: 1.4rem;
-  font-weight: bold;
-  text-align: left;
-  white-space: nowrap;
-  flex: 0.7;
-}
-
-.profileGrid input {
-  flex: 1.5;
-  font-size: 1.4rem;
-  padding: 0.7rem 1rem;
-  text-align: center;
-  background-color: white;
-  border: 0.1rem solid #aaa;
-  border-radius: 0.4rem;
-  box-sizing:border-box;
-}
-
-.editingField {
-  flex:1.5;
-  text-align: left;
-  font-size: 1.4rem;
-  padding: 0.7rem 1rem;
-  border: 0.1rem solid transparent;
-  border-radius: 0.4rem;
-  box-sizing:border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.editingField:hover {
-  background-color: #e8f0ff;
-  border-color: #ccc;
-}
-
-
-.profileGrid select{
-  font-size: 1.4rem;
-  align-items: center;
-  background-color: whitesmoke;
-  border-radius:0.4rem;
-  padding:0.3rem 0.6rem;
-  cursor: pointer;
+.profileBig span {
+    font-size: 1.4rem;
+    text-align: left;
+    white-space: nowrap;
+    flex: 0.7;
 }
 
 .profileBig button {
     margin: 2rem auto 1rem auto;
-    padding: 1rem 2rem;
+    padding: 0.5rem 1rem;
     background-color: #070707;
     color: white;
     border: none;
@@ -905,7 +823,6 @@ ul {
     cursor: pointer;
     font-size: 2rem;
     transition: background-color 0.3s ease-in-out;
-
 }
 
 .profileBig button:hover {
@@ -917,36 +834,36 @@ ul {
 /* ---- LOG IN ---- */
 
 .user-auth-form {
-  margin: 1rem;
-  background: linear-gradient(145deg, #ffffff, #f0f0f0);
-  border-radius: 1rem;
-  box-shadow: 0 0.7rem 1rem rgba(0,0,0,0.1);
-  overflow: hidden;
-  text-align: center;
+    margin: 1rem;
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    border-radius: 1rem;
+    box-shadow: 0 0.7rem 1rem rgba(0,0,0,0.1);
+    overflow: hidden;
+    text-align: center;
   
 }
 
 .user-auth-form h2{
-  font-size: 2rem;
-  margin: 1rem;
+    font-size: 2rem;
+    margin: 1rem;
 }
 
 .user-auth-form input{
-  text-align: center;
+    text-align: center;
 }
 
 .user-auth-container {
-  border-top: 0.1rem solid #ddd;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem;
+    border-top: 0.1rem solid #ddd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
 }
 
 .user-auth-container label {
-  font-weight: bold;
-  align-self: flex-start;
-  margin-left: 1rem;
+    font-weight: bold;
+    align-self: flex-start;
+    margin-left: 1rem;
 }
 
 .user-auth-container input[type=text], input[type=email],
@@ -1034,14 +951,15 @@ input[type=password], input[type=date]
 .follower-list {
     /*max-width: 20rem;*/
     position: relative;
-    
-    width: minmax(19rem, auto);
+    width: 19rem auto;
+    min-width: 20rem;
     margin: 1rem;
     background: linear-gradient(145deg, #ffffff, #f0f0f0);
     border-radius: 1rem;
     box-shadow: 0 0.7rem 1rem rgba(0, 0, 0, 0.1), 0 0.4rem 0.6rem rgba(0, 0, 0, 0.05);
     overflow: hidden;
     text-align: center;
+    min-height: 5rem;
     max-height: 20rem;
     overflow-y: auto;
 }
@@ -1113,6 +1031,11 @@ input[type=password], input[type=date]
     align-items: center;
 }
 
+.search-result-page h2 {
+    border-bottom: 0.3rem solid #00796b;
+    font-weight: bold;
+}
+
 .search-result-wrapper {
     display:grid;
     grid-template-columns: auto auto;
@@ -1127,18 +1050,32 @@ input[type=password], input[type=date]
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 5vh;
-    width: 30vh;
+    height: 6.5vh;
+    min-width: 30vh;
     margin: 1vh;
     background: #f9f9f9;
     border-radius: 1rem;
     box-shadow: 0 0.7rem 1rem rgba(0, 0, 0, 0.1), 0 0.4rem 0.6rem rgba(0, 0, 0, 0.05);
     text-align: center;
-    font-size: 2.5vh;
+    font-size: 2.2vh;
+    padding-left: 1.5vh;
+    padding-right: 0.8vh;
 }
 
 .search-result-item button {
     margin-inline: 1vh;
+    padding:0.5vh 1vh;
+    background-color: #070707;
+    color: white;
+    border: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    font-size: 2vh;
+    transition: background 0.3s ease-in-out;
+}
+
+.search-result-item button:hover {
+    background-color: #388e3c;
 }
 
 
