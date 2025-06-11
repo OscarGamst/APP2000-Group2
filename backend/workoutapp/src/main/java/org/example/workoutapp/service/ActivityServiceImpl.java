@@ -11,12 +11,17 @@ import org.example.workoutapp.repository.ActivityRepository;
 import org.example.workoutapp.repository.ActivityRunRepository;
 import org.example.workoutapp.repository.ActivityWorkoutExerciseRepository;
 import org.example.workoutapp.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -41,26 +46,57 @@ public class ActivityServiceImpl {
         List<Activity> allActivities=activityRepository.findActivitiesTypeUsername(username, "weightlifting");
         List<AllActivitiesDTO> allActivitiesList=activityMapper.toAllActivitiesDTO(allActivities);
 
-        /*
+
         //Iterate through the list to check the types of each activity registered
         for (AllActivitiesDTO allActivitiesDTO:allActivitiesList){
 
             //Find the exercises in the exercises table
-            //and put them in a list. Then, update the exercises field in the dto to the list.
+            //and put them in a set. Then, update the exercises field in the dto to the set.
 
-            List<ActivityWorkoutExercise> activityWorkoutExercises=activityWorkoutExerciseRepository.findByActivityId(allActivitiesDTO.getActivityId());
-            List<ExerciseActivityDTO> exercises=activityMapper.toExerciseActivityDTO(activityWorkoutExercises);
-            allActivitiesDTO.setExercises(exercises);
+            Set<ActivityWorkoutExercise> exercises=activityWorkoutExerciseRepository.findByActivity_ActivityId(allActivitiesDTO.getActivityId());
+            allActivitiesDTO.setExercises(activityMapper.toExerciseActivityDTO(exercises));
 
-            //Get the total number of likes for the post and set this to the dto
-
-            //Get the total number of comments for the post and set this to the dto
         }
-         */
 
         //Lastly, return the list back to frontend.
         return allActivitiesList;
 
+    }
+
+    public List<AllActivitiesRunsDTO> getAllActivitiesRuns(@PathVariable String username) {
+
+        //Check if the username exists. If it does not, throw an error.
+        Users user = userRepository.findById(username).orElseThrow(() -> new RuntimeException("User not found"));
+
+        //Get a list of all activities registered on the user ordered by timestamp and map each
+        //activity object to an all-activities-dto.
+        List<Activity> allActivities=activityRepository.findActivitiesTypeUsername(username, "run");
+        List<AllActivitiesRunsDTO> allActivitiesRunsList=activityMapper.toAllActivitiesRunsDTO(allActivities);
+
+        //Iterate through the list to check the types of each activity registered
+        for (AllActivitiesRunsDTO allActivitiesRunsDTO:allActivitiesRunsList){
+
+            //Find the exercises in the exercises table
+            //and put them in a set. Then, update the exercises field in the dto to the set.
+
+            double distance=activityRunRepository.findDistanceWithId(Double.parseDouble(String.valueOf(allActivitiesRunsDTO.getActivityId())));
+            allActivitiesRunsDTO.setDistance(distance);
+
+        }
+
+        return allActivitiesRunsList;
+    }
+
+    public List<AllActivitiesCombinedDTO> getAllActivitiesCombined(@PathVariable String username) {
+        //Check if the username exists. If it does not, throw an error.
+        Users user = userRepository.findById(username).orElseThrow(() -> new RuntimeException("User not found"));
+
+        //Get a list of all activities registered on the user ordered by timestamp and map each
+        //activity object to an all-activities-dto.
+        List<Activity> allActivities=activityRepository.findActivitiesTypeUsername(username, "combined");
+        List<AllActivitiesCombinedDTO> allActivitiesCombinedList=activityMapper.toAllActivitiesCombinedDTO(allActivities);
+
+        return allActivitiesCombinedList;
     }
 
 
@@ -223,5 +259,4 @@ public class ActivityServiceImpl {
 
         return activityRepository.save(newActivity);
     }
-
 }

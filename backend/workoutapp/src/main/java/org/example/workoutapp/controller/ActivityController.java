@@ -6,10 +6,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.example.workoutapp.dto.ActivityCombinedDTO;
-import org.example.workoutapp.dto.ActivityRunDTO;
-import org.example.workoutapp.dto.ActivityWorkoutDTO;
-import org.example.workoutapp.dto.AllActivitiesDTO;
+import org.example.workoutapp.dto.*;
 import org.example.workoutapp.model.Activity;
 import org.example.workoutapp.service.ActivityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +29,39 @@ public class ActivityController {
     //  ------------------ GET ------------------
     //  ---------INSERT ALL GETTERS HERE---------
 
-    @GetMapping("/allActivities/{username}")
+
+    @GetMapping("/allActivitiesWeightlifting/{username}")
+    @ResponseStatus(HttpStatus.CREATED)
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", description = "List recieved"),
+            @ApiResponse(responseCode = "400", description = "Invalid"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
     public ResponseEntity<List<AllActivitiesDTO>> getAllActivities(@PathVariable String username) {
         return ResponseEntity.ok(activityServiceImpl.getAllActivities(username));
     }
 
+    @GetMapping("/allActivitiesRuns/{username}")
+    @ResponseStatus(HttpStatus.CREATED)
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", description = "List recieved"),
+            @ApiResponse(responseCode = "400", description = "Invalid"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
+    public ResponseEntity<List<AllActivitiesRunsDTO>> getAllActivitiesRuns(@PathVariable String username) {
+        return ResponseEntity.ok(activityServiceImpl.getAllActivitiesRuns(username));
+    }
+
+    @GetMapping("/allActivitiesCombined/{username}")
+    @ResponseStatus(HttpStatus.CREATED)
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", description = "List recieved"),
+            @ApiResponse(responseCode = "400", description = "Invalid"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
+    public ResponseEntity<List<AllActivitiesCombinedDTO>> getAllActivitiesCombined(@PathVariable String username) {
+        return ResponseEntity.ok(activityServiceImpl.getAllActivitiesCombined(username));
+    }
 
     //  ------------------ POST ------------------
     //  ---------INSERT ALL POSTERS HERE----------
