@@ -968,6 +968,7 @@ input[type=password], input[type=date]
     margin: 0 2rem;
     font-size: xx-large;
     border-bottom: 0.2rem solid #ddd;
+    
 }
 
 .follow-list-item {
@@ -998,7 +999,8 @@ input[type=password], input[type=date]
     border: none;
     background: none;
     padding: 0.5rem 1rem;
-    font-weight: bold;
+    font-size:1.3rem;
+    font-weight: bolder;
     cursor: pointer;
     color: #555;
     border-bottom: 0.2rem solid transparent;
