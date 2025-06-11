@@ -14,14 +14,21 @@ const SearchBar = () => {
         }
     };
 
+    const handleKey = (e) => {
+        if (e.key === 'Enter') {
+            handleSearch();
+        }
+    }
+
     return (
         <div className="searchbox">
+            
             <input type="text" 
                 placeholder="Search..." 
                 value={searchValue}
                 onChange={(e)=>setSearchValue(e.target.value)}
             />
-            <button className="searchbutton" onClick={handleSearch}>
+            <button className="searchbutton" onClick={handleSearch} type="submit">
             Search
             </button>
       </div>

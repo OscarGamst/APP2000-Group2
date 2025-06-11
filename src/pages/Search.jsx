@@ -16,12 +16,17 @@ function Search() {
         }
     },[]);
 
-    return (
-        <div>
-            <h2>Search Results</h2>
+    return (<>
+        {/* <div className="home-empty"></div> */}
+        <div className="search-result-page">
+            
+            <h2 style={{marginTop:"2vh"}}>Search Results</h2>
+            <div className="search-result-wrapper">
             <SearchResult/>
+            </div>
         </div>
-    );
+        {/* <div className="home-empty"></div> */}
+    </>);
 
 }
 

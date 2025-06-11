@@ -18,7 +18,7 @@ const SearchResult = () => {
     const [fetchedResults, setFetchedResults] = useState([]);
     const location = useLocation();
     const queryParameters = new URLSearchParams(location.search);
-    const searchValue = queryParameters.get("q") || "";
+    const searchValue = queryParameters.get("q") || ""; //default er da tom string
 
     useEffect(()=> {
         const handleSearch = async () => {
@@ -31,6 +31,7 @@ const SearchResult = () => {
             }
         }
         
+        //hvis searchValue ikke er en tom string
         if (searchValue) {
             handleSearch();
         }
@@ -44,7 +45,7 @@ const SearchResult = () => {
             //        followerUsername : user.username,
             //        followedUsername : followTarget,
             //    });
-            //funka ikke, Mr. GPT foreslo å legget til "null", params pga JSON-kluss
+            //funka ikke, Mr. GPT foreslo å legge til "null", params pga JSON-kluss
     const handleFollow = async (followTarget) => {
         try {
             await axios.post("api/social/follow", null,{
@@ -61,16 +62,16 @@ const SearchResult = () => {
     
 
     return (<>
-        <ul>
+        <div className="search-result-wrapper">
             {fetchedResults
                 .filter(item => item.visibility === true && item.username!==user.username)
                 .map(item => (
-                    <li key={item.username}>
+                    <div key={item.username} className="search-result-item">
                         {item.username}
                         <button onClick={()=>handleFollow(item.username)}>Follow</button>
-                    </li>
+                    </div>
                 ))}
-        </ul>
+        </div>
     </>);
 }
 
