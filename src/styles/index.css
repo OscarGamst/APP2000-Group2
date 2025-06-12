@@ -38,11 +38,12 @@ ul {
 
 .home-main {
   flex: 2.5;
+  /*for at kommentarer/elementer ikke øker størrelsen på pagen*/
+  max-width: 58%;
 }
 
 .home-sidebar {
-  flex: 1;
-  
+  flex: 1;  
 }
 
 .flex-empty {
@@ -308,6 +309,7 @@ ul {
 
 
 /* ---- Common Activity Styling ---- */
+
 .activity-item h4 {
   font-size: 1.3rem;
   margin-bottom: 0.5rem;
@@ -335,7 +337,10 @@ ul {
 }
 
 .commentContent {
-  border-bottom: 0.1rem solid grey; 
+  border-bottom: 0.1rem solid grey;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
 }
 
 
