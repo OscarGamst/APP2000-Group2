@@ -64,7 +64,7 @@ const ActivityItem = () => {
   //Henter andres aktiviteter, ganske lik logikk som med egne aktiviteter
   useEffect(() => {
       const fetchFollowingActivities = async () => {
-        if (user?.username) {
+        if (user && user.username) {
           try {
             //Hnenter alle following og mapper de så vi kan gå gjennom med løkke
             const followRes = await axios.get(`/api/social/following/${user.username}`);

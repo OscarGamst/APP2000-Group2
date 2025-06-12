@@ -18,6 +18,7 @@ import axios from "axios";
 const NewActivityFeed = () => {
 
     const [feedFilter, setFeedFilter]=useState("all");
+    const [updateButton, setUpdateButton]=useState(true);
 
     const [user, setUser] = useState();
     //Her lagres alle aktiviteter
@@ -98,6 +99,94 @@ const NewActivityFeed = () => {
         }));
     };
 
+    const deletePost = async (activityId) => {
+        try {
+            const deleteActivity=await axios.delete(`/api/activity/deleteActivity/${activityId}`);
+        } catch (err) {
+            console.error(`Failed to delete activity ${activityId}`, err);
+        }
+    }
+
+    const [postAccess, setPostAccess]=useState("private");
+
+    const showUpdateForm = () => {
+        setUpdateButton(false);
+    }
+
+    const UpdatePost = (activityId) => {
+
+
+        const handleSubmit = async (event) => {
+
+            event.preventDefault();
+
+            const newPostInfo={};
+
+            newPostInfo.duration(Number(event.target.elements.duration.value));
+            newPostInfo.description(String(event.target.elements.description.value));
+            newPostInfo.title(String(event.target.elements.title.value));
+            newPostInfo.access(String(postAccess));
+            newPostInfo.activityId(activityId);
+
+            try {
+                await axios.put("api/activity/updateActivity",newPostInfo);
+            } catch (err) {
+                console.error(err);
+                alert("YIKES ! Error !!");
+            }
+            setUpdateButton(true);
+
+        }
+
+        return(
+            <div>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label>Title : </label>
+                        <input
+                            type="text"
+                            id="title"
+                            name="title"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label>Description : </label>
+                        <textarea
+                            id="description"
+                            name="description"
+                            required
+                        >
+                    </textarea>
+                    </div>
+                    <div>
+                        <label>Private : </label>
+                        <select
+                            id="access"
+                            name="access"
+                            value={postAccess}
+                            onChange={(e) => setPostAccess(e.target.value)}
+                        >
+                            <option value="private">Private</option>
+                            <option value="public">Public</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Duration (min) : </label>
+                        <input
+                            type="number"
+                            id="duration"
+                            name="duration"
+                            min="0"
+                            required
+                        />
+                    </div>
+                    <button type="submit">Save</button>
+                </form>
+            </div>
+        )
+    }
+
     return (
         <div className="activity-list-container">
             <h2 className="activity-list-header">Activity Feed</h2>
@@ -143,7 +232,14 @@ const NewActivityFeed = () => {
                             <p>Timestamp: {activity.timestamp} </p>
                             <div className="activity-social">
                                 <ul>
-                                    <button id="like-btn" >Like</button>
+                                    <button id="like-btn"
+                                        onClick={()=> deletePost(activity.activityId)}
+                                    >Delete</button>
+                                    {updateButton? <button id="like-btn"
+                                            onClick={showUpdateForm}
+                                            >Edit</button> : <UpdatePost activityId={(activity.activityId)}/>
+                                    }
+
                                     <button
                                         onClick={() => toggleComments(activity.activityId)}
                                         className="activity-comment"

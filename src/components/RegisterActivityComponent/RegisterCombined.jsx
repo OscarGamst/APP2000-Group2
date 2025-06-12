@@ -57,8 +57,6 @@ const Page1 = ({returnToDefault}) => {
             console.error(err);
             alert("YIKES ! Error !!");
         }
-
-        console.log(registerWorkout);
         registerWorkout.resetObject();
         returnToDefault();
 
