@@ -2,11 +2,9 @@ import React, {useEffect, useState} from 'react';
 import "../../styles/index.css";
 import GoalObject from './GoalObject.jsx';
 
-//Goal object used to store information about the goal before sending it to the database
-const goal=new GoalObject();
+const goal = new GoalObject();
 
 const GoalRegistration = ({returnToDefault}) => {
-
     useEffect(() => {
         const storedUser = localStorage.getItem("loggedInUser");
         if (storedUser) {
@@ -14,39 +12,30 @@ const GoalRegistration = ({returnToDefault}) => {
         }
     }, []);
 
-    const [page, setPage]=useState(true);
+    const [page, setPage] = useState(true);
 
-    const back = () => {
-        setPage(true);
-    }
+    const back = () => setPage(true);
+    const next = () => setPage(false);
 
-    const next = () => {
-        setPage(false);
-    }
     return (
         <div>
             <h3>Register Goal</h3>
-            {page ? <Page1 next={next} returnToDefault={returnToDefault}/>:<Page2 back={back} returnToDefault={returnToDefault}/>}
+            {page ? <Page1 next={next} returnToDefault={returnToDefault}/> : <Page2 back={back} returnToDefault={returnToDefault}/>}
         </div>
     );
-
 }
 
 const Page1 = ({returnToDefault, next}) => {
-
-    const [goalType, setGoalType]=useState(goal.getType());
-    const [repeating,setRepeating]=useState(goal.getRepeating());
+    const [goalType, setGoalType] = useState(goal.getType());
+    const [repeating, setRepeating] = useState(goal.getRepeating());
 
     const handleSubmit = (event) => {
-
         event.preventDefault();
-
         goal.setType(goalType);
         goal.setRepeating(repeating);
         goal.setFrequency(Number(event.target.elements.frequency.value));
         console.log(goal);
         next();
-
     }
 
     return (
@@ -83,43 +72,39 @@ const Page1 = ({returnToDefault, next}) => {
                         type="number"
                         id="frequency"
                         name="frequency"
-                        readOnly={repeating==="never"}
-                        />
+                        readOnly={repeating === "never"}
+                    />
                 </div>
-                <button type="submit">Next</button>
+                <button type="submit" className="add-button">Next</button>
             </form>
-            <button onClick={returnToDefault}>Cancel</button>
+            <button onClick={returnToDefault} className="add-button">Cancel</button>
         </div>
-
     );
 }
 
 const Page2 = ({back, returnToDefault}) => {
-    //Check which type of goal the user wants to register
-    const goalChoice=goal.getType();
+    const goalChoice = goal.getType();
 
     return (
         <div>
-            {(goalChoice==="weightlifting") ? <WeightliftingGoalLayout returnToDefault={returnToDefault}/>:<RunGoalLayout returnToDefault={returnToDefault}/>}
-            <button onClick={back}>Back</button>
-            <button onClick={returnToDefault}>Cancel</button>
+            {goalChoice === "weightlifting"
+                ? <WeightliftingGoalLayout returnToDefault={returnToDefault}/>
+                : <RunGoalLayout returnToDefault={returnToDefault}/>}
+            <button onClick={back} className="add-button">Back</button>
+            <button onClick={returnToDefault} className="add-button">Cancel</button>
         </div>
     );
 }
 
 const WeightliftingGoalLayout = ({returnToDefault}) => {
-
     const handleSubmit = (event) => {
         event.preventDefault();
-
         goal.setExerciseName(event.target.elements.exerciseName.value);
         goal.setSets(Number(event.target.elements.sets.value));
         goal.setWeight(Number(event.target.elements.kg.value));
         goal.setReps(Number(event.target.elements.reps.value));
-
         goal.resetObject();
         returnToDefault();
-
     }
 
     return (
@@ -127,61 +112,33 @@ const WeightliftingGoalLayout = ({returnToDefault}) => {
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Exercise name : </label>
-                    <input
-                        type="text"
-                        id="exerciseName"
-                        name="exerciseName"
-                        min="0"
-                        required
-                    />
+                    <input type="text" id="exerciseName" name="exerciseName" min="0" required />
                 </div>
                 <div>
                     <label>Sets : </label>
-                    <input
-                        type="number"
-                        id="sets"
-                        name="sets"
-                        min="0"
-                        required
-                    />
+                    <input type="number" id="sets" name="sets" min="0" required />
                 </div>
                 <div>
                     <label>kg weight used : </label>
-                    <input
-                        type="number"
-                        id="kg"
-                        name="kg"
-                        min="0"
-                        required
-                    />
+                    <input type="number" id="kg" name="kg" min="0" required />
                 </div>
                 <div>
                     <label>reps : </label>
-                    <input
-                        type="number"
-                        id="reps"
-                        name="reps"
-                        min="0"
-                        required
-                    />
+                    <input type="number" id="reps" name="reps" min="0" required />
                 </div>
-                <button type="Submit">Save</button>
+                <button type="submit" className="add-button">Save</button>
             </form>
         </div>
     );
 }
 
 const RunGoalLayout = ({returnToDefault}) => {
-
     const handleSubmit = (event) => {
         event.preventDefault();
-
         goal.setDistance(event.target.elements.distance.value);
         goal.setTime(Number(event.target.elements.time.value));
-
         goal.resetObject();
         returnToDefault();
-
     }
 
     return (
@@ -189,25 +146,13 @@ const RunGoalLayout = ({returnToDefault}) => {
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Distance : </label>
-                    <input
-                        type="number"
-                        id="distance"
-                        name="distance"
-                        min="0"
-                        required
-                    />
+                    <input type="number" id="distance" name="distance" min="0" required />
                 </div>
                 <div>
                     <label>Time : </label>
-                    <input
-                        type="number"
-                        id="time"
-                        name="time"
-                        min="0"
-                        required
-                    />
+                    <input type="number" id="time" name="time" min="0" required />
                 </div>
-                <button type="Submit">Save</button>
+                <button type="submit" className="add-button">Save</button>
             </form>
         </div>
     );
