@@ -307,6 +307,21 @@ ul {
   margin-left: auto;
 }
 
+.commentInput {
+  
+}
+
+.commentButton {
+  background-color: #0ddbae;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
 
 /* ---- Common Activity Styling ---- */
 
