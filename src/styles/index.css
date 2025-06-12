@@ -263,7 +263,7 @@ ul {
 }
 
 /* ---- Activity Type Styles ---- */
-/* we can add unique things like images (shoe for running or a bar for workout etc)*/
+
 .activity-workout {
   background-color:#f5fdf4; 
 }
@@ -402,42 +402,51 @@ ul {
 /* Container styling */
 .goals-container {
   width: 100%;
-  max-width: 70 rem;
-  padding: 0.5rem;
-  border: 0.1rem solid rgb(198, 198, 198);
-  border-radius: 0.5rem;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-  background-color: white;
-  
+  max-width: 70rem;
+  padding: 2rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background-color: #ffffff;
+  margin-bottom: 2rem;
+  transition: box-shadow 0.3s ease;
+}
+
+.goals-container:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
 }
 
 /* Header styling */
 .goals-header {
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .goals-header h2 {
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
 }
 
 /* Button styling */
 .add-goal-button {
-  background-color: #333;
-  color: #fff;
+  background: linear-gradient(to right, #1db954, #1ed760);
+  color: #ffffff;
   font-size: 1rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.2rem;
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease;
 }
 
 .add-goal-button:hover {
-  background-color: #388e3c;
+  background: linear-gradient(to right, #14833b, #1db954);
 }
 
 /* Content styling */
@@ -447,28 +456,54 @@ ul {
 }
 
 .goal-category {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 0.5rem;
+  border-left: 5px solid #1db954;
 }
 
 .goal-category h3 {
-  font-size: 1.25rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #1a1a1a;
+}
+
+.goal-category h4 {
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+  color: #333;
 }
 
 .goal-category ul {
-  list-style: disc;
-  padding-left: 2rem;
+  list-style: none;
+  padding-left: 1rem;
+  margin: 0;
 }
 
 .goal-category li {
   margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  position: relative;
 }
+
+.goal-category li::before {
+  content: "•";
+  color: #1db954;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+/* Empty state */
 .no-goals-message {
   font-style: italic;
   color: gray;
   margin-top: 1rem;
+  padding-left: 0.5rem;
 }
+
 
 
 
@@ -579,42 +614,155 @@ ul {
 
 /* ADD ACTIVITY GREIA*/
 
+
 .add-container {
   width: 100%;
   max-width: 70rem;
   padding: 2rem;
-  background-color: #fff;
-  border: 0.1rem solid #ccc;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
   border-radius: 1rem;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   display: flex;
-  flex-direction: row; 
-  align-items: center; 
-  gap: 1rem; 
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  transition: box-shadow 0.3s ease;
 }
+
+.add-container:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
 
 .add-heading {
-  font-size: 0.75rem;
-  font-weight: bold;
-  color: #333;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222;
   margin: 0;
+  flex-grow: 1;
 }
 
+
 .add-button {
-  padding: 0.8rem 1.5rem;
-  font-size: 0.75rem;
-  font-weight: bold;
-  color: #fff;
-  background-color: #333;
+  padding: 0.75rem 1.6rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(to right, #1db954, #1ed760);
+  border: none;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  transition: all 0.25s ease; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.add-button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: rgba(18, 188, 92, 0.1);
+  transform: skewX(-20deg);
+  transition: left 0.5s ease;
+}
+
+.add-button:hover::after {
+  left: 100%;
+}
+
+.add-button:hover {
+  background: linear-gradient(to right, #14833b, #1db954);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+.add-button:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+/* Hele skjemaboksen */
+form {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  max-width: 600px;
+  margin: 1rem auto;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Hver seksjon i skjemaet */
+form > div {
+  margin-bottom: 1rem;
+}
+
+/* Tekstetiketter */
+label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #222;
+}
+
+/* Tekstinput og nedtrekkslister */
+input[type="number"],
+input[type="text"],
+select {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.95rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: #1db954;
+  outline: none;
+}
+
+/* Knappene bruker .add-button (definert tidligere) */
+.add-button {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(to right, #1db954, #1ed760);
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-} 
+  margin-right: 0.5rem;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
 
 .add-button:hover {
-  background-color: #388e3c;
+  background: linear-gradient(to right, #14833b, #1db954);
+  transform: translateY(-1px);
 }
+
+.add-button:active {
+  transform: scale(0.97);
+}
+
+/* Overskrifter */
+h3, h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+
 
 
 
