@@ -143,7 +143,7 @@ const WeightliftingGoalLayout = ({returnToDefault}) => {
 const RunGoalLayout = ({returnToDefault}) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
-        goal.setDistance(event.target.elements.distance.value);
+        goal.setDistance(Number(event.target.elements.distance.value));
         goal.setTime(Number(event.target.elements.time.value));
 
         try {

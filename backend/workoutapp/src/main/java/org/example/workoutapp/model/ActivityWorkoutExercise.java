@@ -24,7 +24,7 @@ public class ActivityWorkoutExercise {
     @JoinColumn(name = "activityId")
     private Activity activity;
 
-    //This was gotten from chatgpt
+    //This was gotten from chatGPT
     public Integer getActivityId() {
         return activity != null ? activity.getActivityId() : null;
     }

@@ -6,7 +6,7 @@ class Workout {
         this.exercises=[];
         this.description = "";
         this.duration=0;
-        this.type=""; //This is just to make searches easier in the backend
+        this.type="";
         this.title="";
         this.user="";
         this.access="private";
@@ -75,7 +75,7 @@ class Workout {
         this.exercises=[];
         this.description = "";
         this.duration=0;
-        this.type=""; //This is just to make searches easier in the backend
+        this.type="";
         this.title="";
         this.user="";
         this.access="private";

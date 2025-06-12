@@ -75,7 +75,6 @@ public class ActivityServiceImpl {
 
             //Find the exercises in the exercises table
             //and put them in a set. Then, update the exercises field in the dto to the set.
-
             double distance=activityRunRepository.findDistanceWithId(Double.parseDouble(String.valueOf(allActivitiesRunsDTO.getActivityId())));
             allActivitiesRunsDTO.setDistance(distance);
 
@@ -128,7 +127,6 @@ public class ActivityServiceImpl {
         newActivity.setTimestamp(LocalDateTime.now());
         newActivity.setAccess(activityWorkoutDTO.getAccess());
 
-        //Find the user in the database - copy of Oscar's code
         Users user = userRepository.findById(activityWorkoutDTO.getUser()).orElseThrow(() -> new RuntimeException("User not found"));
 
         newActivity.setUser(user);
@@ -198,7 +196,6 @@ public class ActivityServiceImpl {
         newActivity.setTimestamp(LocalDateTime.now());
         newActivity.setAccess(activityRunDTO.getAccess());
 
-        //Find the user in the database - copy of Oscar's code
         Users user = userRepository.findById(activityRunDTO.getUser()).orElseThrow(() -> new RuntimeException("User not found"));
 
         newActivity.setUser(user);
@@ -247,7 +244,6 @@ public class ActivityServiceImpl {
         newActivity.setTimestamp(LocalDateTime.now());
         newActivity.setAccess(activityCombinedDTO.getAccess());
 
-        //Find the user in the database - copy of Oscar's code
         Users user = userRepository.findById(activityCombinedDTO.getUser()).orElseThrow(() -> new RuntimeException("User not found"));
 
         newActivity.setUser(user);

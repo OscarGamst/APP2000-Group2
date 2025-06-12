@@ -3,17 +3,6 @@ import "../../styles/index.css";
 
 import axios from "axios";
 
-
-//To get the activities from the database, we have to get the username of the user that is currently
-//logged in.
-
-
-
-
-//Should be able to get activities from friends and your own.
-//Your activities can be filtered to show only runs, weightlifting or
-//combined activities.
-
 const NewActivityFeed = () => {
 
     const [feedFilter, setFeedFilter]=useState("all");
@@ -47,8 +36,6 @@ const NewActivityFeed = () => {
                     const resRun = await axios.get(`/api/activity/allActivitiesRuns/${user.username}`);
                     const resWeight = await axios.get(`/api/activity/allActivitiesWeightlifting/${user.username}`);
                     const resCombined = await axios.get(`/api/activity/allActivitiesCombined/${user.username}`);
-                    //console.log(activityRun);
-                    //console.log(activityWeightlift);
                     setRuns(resRun.data);
                     setWeightlift(resWeight.data);
                     setCombined(resCombined.data);
