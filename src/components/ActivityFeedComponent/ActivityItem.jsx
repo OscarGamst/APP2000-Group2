@@ -177,8 +177,7 @@ const filteredActivities = activityFilter === "following" ? activitiesFollow : a
    return (
     <div>
       {/* Filter til egne/andres aktiviteter */}
-      <div className="activity-filter">
-        <label>Filter:</label>
+      <div className="activity-filter">        
         <select value={activityFilter} onChange={(e) => setActivityFilter(e.target.value)}>
           <option value="own">My Activities</option>
           <option value="following">Following</option>
@@ -190,8 +189,8 @@ const filteredActivities = activityFilter === "following" ? activitiesFollow : a
         <div key={activity.activityId} className={`activity-item ${getActivityClass(activity.type)}`}>
           <h3>{activity.user}</h3>
           <h4>{activity.title}</h4>
-          <p>Type: {activity.type}</p>
-          <p>Duration: {activity.duration}</p>
+          <p>Activity-{activity.type}</p>
+          <p>Duration: {activity.duration}min</p>
           {activity.distance !== undefined && <p><strong>Distance:</strong> {activity.distance} km</p>}
           {activity.exercises && activity.exercises.length > 0 && (
             <div className="exercise-section">
