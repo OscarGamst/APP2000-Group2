@@ -686,28 +686,16 @@ ul {
   transform: scale(0.98);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
-/* Hele skjemaboksen */
-form {
-  background-color: #fff;
-  border: 1px solid #e0e0e0;
-  padding: 1.5rem;
-  border-radius: 1rem;
-  max-width: 600px;
-  margin: 1rem auto;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-}
 
-/* Hver seksjon i skjemaet */
-form > div {
-  margin-bottom: 1rem;
-}
+
+
 
 /* Tekstetiketter */
-label {
+.add label {
   display: block;
   margin-bottom: 0.3rem;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.9rem; 
   color: #222;
 }
 
@@ -755,7 +743,7 @@ select:focus {
 }
 
 /* Overskrifter */
-h3, h4 {
+.add h3 h4 {
   font-size: 1.25rem;
   font-weight: 600;
   color: #1a1a1a;
@@ -767,10 +755,6 @@ h3, h4 {
 
 
 /* ADD ACTIVITY GREIA SLUTT*/
-
-
-
-/*Activity siden slutt*/
 
 /* ---- Profile Card ---- */
 
@@ -1116,7 +1100,6 @@ input[type=password], input[type=date]
     margin: 0 2rem;
     font-size: xx-large;
     border-bottom: 0.2rem solid #ddd;
-    
 }
 
 .follow-list-item {
@@ -1147,8 +1130,7 @@ input[type=password], input[type=date]
     border: none;
     background: none;
     padding: 0.5rem 1rem;
-    font-size:1.3rem;
-    font-weight: bolder;
+    font-weight: bold;
     cursor: pointer;
     color: #555;
     border-bottom: 0.2rem solid transparent;

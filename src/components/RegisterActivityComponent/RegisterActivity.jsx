@@ -56,12 +56,13 @@ const RegisterActivity = () => {
     return (
 		<div>
 			{visibilityItems ? (
-				<div>
-					<h3>Register Activity</h3>
-					<button onClick={showWeightlift}>Weightlifting</button>
-					<button onClick={showRun}>Run</button>
-					<button onClick={showCombined}>Combined</button>
-				</div>
+				<div className="register-activity-container">
+				<h3>Register Activity</h3>
+				<button onClick={showWeightlift} className="register-button">Weightlifting</button>
+				<button onClick={showRun} className="register-button">Run</button>
+				<button onClick={showCombined} className="register-button">Combined</button>
+			  </div>
+			  
 			) : null}
 			{visibilityWeightlifting ? <RegisterWeightlifting returnToDefault={returnToDefault}/> :null}
 			{visibilityRun ? <RegisterRun returnToDefault={returnToDefault}/> :null}
