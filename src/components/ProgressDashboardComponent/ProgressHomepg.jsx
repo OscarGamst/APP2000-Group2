@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import "../../styles/index.css";
 import runningIcon from "../../pictures/RunningIconHomepg.png";
 import weightIcon from "../../pictures/WeightIconHomepage.png";
-import foodIcon from "../../pictures/FoodIconHomepg.png";
 import chechmarkIcon from "../../pictures/ChechmarkIconHomepg.png";
 
 const ProgressHomepg = () => {
@@ -36,22 +35,21 @@ const ProgressHomepg = () => {
                     <p>Km ran</p>
                     <p>{runProg}</p>
                 </div>
+
+
                 <div className="progressBoxColumn">
                     <img src={weightIcon} className="progressIcons"/>
-                    <p>Kg lifted</p>
+                    <p>weightlifting sessions</p>
                     <p>{weightProg}</p>
                 </div>
-                <div className="progressBoxColumn">
-                    <img src={foodIcon} className="progressIcons"/>
-                    <p>KJ burned</p>
-                    <p>{kalProg}</p>
-                </div>
+
                 <div className="progressBoxColumn">
                     <img src={chechmarkIcon} className="progressIcons"/>
                     <p>Activities Completed</p>
                     <p>{numberActivities}</p>
 
                 </div>
+
             </div>
         </div>
     )
