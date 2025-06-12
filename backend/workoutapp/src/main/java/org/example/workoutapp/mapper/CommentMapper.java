@@ -11,7 +11,6 @@ import java.util.List;
 @Mapper(componentModel = "spring",
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface CommentMapper {
-    //These two lines with @Mapping I used AI, because I couldn't figure out why it wasn't mapping username/activityid correctly
     @Mapping(source = "user.username", target = "username")
     @Mapping(source = "activity.activityId", target = "activityId")
     CommentDTO toCommentDTO(Comment comment);
