@@ -3,25 +3,25 @@ import React, { useState } from 'react';
 
 const RegisterComponent = () => {
     const [RegisterData, setRegisterData] = useState({
-    username: "",
-    email: "",
-    password: "",
-    birthday: "",
-    visibility: false,
+        username: "",
+        email: "",
+        password: "",
+        birthday: "",
+        visibility: false,
     });
 
 
-  const handleSubmit = async (e) => { //når vi trykker på knappen
-    e.preventDefault();
-    try {
-        await axios.post("api/users/register",RegisterData);
-      
-    } catch (err) {
-        console.error(err);
-        alert("YIKES!! error!!");
-    }
+    const handleSubmit = async (e) => { //når vi trykker på knappen
+        e.preventDefault();
+        try {
+            await axios.post("api/users/register",RegisterData);
+            alert("Registration successful.")
+        } catch (err) {
+            console.error(err);
+            alert("YIKES!! error!!");
+        }
 
-  };
+    };
 
 
 
