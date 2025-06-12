@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import activities from "./ActivityData";
-import "../styles/index.css";
+import "../../../styles/index.css";
 
 const ActivityList = () => {
   const [visibleActivities, setVisibleActivities] = useState(3);

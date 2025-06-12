@@ -1,8 +1,8 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import "../styles/index.css";
-import default_pfp from "../pictures/default_pfp.png";
+import "../../styles/index.css";
+import default_pfp from "../../pictures/default_pfp.png";
 import axios from "axios";
 
 const ProfileCard = () => {

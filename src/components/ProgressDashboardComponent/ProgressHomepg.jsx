@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import "../styles/index.css";
-import runningIcon from "../pictures/RunningIconHomepg.png";
-import weightIcon from "../pictures/WeightIconHomepage.png";
-import foodIcon from "../pictures/FoodIconHomepg.png";
-import chechmarkIcon from "../pictures/ChechmarkIconHomepg.png";
+import "../../styles/index.css";
+import runningIcon from "../../pictures/RunningIconHomepg.png";
+import weightIcon from "../../pictures/WeightIconHomepage.png";
+import foodIcon from "../../pictures/FoodIconHomepg.png";
+import chechmarkIcon from "../../pictures/ChechmarkIconHomepg.png";
 
 const ProgressHomepg = () => {
     //Variables

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ActivityItem from "./ActivityItem";
-import "../styles/index.css";
-import "../styles/responsive.css";
+import "../../../styles/index.css";
+import "../../../styles/responsive.css";
 import activities from "./ActivityData";
 
 const ActivityFeed = () => { 
