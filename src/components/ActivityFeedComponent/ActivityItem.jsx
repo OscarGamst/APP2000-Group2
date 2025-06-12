@@ -19,6 +19,7 @@ const ActivityItem = () => {
   const [comments, setComments] = useState({});
   const [openComments, setOpenComments] = useState({});
   const [newComments, setNewComments] = useState({});
+  //console.log(openComments);
   //Filter på egne og andres aktiviteter
   const [activityFilter, setActivityFilter] = useState("own");
 
@@ -132,8 +133,7 @@ const ActivityItem = () => {
 //Gjør kommentarer synlig med en toggleknapp
 const toggleComments = (activityId) => {
   setOpenComments((visible) => ({
-    ...visible,
-    [activityId]: !visible[activityId],
+    ...visible,[activityId]: !visible[activityId],
   }));
 };
 //håndterer det som blit inputta av bruker og blir kalt når man begynner å skrive
@@ -171,6 +171,7 @@ const filteredActivities = activityFilter === "following" ? activitiesFollow : a
   const sortedActivities = [...filteredActivities].sort(
     (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
   );
+  
 
 //Her retuneres alle aktivitetItemsene som er laget
    return (

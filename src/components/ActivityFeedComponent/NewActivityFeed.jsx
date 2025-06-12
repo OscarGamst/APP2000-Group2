@@ -113,7 +113,7 @@ const NewActivityFeed = () => {
         
         setUpdateButton((visible) => ({
             ...visible,
-            [activityId:!visible[activityId],
+            [activityId]:!visible[activityId],
         }));
     }
 
@@ -235,15 +235,18 @@ const NewActivityFeed = () => {
                             )}
                             <p>Timestamp: {activity.timestamp} </p>
                             <div className="activity-social">
-                                <ul>
                                     <button id="like-btn"
                                         onClick={()=> deletePost(activity.activityId)}
                                     >Delete</button>
-                                    {setUpdateButton[activity.activityId] && <button id="like-btn"
+                                    {updateButton[activity.activityId] && 
+                                            <div><button id="like-btn"
                                             onClick={() => showUpdateForm(activity.activityId)}
-                                            >Edit</button> : <UpdatePost activityId={(activity.activityId)}/>
+                                            >Edit</button>
+                                            </div>:
+                                            <div>
+                                                <UpdatePost activityId={(activity.activityId)}/>
+                                            </div>
                                     }
-                                </ul>
                             </div>
                             {openComments[activity.activityId] && (
                                 <div className="commentSection">
