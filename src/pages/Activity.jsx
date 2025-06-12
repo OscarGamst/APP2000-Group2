@@ -2,15 +2,10 @@
 // src/pages/Activity.jsx
 import React from "react";
 import "../styles/index.css";
-import ProgressBar from "../components/ProgressBar";
-import RecentActivityFeed from "../components/RecentActivityFeed";
-import ActivityFeed from "../components/ActivityFeed";
-import ProfileCard from "../components/ProfileCard";
-import Goals from "../components/Goals";
-import ActivityList from "../components/ActivityList";
+import ProgressBar from "../components/ProgressBarComponent/ProgressBar";
+import Goals from "../components/GoalsDisplayComponent/Goals";
+import ActivityList from "../components/TestingFolder/ActivityEarlyVersion/ActivityList";
 import Add from "../components/Add";
-import GoalRunList from "../components/GoalComponent/GoalRunList";
-import GoalTab from "../components/GoalComponent/GoalTab";
 import NewActivityList from "../components/ActivityFeedComponent/NewActivityFeed";
 
 const Activity = () => {
@@ -19,7 +14,6 @@ const Activity = () => {
       <div className="activity-page-main">
       <ProgressBar/>
           <NewActivityList/>
-      <ActivityList/>
       </div> 
       
       <div className="activity-page-siebar">

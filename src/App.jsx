@@ -1,45 +1,71 @@
 // src/App.js
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-import Progress from "./pages/Progress";
 import Activity from "./pages/Activity";
 import TestPageNoNav from "./pages/TestPageNoNav";
-import Albert from "./pages/Albert";
 import "./styles/responsive.css";
 import AuthPage from "./pages/AuthPage";
-import { useEffect } from "react";
-import { useState } from "react";
 import Search from "./pages/Search";
 
 function App() {
-    //brukerdata
+    //Optimalt så burde vi nok bruke "sessionStorage" istedenfor, men det her var 
+    //enklere å jobbe med :)
+    const [loading, setLoading] = useState(true);
     const [user,setUser] = useState(null);
-    useEffect(()=> {
-        const storedUser = localStorage.getItem("loggedInUser");
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
-        }
-    },[]);
+        useEffect(()=> {
+            const loadUserInfo = () => {
+                const storedUser = localStorage.getItem("loggedInUser");
+                if (storedUser) {
+                    setUser(JSON.parse(storedUser));
+                } else {
+                    setUser(null);
+                }
+            };
 
-  return (
-    <BrowserRouter>
-        <Routes>
-            <Route element={<MainLayout />}>
-                <Route path="/" element={<Home />} />
-                <Route path="/Profile" element={<Profile />} />
-                <Route path="/Progress" element={<Progress />} />
-                <Route path="/Activity" element={<Activity />} />
-                <Route path="/Albert" element={<Albert />} />
-                <Route path="/Search" element={<Search/>}/>
-            </Route>
-            <Route path="/TestPageNoNav" element={<TestPageNoNav />} />
-            <Route path="/Auth" element={<AuthPage />} />
-        </Routes>
-    </BrowserRouter>
-  );
+            loadUserInfo();
+            setLoading(false);
+
+            //vi bruker eventListener for å se etter endringer i localstorage
+            //feks hvis man logger ut ellerno vil "loadUserInfo" kjøre igjen
+            window.addEventListener("storage",loadUserInfo);
+            return ()=>{window.removeEventListener("storage",loadUserInfo);}
+
+    },[]);
+    //loading er lagt til så ikke react rendrer at vi skal til "/auth" 
+    // før vi har lest bruker
+    if(loading){
+        return (
+            <div style={{top:"50%", left:"50%", fontSize:"50vw"}}>Loading..</div>
+        )
+    }
+
+    return (
+        <BrowserRouter>
+
+            <Routes> 
+                <Route path="/Auth/*" element={<AuthPage />} />
+
+                {/* hvis vi ikke finner bruker, sender vi deg til auth page */}
+                <Route element={user?<MainLayout />:<Navigate to="/Auth" replace/>}>
+                    <Route path={"/"} element={<Home />} />
+                    <Route path="/Profile" element={<Profile />} />
+                    <Route path="/Activity" element={<Activity />} />
+                    <Route path="/Search" element={<Search/>}/>
+                </Route>
+
+                {/* testside som ikke bruker MainLayout */}
+                <Route path="/TestPageNoNav" element={<TestPageNoNav />} />
+            
+                {/* plukke opp alle mulige paths og sende til auth page */}
+                <Route path="*" element={<Navigate to="/Auth" replace />} />
+            </Routes>
+
+        </BrowserRouter>
+    );
 }
 
 export default App;

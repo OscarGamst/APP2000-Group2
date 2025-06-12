@@ -9,13 +9,12 @@ import { useNavigate } from 'react-router-dom';
 
 
 const LogInComponent = () => {
-  const [LoginData, setLoginData] = useState({
-    username: "",
-    password: ""
-  });
+    const [LoginData, setLoginData] = useState({
+        username: "",
+        password: ""
+    });
 
-  const [message, setMessage] = useState(''); 
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => { //når vi trykker på knappen
         e.preventDefault();
@@ -25,10 +24,10 @@ const LogInComponent = () => {
 
             // med denna kan vi i alle andre steder kalle inn for å sjekke hvilken bruker vi ska ta utgangspunkt i.
             localStorage.setItem("loggedInUser", JSON.stringify(user)); //Siden vi mottar en trygg DTO
-            //console.log(user);
-            //console.log("HEHEHEHEH");
-            //console.log(localStorage.getItem("loggedInUser"));
-            setTimeout(() => navigate("/"),1000); //redirect etter login til homepage
+
+            //vi lager et "storage" event manuelt
+            window.dispatchEvent(new Event("storage"));
+            setTimeout(() => navigate("/"),800); //redirect etter login til homepage
         } catch (err) {
             alert("Wrong login credentials");
         }
@@ -67,7 +66,6 @@ const LogInComponent = () => {
 
 
       <button type="submit" className="user-auth-button">Log in</button>
-      <p>{message}</p>
       </div>
       {/*<button href="">Create new account</button>*/}
     </form>

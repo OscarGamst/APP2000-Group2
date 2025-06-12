@@ -84,4 +84,11 @@ public interface ActivityMapper {
                 .map(this::mapToCombinedDTO)
                 .collect(Collectors.toList());
     }
+
+    default ActivityBasicDTO map(Activity activity) {
+        ActivityBasicDTO activityBasicDTO=new ActivityBasicDTO();
+        activityBasicDTO.setActivityId(activity.getActivityId());
+        activityBasicDTO.setType(activity.getType());
+        return activityBasicDTO;
+    }
 }

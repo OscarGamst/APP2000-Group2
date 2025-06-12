@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.workoutapp.dto.*;
+import org.example.workoutapp.mapper.ActivityMapper;
 import org.example.workoutapp.model.Activity;
 import org.example.workoutapp.service.ActivityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ActivityController {
 
-    @Autowired
     private final ActivityServiceImpl activityServiceImpl;
+    private final ActivityMapper activityMapper;
 
     //  ------------------ GET ------------------
     //  ---------INSERT ALL GETTERS HERE---------
@@ -77,9 +78,9 @@ public class ActivityController {
             @ApiResponse(responseCode = "400", description = "Invalid"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    public ResponseEntity<Activity> addWorkout(@RequestBody ActivityWorkoutDTO activityWorkoutDTO) {
+    public ResponseEntity<ActivityBasicDTO> addWorkout(@RequestBody ActivityWorkoutDTO activityWorkoutDTO) {
         Activity newActivityWorkout=activityServiceImpl.saveActivityWorkout(activityWorkoutDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(newActivityWorkout);
+        return ResponseEntity.status(HttpStatus.CREATED).body(activityMapper.map(newActivityWorkout));
     }
 
     @PostMapping("/run")
@@ -90,9 +91,9 @@ public class ActivityController {
             @ApiResponse(responseCode = "400", description = "Invalid"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    public ResponseEntity<Activity> addRun(@RequestBody ActivityRunDTO activityRunDTO) {
+    public ResponseEntity<ActivityBasicDTO> addRun(@RequestBody ActivityRunDTO activityRunDTO) {
         Activity savedActivityRun = activityServiceImpl.saveActivityRun(activityRunDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedActivityRun);
+        return ResponseEntity.status(HttpStatus.CREATED).body(activityMapper.map(savedActivityRun));
     }
 
 
@@ -104,13 +105,24 @@ public class ActivityController {
             @ApiResponse(responseCode = "400", description = "Invalid"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    public ResponseEntity<Activity> addCombined(@RequestBody ActivityCombinedDTO activityCombinedDTO) {
+    public ResponseEntity<ActivityBasicDTO> addCombined(@RequestBody ActivityCombinedDTO activityCombinedDTO) {
         Activity savedActivityCombined = activityServiceImpl.saveActivityCombined(activityCombinedDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedActivityCombined);
+        return ResponseEntity.status(HttpStatus.CREATED).body(activityMapper.map(savedActivityCombined));
     }
 
     //  ------------------ PUT ------------------
     //  ---------INSERT ALL PUTTERS HERE---------
+    //Due to time constraints, we decided to make updating the activities limited to only the information
+    //registered in the activity table. This endpoint can therefore be used by all activity types.
+    @PutMapping("/updateActivity")
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", description = "Activity updated"),
+            @ApiResponse(responseCode = "400", description = "Invalid"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
+    public void updateActivity(@RequestBody UpdateActivityDTO updateActivityDTO) {
+        activityServiceImpl.updateActivity(updateActivityDTO);
+    }
 
 
 
