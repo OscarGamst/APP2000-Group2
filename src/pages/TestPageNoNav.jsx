@@ -1,8 +1,4 @@
 import React from "react";
-import ActivityFeed from "../components/ActivityFeed";
-import ProfileCard from "../components/ProfileCard";
-import ProgressBar from "../components/ProgressBar";
-import RecentActivityFeed from "../components/RecentActivityFeed";
 import "../styles/index.css";
 
 

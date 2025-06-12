@@ -14,7 +14,6 @@ const LogInComponent = () => {
     password: ""
   });
 
-  const [message, setMessage] = useState(''); 
   const navigate = useNavigate();
 
     const handleSubmit = async (e) => { //når vi trykker på knappen
@@ -67,7 +66,6 @@ const LogInComponent = () => {
 
 
       <button type="submit" className="user-auth-button">Log in</button>
-      <p>{message}</p>
       </div>
       {/*<button href="">Create new account</button>*/}
     </form>

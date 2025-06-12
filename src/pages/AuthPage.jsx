@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/index.css";
-import LogInComponent from "../components/userAuth/LogInComponent";
-import RegisterComponent from "../components/userAuth/RegisterComponent";
+import LogInComponent from "../components/UserAuthComponent/LogInComponent";
+import RegisterComponent from "../components/UserAuthComponent/RegisterComponent";
 import { useState } from "react";
 
 function AuthPage() {

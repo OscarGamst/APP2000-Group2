@@ -1,13 +1,11 @@
 import React from "react";
-import ProfilePageComponent from "../components/ProfileCardComponent/ProfilePageComponent"
+import ProfilePageComponent from "../components/ProfilePageComponent/ProfilePageComponent"
 import "../styles/responsive.css";
 import { useState } from "react";
-import ProfilePageEdit from "../components/ProfileCardComponent/ProfilePageEdit";
-import ProfilePageEditLogin from "../components/ProfileCardComponent/ProfilePageEditLogin";
+import ProfilePageEdit from "../components/ProfilePageComponent/ProfilePageEdit";
+import ProfilePageEditLogin from "../components/ProfilePageComponent/ProfilePageEditLogin";
 
 function Profile() {
-    const [editing, setEditing] = useState(false);
-    const [editing2, setEditing2] = useState(false);
     const [mode,setMode] = useState("default");
 
     const modeContent = () => {

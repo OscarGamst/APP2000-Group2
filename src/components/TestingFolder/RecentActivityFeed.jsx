@@ -1,7 +1,7 @@
 import React from "react";
-import ActivityItem from "./ActivityItem"; // Import the merged component
-import "../styles/index.css";
-import activities from "./ActivityData"; 
+import ActivityItem from "./ActivityEarlyVersion/ActivityItem"; // Import the merged component
+import "../../styles/index.css";
+import activities from "./ActivityEarlyVersion/ActivityData"; 
 
 const RecentActivityFeed = () => {
   return (

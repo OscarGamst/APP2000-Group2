@@ -4,6 +4,7 @@ import "../../styles/index.css";
 //Placeholder:3
 import activities from "../ActivityData";
 import axios from "axios";
+import activities from "../TestingFolder/ActivityEarlyVersion/ActivityData";
 
 
 //To get the activities from the database, we have to get the username of the user that is currently
