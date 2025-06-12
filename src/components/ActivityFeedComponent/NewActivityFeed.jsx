@@ -17,7 +17,7 @@ import axios from "axios";
 
 const NewActivityFeed = () => {
 
-    const [feedFilter, setFeedFilter]=useState("All");
+    const [feedFilter, setFeedFilter]=useState("all");
 
     const [user, setUser] = useState();
     //Her lagres alle aktiviteter
@@ -111,58 +111,61 @@ const NewActivityFeed = () => {
                             value={feedFilter}
                             onChange={(e) => setFeedFilter(e.target.value)}
                         >
-                            <option value="All">All</option>
-                            <option value="Weightlifting">Weightlifting</option>
-                            <option value="Running">Running</option>
-                            <option value="Combined">Combined</option>
+                            <option value="all">All</option>
+                            <option value="weightlifting">Weightlifting</option>
+                            <option value="run">Running</option>
+                            <option value="combined">Combined</option>
                         </select>
                     </div>
                 </form>
             </div>
             {activities.map((activity) => (
                 <div className={`activity-item ${getActivityClass(activity.type)}`}>
-                    <h3>Username {activity.user}</h3>
-                    <h4>Title {activity.title}</h4>
-                    <p>Type: {activity.type} </p>
-                    <p>Duration: {activity.duration} </p>
-                    {activity.distance !== undefined && <p><strong>Distance:</strong> {activity.distance} km</p>}
-                    {activity.exercises && activity.exercises.length > 0 && (
-                        <div className="exercise-section">
-                            <h5>Exercises:</h5>
-                            <ul>
-                                {activity.exercises.map((ex, idx) => (
-                                    <li key={idx}>
-                                        {ex.name}: {ex.sets} sets x {ex.reps} reps  {ex.weight}kg
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-                    <p>Timestamp: {activity.timestamp} </p>
-                    <div className="activity-social">
-                        <ul>
-                            <button id="like-btn" >Like</button>
-                            <button
-                                onClick={() => toggleComments(activity.activityId)}
-                                className="activity-comment"
-                                type="button"
-                            >
-                                Comment
-                            </button>
-                            <span id="like-count"> likes</span>
-                        </ul>
-                    </div>
-                    {openComments[activity.activityId] && (
-                        <div className="commentSection">
-                            <p>Comments:</p>
-                            {(comments[activity.activityId] || []).map((comment, id) => (
-                                <div className="commentContent" key={id}>
-                                    <h5>{comment.username}</h5>
-                                    <p>{comment.comment_content}</p>
+                    {(feedFilter==="all" || feedFilter===activity.type) ?
+                        <div>
+                            <h3>Username {activity.user}</h3>
+                            <h4>Title {activity.title}</h4>
+                            <p>Type: {activity.type} </p>
+                            <p>Duration: {activity.duration} </p>
+                            {activity.distance !== undefined && <p><strong>Distance:</strong> {activity.distance} km</p>}
+                            {activity.exercises && activity.exercises.length > 0 && (
+                                <div className="exercise-section">
+                                    <h5>Exercises:</h5>
+                                    <ul>
+                                        {activity.exercises.map((ex, idx) => (
+                                            <li key={idx}>
+                                                {ex.name}: {ex.sets} sets x {ex.reps} reps  {ex.weight}kg
+                                            </li>
+                                        ))}
+                                    </ul>
                                 </div>
-                            ))}
-                        </div>
-                    )}
+                            )}
+                            <p>Timestamp: {activity.timestamp} </p>
+                            <div className="activity-social">
+                                <ul>
+                                    <button id="like-btn" >Like</button>
+                                    <button
+                                        onClick={() => toggleComments(activity.activityId)}
+                                        className="activity-comment"
+                                        type="button"
+                                    >
+                                        Comment
+                                    </button>
+                                    <span id="like-count"> likes</span>
+                                </ul>
+                            </div>
+                            {openComments[activity.activityId] && (
+                                <div className="commentSection">
+                                    <p>Comments:</p>
+                                    {(comments[activity.activityId] || []).map((comment, id) => (
+                                        <div className="commentContent" key={id}>
+                                            <h5>{comment.username}</h5>
+                                            <p>{comment.comment_content}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>:null}
                 </div>
 
             ))}
