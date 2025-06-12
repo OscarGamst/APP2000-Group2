@@ -8,7 +8,7 @@ const GoalRegistration = ({returnToDefault}) => {
     useEffect(() => {
         const storedUser = localStorage.getItem("loggedInUser");
         if (storedUser) {
-            goal.setUser(JSON.parse(storedUser.username));
+            goal.setUser((JSON.parse(storedUser)).username);
         }
     }, []);
 
@@ -61,7 +61,7 @@ const Page1 = ({returnToDefault, next}) => {
                         value={repeating}
                         onChange={(e) => setRepeating(e.target.value)}
                     >
-                        <option value="never">never</option>
+                        <option value="yearly">yearly</option>
                         <option value="monthly">monthly</option>
                         <option value="weekly">weekly</option>
                     </select>
@@ -72,7 +72,6 @@ const Page1 = ({returnToDefault, next}) => {
                         type="number"
                         id="frequency"
                         name="frequency"
-                        readOnly={repeating === "never"}
                     />
                 </div>
                 <button type="submit" className="add-button">Next</button>

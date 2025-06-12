@@ -308,8 +308,9 @@ ul {
 }
 
 .commentInput {
-  
+  padding:0.5rem;
 }
+
 
 .commentButton {
   background-color: #0ddbae;
@@ -320,6 +321,7 @@ ul {
   cursor: pointer;
   font-size: 0.9rem;
   transition: background-color 0.3s;
+  
 }
 
 
