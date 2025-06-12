@@ -17,14 +17,14 @@ const ProgressBar = () => {
   return (
     <div className="progress-chart">
       <div className="header">
-        <h2 className="title">Progress Last 30 days</h2>
+        {/*<h2 className="title">Progress Last 30 days</h2>*/}
       </div>
-      <div className="progress-bar-container">
+      {/* <div className="progress-bar-container">
         {}
         <div className="progress-bar" style={{ width: `${progressPercentage}%` }}></div>
         {}
         <span className="progress-value">{totalDuration} / {goal}</span>
-      </div>
+      </div> */}
       <div className="chart-container">
         {chartData.map((value, index) => (
           <div

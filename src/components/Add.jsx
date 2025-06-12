@@ -6,7 +6,7 @@ import NewGoal from "./NewGoalComponent/NewGoal.jsx";
 const Add = () => {
     return (
         <div>
-            <div className="add-container">
+            <div className="">
                 <NewGoal/>
             </div>
             <div className="add-container">

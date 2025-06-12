@@ -640,7 +640,8 @@ ul {
 
 .add-container {
   width: 100%;
-  max-width: 70rem;
+  max-width: 100rem;
+  font-size: 0.70rem;
   padding: 2rem;
   background-color: #ffffff;
   border: 1px solid #e0e0e0;
@@ -654,9 +655,6 @@ ul {
   transition: box-shadow 0.3s ease;
 }
 
-.add-container:hover {
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-}
 
 
 .add-heading {
@@ -726,6 +724,15 @@ ul {
   margin-right: 0.5rem;
 }
 
+.register-button:hover{
+  background: linear-gradient(to right, #14833b, #1db954);
+  transform: translateY(-1px);
+}
+
+.register-activity-container h3 {
+  font-size: 1rem;
+}
+
 
 
 
@@ -788,6 +795,13 @@ select:focus {
   color: #1a1a1a;
   text-align: center;
   margin-bottom: 1.2rem;
+}
+
+.activity-list-container select {
+    width:20%;
+}
+.activity-filter {
+    width:20%;
 }
 
 

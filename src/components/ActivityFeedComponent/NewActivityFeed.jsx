@@ -197,7 +197,6 @@ const NewActivityFeed = () => {
             <div>
                 <form>
                     <div>
-                        <label>Sort By:</label>
                         <select
                             id="feedSort"
                             name="feedSort"

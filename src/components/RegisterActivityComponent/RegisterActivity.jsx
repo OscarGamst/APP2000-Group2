@@ -52,12 +52,11 @@ const RegisterActivity = () => {
 
 	}
 
-    //Main code for component
     return (
 		<div>
 			{visibilityItems ? (
 				<div className="register-activity-container">
-				<h3>Register Activity</h3>
+					<h3>Register Activity</h3>
 				<button onClick={showWeightlift} className="register-button">Weightlifting</button>
 				<button onClick={showRun} className="register-button">Run</button>
 				<button onClick={showCombined} className="register-button">Combined</button>
