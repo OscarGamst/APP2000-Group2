@@ -18,7 +18,7 @@ import axios from "axios";
 const NewActivityFeed = () => {
 
     const [feedFilter, setFeedFilter]=useState("all");
-    const [updateButton, setUpdateButton]=useState(true);
+    const [updateButton, setUpdateButton]=useState({});
 
     const [user, setUser] = useState();
     //Her lagres alle aktiviteter
@@ -109,8 +109,12 @@ const NewActivityFeed = () => {
 
     const [postAccess, setPostAccess]=useState("private");
 
-    const showUpdateForm = () => {
-        setUpdateButton(false);
+    const showUpdateForm = (activityId) => {
+        
+        setUpdateButton((visible) => ({
+            ...visible,
+            [activityId:!visible[activityId],
+        }));
     }
 
     const UpdatePost = (activityId) => {
@@ -235,19 +239,10 @@ const NewActivityFeed = () => {
                                     <button id="like-btn"
                                         onClick={()=> deletePost(activity.activityId)}
                                     >Delete</button>
-                                    {updateButton? <button id="like-btn"
-                                            onClick={showUpdateForm}
+                                    {setUpdateButton[activity.activityId] && <button id="like-btn"
+                                            onClick={() => showUpdateForm(activity.activityId)}
                                             >Edit</button> : <UpdatePost activityId={(activity.activityId)}/>
                                     }
-
-                                    <button
-                                        onClick={() => toggleComments(activity.activityId)}
-                                        className="activity-comment"
-                                        type="button"
-                                    >
-                                        Comment
-                                    </button>
-                                    <span id="like-count"> likes</span>
                                 </ul>
                             </div>
                             {openComments[activity.activityId] && (
