@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "../../styles/index.css"
+import "../../styles/index.css";
 
 const ActivityItem = () => {
   const [user, setUser] = useState();
+  //Her lagres alle aktiviteter
   const [activities, setActivities] = useState([]);
-  const [activityRun, setRuns] = useState([]);
+  //Her lagres type aktiviteter inn i egne lister, for fremtidig bruk (Hvis man skal bruke filter)
+  const [activityRun, setRuns] = useState([]); 
   const [activityWeightlift, setWeightlift] = useState([]);
   const [activityCombined, setCombined] = useState([]);
   const [comments, setComments] = useState({});
@@ -14,7 +16,6 @@ const ActivityItem = () => {
   // likes må jobbes med, men vanskelig å teste før vio kan se andres aktiviteter
   //const [likedActivities, setLikedActivities] = useState({});
   // const [likeCounts, setLikeCounts] = useState({});
-
   useEffect(() => {
     const storedUser = localStorage.getItem("loggedInUser");
     if(storedUser) {
@@ -22,13 +23,14 @@ const ActivityItem = () => {
     }
   },[])
 
+  //Henter aktiviteter for bruker som er logget inn
   useEffect(() => {
     const fetchActivities = async () => {
       if (user && user.username) {
         try {
           const resRun = await axios.get(`/api/activity/allActivitiesRuns/${user.username}`);
           const resWeight = await axios.get(`/api/activity/allActivitiesWeightlifting/${user.username}`);
-          const resCombined = await axios.get(`/api/activity/allActivitiesCombined/${user.username}`)
+          const resCombined = await axios.get(`/api/activity/allActivitiesCombined/${user.username}`);
           //console.log(activityRun);
           //console.log(activityWeightlift);
           setRuns(resRun.data);
@@ -48,6 +50,7 @@ const ActivityItem = () => {
     fetchActivities();
   }, [user]);
 
+  //Henter alle kommentarer på en aktivitet
   const fetchComments = async (activityId) => {
     try {
       const res = await axios.get("/api/social/comment", {
@@ -59,6 +62,7 @@ const ActivityItem = () => {
     }
   };
 
+  //Setter en CSS class på en item basert på type aktivitet
   const getActivityClass = (type) => {
   switch (type) {
     case "weightlifting":
@@ -70,6 +74,7 @@ const ActivityItem = () => {
   }
 };
 
+//Gjør kommentarer synlig med en toggleknapp
 const toggleComments = (activityId) => {
   setOpenComments((prev) => ({
     ...prev,
