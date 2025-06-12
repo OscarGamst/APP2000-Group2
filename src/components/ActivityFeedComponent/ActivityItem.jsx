@@ -171,7 +171,6 @@ const filteredActivities = activityFilter === "following" ? activitiesFollow : a
   const sortedActivities = [...filteredActivities].sort(
     (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
   );
-  
 
 //Her retuneres alle aktivitetItemsene som er laget
    return (
@@ -183,7 +182,6 @@ const filteredActivities = activityFilter === "following" ? activitiesFollow : a
           <option value="following">Following</option>
         </select>
       </div>
-
       {/* Aktivitetene mappes her */}
       {sortedActivities.map((activity) => (
         <div key={activity.activityId} className={`activity-item ${getActivityClass(activity.type)}`}>
@@ -225,7 +223,7 @@ const filteredActivities = activityFilter === "following" ? activitiesFollow : a
                   rows={2}
                   className="commentInput"
                 />
-                <button onClick={() => handleCommentSubmit(activity.activityId)}>Submit</button>
+                <button className="commentButton" onClick={() => handleCommentSubmit(activity.activityId)}>Submit</button>
               </div>
               {(comments[activity.activityId] || []).map((comment, idx) => (
                 <div className="commentContent" key={idx}>

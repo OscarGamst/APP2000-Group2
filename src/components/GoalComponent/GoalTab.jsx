@@ -9,7 +9,6 @@ import GoalWeightliftList from "./GoalWeightliftList";
     <button className="goalTabLinks" onClick="openGoal(event, 'Weight')">Run</button>
 </div>
 */
-
 const GoalTab = () => {
     // dette er hvor vi lagrer en activeTab, satt den på run som default for nå, kanskje la bruker velge
     const [activeTab, setActiveTab] = useState("Run")
