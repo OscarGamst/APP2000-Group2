@@ -104,6 +104,18 @@ public class ActivityController {
     //  ------------------ PUT ------------------
     //  ---------INSERT ALL PUTTERS HERE---------
 
+    //Due to time constraints, we decided to make updating the activities limited to only the information
+    //registered in the activity table. This endpoint can therefore be used by all activity types.
+    @PutMapping("/updateActivity")
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", description = "Activity updated"),
+            @ApiResponse(responseCode = "400", description = "Invalid"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
+    public void updateActivity(@RequestBody UpdateActivityDTO updateActivityDTO) {
+        activityServiceImpl.updateActivity(updateActivityDTO);
+    }
+
 
 
 

@@ -255,6 +255,24 @@ public class ActivityServiceImpl {
         return activityRepository.save(newActivity);
     }
 
+    //  ------------------ UPDATE ------------------
+
+    public void updateActivity(UpdateActivityDTO updateActivityDTO) {
+        //Check if the activity exists in the database
+        Activity foundActivity=activityRepository.findById(updateActivityDTO.getActivityId()).orElse(null);
+
+        if (foundActivity!=null) {
+            activityRepository.updateActivity(
+                    updateActivityDTO.getActivityId(),
+                    updateActivityDTO.getTitle(),
+                    updateActivityDTO.getDescription(),
+                    updateActivityDTO.getDuration(),
+                    updateActivityDTO.getAccess(),
+                    LocalDateTime.now()
+            );
+        }
+    }
+
     //  ------------------ DELETE ------------------
     public void deleteActivity(@PathVariable Integer activityId) {
 

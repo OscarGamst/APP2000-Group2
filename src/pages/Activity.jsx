@@ -17,9 +17,8 @@ const Activity = () => {
   return (
     <div className="activity-page-wrapper">
       <div className="activity-page-main">
-      <ProgressBar/>
+          <ProgressBar/>
           <NewActivityList/>
-      <ActivityList/>
       </div> 
       
       <div className="activity-page-siebar">

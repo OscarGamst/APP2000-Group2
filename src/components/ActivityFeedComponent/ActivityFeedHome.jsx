@@ -15,7 +15,7 @@ const ActivityFeedHome = () => {
     <div className="activity-feed">
         <h2>Activity Feed</h2>
         <form>
-            <label>Filter: </label>
+            <label>Sort by: </label>
             <select
                 id="feedType"
                 name="feedType"
@@ -26,7 +26,7 @@ const ActivityFeedHome = () => {
                 <option value="mine">Mine</option>
             </select>
         </form>
-        {(feedType=="mine")? <ActivityItem />:<ActivityItemFriends/>}
+        {(feedType==="mine")? <ActivityItem />:<ActivityItemFriends/>}
     </div>
     );
     };

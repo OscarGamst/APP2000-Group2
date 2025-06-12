@@ -29,7 +29,7 @@ const ActivityItemFriends = () => {
                     const allActivities=[];
 
                     const following= await axios.get(`/api/social/following/${user.username}`);
-                    const keys =following.keys();
+                    const keys = following.keys();
 
                     for (let userOfInterest of keys) {
                         //Get the user from backend
