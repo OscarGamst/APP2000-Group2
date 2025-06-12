@@ -3,6 +3,7 @@ import axios from "axios";
 import "../../styles/index.css";
 
 const ActivityItem = () => {
+  //her lagres de ulike statsene og objekter
   const [user, setUser] = useState();
   //Her lagres alle aktiviteter
   const [activities, setActivities] = useState([]);
@@ -12,6 +13,7 @@ const ActivityItem = () => {
   const [activityCombined, setCombined] = useState([]);
   const [comments, setComments] = useState({});
   const [openComments, setOpenComments] = useState({});
+  const [newComments, setNewComments] = useState({});
 
   // likes må jobbes med, men vanskelig å teste før vio kan se andres aktiviteter
   //const [likedActivities, setLikedActivities] = useState({});
@@ -76,18 +78,48 @@ const ActivityItem = () => {
 
 //Gjør kommentarer synlig med en toggleknapp
 const toggleComments = (activityId) => {
-  setOpenComments((prev) => ({
-    ...prev,
-    [activityId]: !prev[activityId],
+  setOpenComments((visible) => ({
+    ...visible,
+    [activityId]: !visible[activityId],
   }));
 };
+//håndterer det som blit inputta av bruker og blir kalt når man begynner å skrive
+const handleCommentChange = (activityId, value) => {
+  setNewComments((inputs) => ({
+    ...inputs,
+    [activityId]: value,
+  }));
+};
+//her poster man kommentaren som man har skrevet, og som ble lagret setNewComments
+const handleCommentSubmit = async (activityId) => {
+  const commentContent = newComments[activityId];
+  //Hvis kommentaren er bare mellomrom eller ingenting
+  if (!commentContent || commentContent.trim() === "") return;
+  //dette som skal sendes av data
+  try {
+    const commentData = {
+      comment_content: commentContent,
+      username: user.username,
+      activityId: activityId
+    };
 
+    await axios.post("/api/social/comment", commentData);
+
+    // refresher når man har posta en kommentar
+    fetchComments(activityId);
+    setNewComments((refresh) => ({ ...refresh, [activityId]: "" }));
+  } catch (error) {
+    console.error("Error submitting comment:", error);
+  }
+};
+
+//Her retuneres alle aktivitetItemsene som er laget
   return (
     <div>
       {activities.map((activity) => (
         <div className={`activity-item ${getActivityClass(activity.type)}`}>
-          <h3>Username {activity.user}</h3>
-          <h4>Title {activity.title}</h4>
+          <h3>{activity.user}</h3>
+          <h4>{activity.title}</h4>
           <p>Type: {activity.type} </p>
           <p>Duration: {activity.duration} </p>
           {activity.distance !== undefined && <p><strong>Distance:</strong> {activity.distance} km</p>}
@@ -119,13 +151,25 @@ const toggleComments = (activityId) => {
            </div>
             {openComments[activity.activityId] && (
               <div className="commentSection">
-                <p>Comments:</p>            
+                <div className="commentForm">
+                <textarea
+                  placeholder="Write a comment..."
+                  value={newComments[activity.activityId] || ""}
+                  onChange={(e) => handleCommentChange(activity.activityId, e.target.value)}
+                  rows={2}
+                  className="commentInput"
+                />
+                <button onClick={() => handleCommentSubmit(activity.activityId)}>
+                  Submit
+                </button>
+                </div>                           
                 {(comments[activity.activityId] || []).map((comment, id) => (
                   <div className="commentContent" key={id}>
                     <h5>{comment.username}</h5>
                     <p>{comment.comment_content}</p>  
                   </div>
                 ))}
+                
               </div>
             )}
         </div>
