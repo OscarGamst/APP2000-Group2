@@ -9,6 +9,7 @@ const ActivityItem = () => {
   const [activityWeightlift, setWeightlift] = useState([]);
   const [activityCombined, setCombined] = useState([]);
   const [comments, setComments] = useState({});
+  const [openComments, setOpenComments] = useState({});
 
   // likes må jobbes med, men vanskelig å teste før vio kan se andres aktiviteter
   //const [likedActivities, setLikedActivities] = useState({});
@@ -58,8 +59,6 @@ const ActivityItem = () => {
     }
   };
 
-
-
   const getActivityClass = (type) => {
   switch (type) {
     case "weightlifting":
@@ -71,8 +70,12 @@ const ActivityItem = () => {
   }
 };
 
-
-
+const toggleComments = (activityId) => {
+  setOpenComments((prev) => ({
+    ...prev,
+    [activityId]: !prev[activityId],
+  }));
+};
 
   return (
     <div>
@@ -99,17 +102,27 @@ const ActivityItem = () => {
           <div className="activity-social">
             <ul>
               <button id="like-btn" >Like</button>
-              <button className="activity-comment" type="button">Comment</button>
+              <button
+                onClick={() => toggleComments(activity.activityId)}
+                className="activity-comment"
+                type="button"
+              >
+                Comment
+            </button>
               <span id="like-count"> likes</span>
             </ul>
            </div>
-           <div className="commentSection">
-            <p>Comments:</p>
-            {(comments[activity.activityId] || []).map((comment, id) => (
-              <p key={id}> {comment.username} {comment.comment_content} </p>
-            ))}
-
-            </div>
+            {openComments[activity.activityId] && (
+              <div className="commentSection">
+                <p>Comments:</p>            
+                {(comments[activity.activityId] || []).map((comment, id) => (
+                  <div className="commentContent" key={id}>
+                    <h5>{comment.username}</h5>
+                    <p>{comment.comment_content}</p>  
+                  </div>
+                ))}
+              </div>
+            )}
         </div>
 
       ))}
