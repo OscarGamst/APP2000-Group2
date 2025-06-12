@@ -24,9 +24,9 @@ const LogInComponent = () => {
 
             // med denna kan vi i alle andre steder kalle inn for å sjekke hvilken bruker vi ska ta utgangspunkt i.
             localStorage.setItem("loggedInUser", JSON.stringify(user)); //Siden vi mottar en trygg DTO
-            //console.log(user);
-            //console.log("HEHEHEHEH");
-            //console.log(localStorage.getItem("loggedInUser"));
+
+            //vi lager et "storage" event manuelt
+            window.dispatchEvent(new Event("storage"));
             setTimeout(() => navigate("/"),800); //redirect etter login til homepage
         } catch (err) {
             alert("Wrong login credentials");

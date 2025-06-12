@@ -17,11 +17,23 @@ function App() {
     const [loading, setLoading] = useState(true);
     const [user,setUser] = useState(null);
         useEffect(()=> {
-            const storedUser = localStorage.getItem("loggedInUser");
-            if (storedUser) {
-                setUser(JSON.parse(storedUser));
-            }
+            const loadUserInfo = () => {
+                const storedUser = localStorage.getItem("loggedInUser");
+                if (storedUser) {
+                    setUser(JSON.parse(storedUser));
+                } else {
+                    setUser(null);
+                }
+            };
+
+            loadUserInfo();
             setLoading(false);
+
+            //vi bruker eventListener for å se etter endringer i localstorage
+            //feks hvis man logger ut ellerno vil "loadUserInfo" kjøre igjen
+            window.addEventListener("storage",loadUserInfo);
+            return ()=>{window.removeEventListener("storage",loadUserInfo);}
+
     },[]);
     //loading er lagt til så ikke react rendrer at vi skal til "/auth" 
     // før vi har lest bruker
