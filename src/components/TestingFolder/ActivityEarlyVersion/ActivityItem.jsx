@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "../styles/index.css";
-import "../styles/responsive.css";
+import "../../../styles/index.css";
+import "../../../styles/responsive.css";
 import { FormatDuration } from "./FormatDuration";
 
 

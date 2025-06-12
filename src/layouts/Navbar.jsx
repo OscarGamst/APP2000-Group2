@@ -4,14 +4,10 @@ import { Link } from "react-router-dom";
 import "../styles/index.css";
 import pp from "../pictures/default_pfp.png";
 import bell from "../pictures/NavbarBell.png";
-import LogOutButton from "./userAuth/LogOutButton";
-import SearchBar from "./SearchBarComponent/SearchBar";
+import LogOutButton from "../components/UserAuthComponent/LogOutButton";
+import SearchBar from "../components/SearchBarComponent/SearchBar";
 
 const Navbar = () => {
-  const handleSearch = () => {
-    const searchValue = document.querySelector(".searchbox input").value;
-    alert(`You searched for: ${searchValue}`);
-  };
 
   return (
     <nav className="navbar">

@@ -1,7 +1,6 @@
 import React from "react";
-import ActivityItem from "./ActivityItem";
-import "../styles/index.css";
-import activities from "./ActivityData"; 
+import "../../styles/index.css";
+import activities from "../TestingFolder/ActivityEarlyVersion/ActivityData"; 
 
 const ProgressBar = () => {
   // Feilhåndtering: Sjekk om activities finnes og ikke er tomt
