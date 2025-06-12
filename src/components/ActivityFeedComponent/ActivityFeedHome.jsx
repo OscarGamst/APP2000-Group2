@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ActivityItem from "./ActivityItem";
 import "../../styles/index.css"
-import FetchActivities from "./FetchActivity";
-
 
 
 const ActivityFeedHome = () => { 
@@ -12,6 +10,7 @@ const ActivityFeedHome = () => {
         <h2>Activity Feed</h2>
         <ActivityItem />
     </div>
+    
     );
     };
 
