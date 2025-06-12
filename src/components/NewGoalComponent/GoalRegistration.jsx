@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import "../../styles/index.css";
 import GoalObject from './GoalObject.jsx';
+import axios from "axios";
 
 const goal = new GoalObject();
 
@@ -96,12 +97,20 @@ const Page2 = ({back, returnToDefault}) => {
 }
 
 const WeightliftingGoalLayout = ({returnToDefault}) => {
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         goal.setExerciseName(event.target.elements.exerciseName.value);
         goal.setSets(Number(event.target.elements.sets.value));
-        goal.setWeight(Number(event.target.elements.kg.value));
+        goal.setWeight(Number(event.target.elements.weight.value));
         goal.setReps(Number(event.target.elements.reps.value));
+
+        try {
+            console.log("SENDING:", JSON.stringify(goal));
+            await axios.post("api/goal/register/weightlift", goal);
+        } catch (err) {
+            alert("YIKES ! Error!");
+        }
+
         goal.resetObject();
         returnToDefault();
     }
@@ -119,7 +128,7 @@ const WeightliftingGoalLayout = ({returnToDefault}) => {
                 </div>
                 <div>
                     <label>kg weight used : </label>
-                    <input type="number" id="kg" name="kg" min="0" required />
+                    <input type="number" id="weight" name="weight" min="0" required />
                 </div>
                 <div>
                     <label>reps : </label>
@@ -132,10 +141,17 @@ const WeightliftingGoalLayout = ({returnToDefault}) => {
 }
 
 const RunGoalLayout = ({returnToDefault}) => {
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         goal.setDistance(event.target.elements.distance.value);
         goal.setTime(Number(event.target.elements.time.value));
+
+        try {
+            await axios.post("api/goal/register/run", goal);
+        } catch (err) {
+            alert("YIKES ! Error!");
+        }
+
         goal.resetObject();
         returnToDefault();
     }

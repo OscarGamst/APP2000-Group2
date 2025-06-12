@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import "../../styles/index.css";
 
-//Placeholder:3
 import axios from "axios";
 
 
@@ -117,7 +116,7 @@ const NewActivityFeed = () => {
         }));
     }
 
-    const UpdatePost = (activityId) => {
+    const UpdatePost = (activity) => {
 
 
         const handleSubmit = async (event) => {
@@ -126,11 +125,13 @@ const NewActivityFeed = () => {
 
             const newPostInfo={};
 
-            newPostInfo.duration(Number(event.target.elements.duration.value));
-            newPostInfo.description(String(event.target.elements.description.value));
-            newPostInfo.title(String(event.target.elements.title.value));
-            newPostInfo.access(String(postAccess));
-            newPostInfo.activityId(activityId);
+            console.log(activity);
+
+            newPostInfo.duration=(Number(event.target.elements.duration.value));
+            newPostInfo.description=(String(event.target.elements.description.value));
+            newPostInfo.title=(String(event.target.elements.title.value));
+            newPostInfo.access=(String(postAccess));
+            newPostInfo.activityId=(activity.activityId);
 
             try {
                 await axios.put("api/activity/updateActivity",newPostInfo);
@@ -239,11 +240,11 @@ const NewActivityFeed = () => {
                                     >Delete</button>
                                     {!updateButton[activity.activityId] ? 
                                             (<div><button id="like-btn"
-                                            onClick={() => showUpdateForm(activity.activityId)}
+                                            onClick={() => showUpdateForm(Number(activity.activityId))}
                                             >Edit</button>
                                             </div>):(
                                             <div>
-                                                <UpdatePost activityId={(activity.activityId)}/>
+                                                <UpdatePost activityId={(activity)}/>
                                             </div>)}
                             </div>
                             {openComments[activity.activityId] && (
