@@ -238,15 +238,14 @@ const NewActivityFeed = () => {
                                     <button id="like-btn"
                                         onClick={()=> deletePost(activity.activityId)}
                                     >Delete</button>
-                                    {updateButton[activity.activityId] && 
-                                            <div><button id="like-btn"
+                                    {!updateButton[activity.activityId] ? 
+                                            (<div><button id="like-btn"
                                             onClick={() => showUpdateForm(activity.activityId)}
                                             >Edit</button>
-                                            </div>:
+                                            </div>):(
                                             <div>
                                                 <UpdatePost activityId={(activity.activityId)}/>
-                                            </div>
-                                    }
+                                            </div>)}
                             </div>
                             {openComments[activity.activityId] && (
                                 <div className="commentSection">
