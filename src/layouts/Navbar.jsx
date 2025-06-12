@@ -8,10 +8,6 @@ import LogOutButton from "../components/UserAuthComponent/LogOutButton";
 import SearchBar from "../components/SearchBarComponent/SearchBar";
 
 const Navbar = () => {
-  const handleSearch = () => {
-    const searchValue = document.querySelector(".searchbox input").value;
-    alert(`You searched for: ${searchValue}`);
-  };
 
   return (
     <nav className="navbar">

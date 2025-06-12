@@ -8,19 +8,9 @@ import Activity from "./pages/Activity";
 import TestPageNoNav from "./pages/TestPageNoNav";
 import "./styles/responsive.css";
 import AuthPage from "./pages/AuthPage";
-import { useEffect } from "react";
-import { useState } from "react";
 import Search from "./pages/Search";
 
 function App() {
-    //brukerdata
-    const [user,setUser] = useState(null);
-    useEffect(()=> {
-        const storedUser = localStorage.getItem("loggedInUser");
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
-        }
-    },[]);
 
   return (
     <BrowserRouter>

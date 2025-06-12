@@ -1,14 +1,10 @@
 // src/pages/Dashboard.js
 import React from "react";
-import ActivityFeed from "../components/TestingFolder/ActivityEarlyVersion/ActivityFeed";
-import SideBar from "../components/TestingFolder/SideBar";
 import ProfileCard from "../components/ProfileCardComponent/ProfileCard";
 import ProgressHomepg from "../components/ProgressDashboardComponent/ProgressHomepg";
-import TestForm from "../components/TestingFolder/TestForm"
 import FollowerList from "../components/FollowerListComponent/FollowerList";
 import GoalTab from "../components/GoalComponent/GoalTab";
 import ActivityFeedHome from "../components/ActivityFeedComponent/ActivityFeedHome";
-import NewActivityFeed from "../components/ActivityFeedComponent/NewActivityFeed";
 
 const Home = () => {
   return (

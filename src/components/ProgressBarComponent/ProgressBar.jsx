@@ -1,5 +1,4 @@
 import React from "react";
-import ActivityItem from "../TestingFolder/ActivityEarlyVersion/ActivityItem";
 import "../../styles/index.css";
 import activities from "../TestingFolder/ActivityEarlyVersion/ActivityData"; 
 

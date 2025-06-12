@@ -6,8 +6,6 @@ import ProfilePageEdit from "../components/ProfilePageComponent/ProfilePageEdit"
 import ProfilePageEditLogin from "../components/ProfilePageComponent/ProfilePageEditLogin";
 
 function Profile() {
-    const [editing, setEditing] = useState(false);
-    const [editing2, setEditing2] = useState(false);
     const [mode,setMode] = useState("default");
 
     const modeContent = () => {
