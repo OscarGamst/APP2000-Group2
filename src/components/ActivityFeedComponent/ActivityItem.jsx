@@ -7,6 +7,7 @@ const ActivityItem = () => {
   const [activities, setActivities] = useState([]);
   const [activityRun, setRuns] = useState([]);
   const [activityWeightlift, setWeightlift] = useState([]);
+  const [activityCombined, setCombined] = useState([]);
   const [comments, setComments] = useState({});
 
   // likes må jobbes med, men vanskelig å teste før vio kan se andres aktiviteter
@@ -26,12 +27,14 @@ const ActivityItem = () => {
         try {
           const resRun = await axios.get(`/api/activity/allActivitiesRuns/${user.username}`);
           const resWeight = await axios.get(`/api/activity/allActivitiesWeightlifting/${user.username}`);
-          console.log(activityRun);
-          console.log(activityWeightlift);
+          const resCombined = await axios.get(`/api/activity/allActivitiesCombined/${user.username}`)
+          //console.log(activityRun);
+          //console.log(activityWeightlift);
           setRuns(resRun.data);
           setWeightlift(resWeight.data);
-          setActivities([...resRun.data, ...resWeight.data]);
-          const allActivities = [...resRun.data, ...resWeight.data];
+          setCombined(resCombined.data);
+          setActivities([...resRun.data, ...resWeight.data, ...resCombined.data]);
+          const allActivities = [...resRun.data, ...resWeight.data, ...resCombined.data];
 
           allActivities.forEach((activity) => {
             fetchComments(activity.activityId);
@@ -46,7 +49,7 @@ const ActivityItem = () => {
 
   const fetchComments = async (activityId) => {
     try {
-      const res = await axios.get("/api/comment", {
+      const res = await axios.get("/api/social/comment", {
         params: { activityId: activityId }
       });
       setComments((prev) => ({ ...prev, [activityId]: res.data }));
@@ -103,7 +106,7 @@ const ActivityItem = () => {
            <div className="commentSection">
             <p>Comments:</p>
             {(comments[activity.activityId] || []).map((comment, id) => (
-              <p key={id}> {comment.commenterUsername}:  {comment.content} </p>
+              <p key={id}> {comment.username} {comment.comment_content} </p>
             ))}
 
             </div>

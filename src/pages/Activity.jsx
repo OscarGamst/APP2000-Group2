@@ -25,7 +25,6 @@ const Activity = () => {
       <div className="activity-page-siebar">
       <Goals/>
       <Add />
-      <GoalTab />
       </div>
       <div className="activity-page-empty"></div> 
     </div>

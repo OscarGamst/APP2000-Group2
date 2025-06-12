@@ -31,6 +31,7 @@ public class ActivityController {
 
 
     @GetMapping("/allActivitiesWeightlifting/{username}")
+    @Operation(summary = "Get all Weightlifting activities")
     @ResponseStatus(HttpStatus.CREATED)
     @ApiResponses({
             @ApiResponse(responseCode = "201", description = "List recieved"),
@@ -42,6 +43,7 @@ public class ActivityController {
     }
 
     @GetMapping("/allActivitiesRuns/{username}")
+    @Operation(summary = "Get all Run Activites")
     @ResponseStatus(HttpStatus.CREATED)
     @ApiResponses({
             @ApiResponse(responseCode = "201", description = "List recieved"),
@@ -53,6 +55,7 @@ public class ActivityController {
     }
 
     @GetMapping("/allActivitiesCombined/{username}")
+    @Operation(summary = "Get all Combined Activities")
     @ResponseStatus(HttpStatus.CREATED)
     @ApiResponses({
             @ApiResponse(responseCode = "201", description = "List recieved"),
@@ -67,6 +70,7 @@ public class ActivityController {
     //  ---------INSERT ALL POSTERS HERE----------
 
     @PostMapping("/workout")
+    @Operation(summary = "Create a Weightlifting Activity")
     @ResponseStatus(HttpStatus.CREATED)
     @ApiResponses({
             @ApiResponse(responseCode = "201", description = "Workout registered"),
@@ -79,6 +83,7 @@ public class ActivityController {
     }
 
     @PostMapping("/run")
+    @Operation(summary = "Create Run Activity")
     @ResponseStatus(HttpStatus.CREATED)
     @ApiResponses({
             @ApiResponse(responseCode = "201", description = "Run registered"),
@@ -92,6 +97,7 @@ public class ActivityController {
 
 
     @PostMapping("/combined")
+    @Operation(summary = "Create a Combined Activity")
     @ResponseStatus(HttpStatus.CREATED)
     @ApiResponses({
             @ApiResponse(responseCode = "201", description = "Combined activity registered"),
@@ -112,6 +118,7 @@ public class ActivityController {
     //  ------------------ DELETE ------------------
     //  ---------INSERT ALL DELETES HERE------------
     @DeleteMapping("/deleteActivity/{activityId}")
+    @Operation(summary = "Delete an Activity with ActivityId")
     @ApiResponses({
             @ApiResponse(responseCode = "201", description = "Activity deleted"),
             @ApiResponse(responseCode = "400", description = "Invalid"),
