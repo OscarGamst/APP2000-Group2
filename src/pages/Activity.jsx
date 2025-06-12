@@ -14,7 +14,6 @@ const Activity = () => {
       <div className="activity-page-main">
       <ProgressBar/>
           <NewActivityList/>
-      <ActivityList/>
       </div> 
       
       <div className="activity-page-siebar">
