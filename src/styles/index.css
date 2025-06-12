@@ -586,9 +586,8 @@ ul {
   width: 100%; 
   margin: 0 auto;
   padding: 1.5rem;
-  border: 0.1rem solid #ccc;
-  border-radius: 0.5rem;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
   background-color: white; 
 }
 
@@ -746,9 +745,9 @@ ul {
 }
 
 /* Tekstinput og nedtrekkslister */
-input[type="number"],
-input[type="text"],
-select {
+.add input[type="number"],
+.add input[type="text"],
+.add select {
   width:100%;
   padding: 0.4rem 0.55rem;
   font-size: 0.95rem;
@@ -758,8 +757,44 @@ select {
   transition: border-color 0.2s ease;
 }
 
-input:focus,
-select:focus {
+.add input:focus,
+.add select:focus {
+  border-color: #1db954;
+  outline: none;
+}
+
+.activity-list-container input[type="number"],
+.activity-list-container input[type="text"],
+.activity-list-container select {
+  width:100%;
+  padding: 0.4rem 0.55rem;
+  font-size: 0.95rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.activity-list-container input:focus,
+.activity-list-container select:focus {
+  border-color: #1db954;
+  outline: none;
+}
+
+.activity-filter input[type="number"],
+.activity-filter input[type="text"],
+.activity-filter select {
+  width:100%;
+  padding: 0.4rem 0.55rem;
+  font-size: 0.95rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.activity-filter input:focus,
+.activity-filter select:focus {
   border-color: #1db954;
   outline: none;
 }
@@ -1158,10 +1193,10 @@ input[type=password], input[type=date]
 
 .follow-list-item {
     margin: 0 3rem ;
-    
     padding: 0.5rem;
     border-bottom: 0.1rem solid #ddd;
     font-size: 1rem;
+    font-weight: bold;
     color: #333;
     transition: background 0.2s ease;
 }
