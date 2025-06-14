@@ -8,6 +8,7 @@ Hosted on Microsoft Azure: [Click here to visit](https://lemon-dune-0e05acc1e.4.
 
 ##  Project Overview
 A React web application developed by a team of four students as part of the APP2000 course.
+All comments referencing ChatGPT refers to the 12. June version of OpenAI (OpenAI. (2025). ChatGPT (12. June version) [Large language model]. https://chat.openai.com/).
 ##
 
 
