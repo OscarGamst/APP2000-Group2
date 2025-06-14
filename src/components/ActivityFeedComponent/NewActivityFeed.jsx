@@ -7,6 +7,7 @@ const NewActivityFeed = () => {
 
     const [feedFilter, setFeedFilter]=useState("all");
     const [updateButton, setUpdateButton]=useState({});
+    const [tempActivityId, setTempActivityId]=useState(0);
 
     const [user, setUser] = useState();
     //Her lagres alle aktiviteter
@@ -42,9 +43,6 @@ const NewActivityFeed = () => {
                     setActivities([...resRun.data, ...resWeight.data, ...resCombined.data]);
                     const allActivities = [...resRun.data, ...resWeight.data, ...resCombined.data];
 
-                    allActivities.forEach((activity) => {
-                        fetchComments(activity.activityId);
-                    });
                 } catch (err) {
                     console.error("Failed fetch for activities", err);
                 }
@@ -52,18 +50,6 @@ const NewActivityFeed = () => {
         };
         fetchActivities();
     }, [user]);
-
-    //Henter alle kommentarer på en aktivitet
-    const fetchComments = async (activityId) => {
-        try {
-            const res = await axios.get("/api/social/comment", {
-                params: { activityId: activityId }
-            });
-            setComments((prev) => ({ ...prev, [activityId]: res.data }));
-        } catch (err) {
-            console.error(`Failed to fetch comments for activity ${activityId}`, err);
-        }
-    };
 
     //Setter en CSS class på en item basert på type aktivitet
     const getActivityClass = (type) => {
@@ -77,17 +63,10 @@ const NewActivityFeed = () => {
         }
     };
 
-//Gjør kommentarer synlig med en toggleknapp
-    const toggleComments = (activityId) => {
-        setOpenComments((prev) => ({
-            ...prev,
-            [activityId]: !prev[activityId],
-        }));
-    };
 
     const deletePost = async (activityId) => {
         try {
-            const deleteActivity=await axios.delete(`/api/activity/deleteActivity/${activityId}`);
+            await axios.delete(`/api/activity/deleteActivity/${activityId}`);
         } catch (err) {
             console.error(`Failed to delete activity ${activityId}`, err);
         }
@@ -96,87 +75,38 @@ const NewActivityFeed = () => {
     const [postAccess, setPostAccess]=useState("private");
 
     const showUpdateForm = (activityId) => {
-        
+
         setUpdateButton((visible) => ({
             ...visible,
             [activityId]:!visible[activityId],
         }));
     }
 
-    const UpdatePost = (activity) => {
 
 
-        const handleSubmit = async (event) => {
 
-            event.preventDefault();
+    const handleSubmit = async (event) => {
 
-            const newPostInfo={};
+        event.preventDefault();
 
-            console.log(activity);
+        const newPostInfo={};
 
-            newPostInfo.duration=(Number(event.target.elements.duration.value));
-            newPostInfo.description=(String(event.target.elements.description.value));
-            newPostInfo.title=(String(event.target.elements.title.value));
-            newPostInfo.access=(String(postAccess));
-            newPostInfo.activityId=(activity.activityId);
+        console.log(tempActivityId);
 
-            try {
-                await axios.put("api/activity/updateActivity",newPostInfo);
-            } catch (err) {
-                console.error(err);
-                alert("YIKES ! Error !!");
-            }
-            setUpdateButton(true);
+        newPostInfo.duration=(Number(event.target.elements.duration.value));
+        newPostInfo.description=(String(event.target.elements.description.value));
+        newPostInfo.title=(String(event.target.elements.title.value));
+        newPostInfo.access=(String(postAccess));
+        newPostInfo.activityId=Number(tempActivityId);
 
+        try {
+            await axios.put("api/activity/updateActivity",newPostInfo);
+        } catch (err) {
+            console.error(err);
+            alert("YIKES ! Error !!");
         }
+        setUpdateButton(true);
 
-        return(
-            <div>
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <label>Title : </label>
-                        <input
-                            type="text"
-                            id="title"
-                            name="title"
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label>Description : </label>
-                        <textarea
-                            id="description"
-                            name="description"
-                            required
-                        >
-                    </textarea>
-                    </div>
-                    <div>
-                        <label>Private : </label>
-                        <select
-                            id="access"
-                            name="access"
-                            value={postAccess}
-                            onChange={(e) => setPostAccess(e.target.value)}
-                        >
-                            <option value="private">Private</option>
-                            <option value="public">Public</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label>Duration (min) : </label>
-                        <input
-                            type="number"
-                            id="duration"
-                            name="duration"
-                            min="0"
-                            required
-                        />
-                    </div>
-                    <button type="submit">Save</button>
-                </form>
-            </div>
-        )
     }
 
     return (
@@ -222,29 +152,64 @@ const NewActivityFeed = () => {
                             )}
                             <p>Timestamp: {activity.timestamp} </p>
                             <div className="activity-social">
-                                    <button id="like-btn"
+                                <button id="like-btn"
                                         onClick={()=> deletePost(activity.activityId)}
-                                    >Delete</button>
-                                    {!updateButton[activity.activityId] ? 
-                                            (<div><button id="like-btn"
-                                            onClick={() => showUpdateForm(Number(activity.activityId))}
-                                            >Edit</button>
-                                            </div>):(
+                                >Delete</button>
+                                {!updateButton[activity.activityId] ?
+                                    (<div><button id="like-btn"
+                                                  onClick={() => {
+                                                      setTempActivityId(activity.activityId);
+                                                      showUpdateForm(Number(activity.activityId));}}
+                                    >Edit</button>
+                                    </div>):(
+                                        <div>
                                             <div>
-                                                <UpdatePost activityId={(activity)}/>
-                                            </div>)}
+                                                <form onSubmit={handleSubmit}>
+                                                    <div>
+                                                        <label>Title : </label>
+                                                        <input
+                                                            type="text"
+                                                            id="title"
+                                                            name="title"
+                                                            required
+                                                        />
+                                                    </div>
+                                                    <div>
+                                                        <label>Description : </label>
+                                                        <textarea
+                                                            id="description"
+                                                            name="description"
+                                                            required
+                                                        >
+                                                        </textarea>
+                                                    </div>
+                                                    <div>
+                                                        <label>Private : </label>
+                                                        <select
+                                                            id="access"
+                                                            name="access"
+                                                            value={postAccess}
+                                                            onChange={(e) => setPostAccess(e.target.value)}
+                                                        >
+                                                            <option value="private">Private</option>
+                                                            <option value="public">Public</option>
+                                                        </select>
+                                                    </div>
+                                                    <div>
+                                                        <label>Duration (min) : </label>
+                                                        <input
+                                                            type="number"
+                                                            id="duration"
+                                                            name="duration"
+                                                            min="0"
+                                                            required
+                                                        />
+                                                    </div>
+                                                    <button type="submit">Save</button>
+                                                </form>
+                                            </div>
+                                        </div>)}
                             </div>
-                            {openComments[activity.activityId] && (
-                                <div className="commentSection">
-                                    <p>Comments:</p>
-                                    {(comments[activity.activityId] || []).map((comment, id) => (
-                                        <div className="commentContent" key={id}>
-                                            <h5>{comment.username}</h5>
-                                            <p>{comment.comment_content}</p>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
                         </div>:null}
                 </div>
 
