@@ -133,10 +133,10 @@ const NewActivityFeed = () => {
                 <div className={`activity-item ${getActivityClass(activity.type)}`}>
                     {(feedFilter==="all" || feedFilter===activity.type) ?
                         <div>
-                            <h3>Username {activity.user}</h3>
-                            <h4>Title {activity.title}</h4>
-                            <p>Type: {activity.type} </p>
-                            <p>Duration: {activity.duration} </p>
+                            <h4>{activity.title}</h4>
+                            <p>Activity-{activity.type}</p>
+                            <p>{activity.description}</p>
+                            <p>Duration: {activity.duration} min </p>
                             {activity.distance !== undefined && <p><strong>Distance:</strong> {activity.distance} km</p>}
                             {activity.exercises && activity.exercises.length > 0 && (
                                 <div className="exercise-section">
@@ -150,7 +150,7 @@ const NewActivityFeed = () => {
                                     </ul>
                                 </div>
                             )}
-                            <p>Timestamp: {activity.timestamp} </p>
+                            <p>Published: {(activity.timestamp).slice(0,10)} at {(activity.timestamp).slice(12,19)} </p>
                             <div className="activity-social">
                                 <button id="like-btn"
                                         onClick={()=> deletePost(activity.activityId)}
@@ -207,6 +207,7 @@ const NewActivityFeed = () => {
                                                     </div>
                                                     <button type="submit">Save</button>
                                                 </form>
+                                                <button onClick={()=> setUpdateButton(true)}>Cancel</button>
                                             </div>
                                         </div>)}
                             </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import "../../styles/index.css";
-import activities from "../TestingFolder/ActivityEarlyVersion/ActivityData"; 
+import activities from "../TestingFolder/ActivityEarlyVersion/ActivityData";
+import axios from "axios";
 
 const ProgressBar = () => {
   // Feilhåndtering: Sjekk om activities finnes og ikke er tomt

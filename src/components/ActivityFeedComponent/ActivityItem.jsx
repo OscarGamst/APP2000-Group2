@@ -98,6 +98,7 @@ const ActivityItem = () => {
 
             //Henter kommentarer på aktivitetene
             all.forEach((activity) => fetchComments(activity.activityId));
+
           } catch (err) {
             console.error("Failed to fetch following activities", err);
           }
@@ -172,6 +173,14 @@ const filteredActivities = activityFilter === "following" ? activitiesFollow : a
     (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
   );
 
+  const likeActivity = async (activityId) => {
+    try {
+      await axios.post(`/api/social/like?username=${user.username}&activityId=${activityId}`);
+    } catch (error) {
+      console.error("Error submitting like:", error);
+    }
+  }
+
 //Her retuneres alle aktivitetItemsene som er laget
    return (
     <div>
@@ -202,10 +211,14 @@ const filteredActivities = activityFilter === "following" ? activitiesFollow : a
               </ul>
             </div>
           )}
-          <p>Timestamp: {activity.timestamp}</p>
+          <p>{activity.description}</p>
+          <p>Published: {(activity.timestamp).slice(0,10)} at {(activity.timestamp).slice(12,19)}</p>
           <div className="activity-social">
             <ul>
-              <button id="like-btn">Like</button>
+              <button id="like-btn"
+                onClick={()=>likeActivity(activity.activityId)}>
+                  Like
+              </button>
               <button onClick={() => toggleComments(activity.activityId)} className="activity-comment">
                 Comment
               </button>
