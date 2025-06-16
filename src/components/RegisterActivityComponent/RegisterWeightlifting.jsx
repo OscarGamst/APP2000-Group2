@@ -188,7 +188,6 @@ const Page2 = ({back, returnToDefault}) => {
             </div>
             {visibilityAdd? <button onClick={disableButton}>Add</button>:null}
             {!visibilityAdd? <AddWorkout enableButton={enableButton}/>:null}
-            {visibilityAdd? <button>Cancel</button>:null}
             {visibilityAdd? <button onClick={back}>Back</button>:null}
             {visibilityAdd? <button onClick={submitObject}>Save</button>:null}
         </div>

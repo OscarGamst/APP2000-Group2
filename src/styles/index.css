@@ -121,6 +121,10 @@ ul {
   border: 0.2rem solid rgb(7, 7, 7);
 }
 
+.navbar-title:hover {
+    color: #388e3c;
+}
+
 .navbar-links {
   display: flex;
   gap: 2.5rem;
@@ -555,7 +559,7 @@ ul {
 
 /* -------------- Oscar sin goal components -------------- */
 /* Selve GoalTabben */
-.goalTabs {
+/* .goalTabs {
   overflow: hidden;
   width: 92%;
   margin: 0 auto;
@@ -592,6 +596,60 @@ ul {
   border-radius: 0.5rem;
   border-top: none;
   background-color: white;
+} */
+
+
+.goalTab {
+    position: relative;
+    width: 19rem;
+    min-width: 20rem;
+    margin: 1rem;
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    border-radius: 1rem;
+    box-shadow: 0 0.7rem 1rem rgba(0, 0, 0, 0.1), 0 0.4rem 0.6rem rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    text-align: center;
+    min-height: 5rem;
+    max-height: 20rem;
+    overflow-y: auto;
+}
+
+.goalTabs {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1rem;
+    background-color: #f7f7f7;
+    padding: 0.5rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.tabLinks {
+    border: none;
+    background: none;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: #555;
+    border-bottom: 0.2rem solid transparent;
+    transition: all 0.2s ease;
+}
+
+.tabLinks:hover {
+    background-color: #f9f9f9;
+}
+
+.tabLinks.active {
+    border-bottom: 0.3rem solid #00796b;
+    color: #00796b;
+    font-weight: bold;
+}
+
+
+.goalTabContent {
+    display: block;
+    padding: 1rem;
+    transition: all 0.3s ease;
 }
 
 
