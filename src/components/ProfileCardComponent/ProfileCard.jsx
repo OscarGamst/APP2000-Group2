@@ -58,9 +58,9 @@ const ProfileCard = () => {
                 <li className="profileTitle">
                 <a href="/Profile" >{user ? user.username : "Loading.."}</a>
                 </li>
-                <li className="profileDesc">
+                {/* <li className="profileDesc">
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore et ipsum ...
-                </li>
+                </li> */}
                 <div className="profileStats">
                 <ul>
                 <li>
