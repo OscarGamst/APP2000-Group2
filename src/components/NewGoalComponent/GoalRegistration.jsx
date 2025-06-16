@@ -148,6 +148,7 @@ const RunGoalLayout = ({returnToDefault}) => {
 
         try {
             await axios.post("api/goal/register/run", goal);
+            console.log(goal);
         } catch (err) {
             alert("YIKES ! Error!");
         }

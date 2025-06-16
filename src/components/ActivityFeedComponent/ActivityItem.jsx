@@ -16,9 +16,9 @@ const ActivityItem = () => {
   const [activityWeightliftFollow, setWeightliftFollow] = useState([]);
   const [activityCombinedFollow, setCombinedFollow] = useState([]);
   //Kommentarer
-  const [comments, setComments] = useState({});
-  const [openComments, setOpenComments] = useState({});
-  const [newComments, setNewComments] = useState({});
+  const [comments, setComments] = useState([]);
+  const [openComments, setOpenComments] = useState([]);
+  const [newComments, setNewComments] = useState([]);
   //console.log(openComments);
   //Filter på egne og andres aktiviteter
   const [activityFilter, setActivityFilter] = useState("own");
